@@ -23,9 +23,11 @@ class home extends Component {
               주식은 처음이지?
             </div>
             <div className="register">
-              <button className="register-btn">
-                가입하기
-              </button>
+              <Link to="/register">
+                <button className="register-btn">
+                  가입하기
+                </button>
+              </Link>
             </div>
           </div>
         </div>

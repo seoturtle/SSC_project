@@ -36,5 +36,13 @@
     width: 1080px; 
     border: 1px solid red;
 }
-.main .main_invest{clear: both; padding-top: 50px;}
-.main .main_invest .img_invest{box-sizing: border-box; height: 350px; width: 1080px; border: 1px solid red;}
+.main .main_invest{
+    clear: both; 
+    padding-top: 50px;
+}
+.main .main_invest .img_invest{
+    box-sizing: border-box;
+    height: 350px; 
+    width: 1080px; 
+    border: 1px solid red;
+}

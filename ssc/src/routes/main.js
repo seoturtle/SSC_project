@@ -6,7 +6,7 @@ class main extends Component {
     render() {
       return (
         <div className="main">
-          <Header></Header>
+          <Header />
           <div id="container">
             <div className="korea_index">
                 <div className="img_kospi">코스피</div>
