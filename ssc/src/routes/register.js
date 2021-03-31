@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Link } from "react-router-dom";
 import '../css/register.css';
 
 class register extends Component {

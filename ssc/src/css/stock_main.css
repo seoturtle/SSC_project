@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 .stock_main * {
     margin : 0;
     padding : 0;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 #root > .stock_main {
@@ -60,19 +63,19 @@
     background-position: center;
 }
 .stock_main .button_img1{
-    background: url('../img/news.png');
+    background: url('../img/news2.png');
     background-size: 30px;
 }
 .stock_main .button_img2{
-    background: url('../img/info.png');
+    background: url('../img/info2.png');
     background-size: 30px;
 }
 .stock_main .button_img3{
-    background: url('../img/talk.png');
-    background-size: 40px;
+    background: url('../img/talk3.png');
+    background-size: 30px;
 }
 .stock_main .button_img4{
-    background: url('../img/heart.png');
+    background: url('../img/heart2.png');
     background-size: 30px;
 }
 .stock_main .info_detail{
