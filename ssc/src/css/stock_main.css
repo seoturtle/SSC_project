@@ -1,0 +1,81 @@
+.stock_main * {
+    margin : 0;
+    padding : 0;
+}
+
+#root > .stock_main {
+    height: 100vh;
+  }
+.stock_main .main{
+    min-width: 1190px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+}
+.stock_main .stock_graph{
+    width: auto;
+    min-width: 700px;
+    height: 100%;
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.stock_main .stock_info{
+    min-width: 490px;
+    max-width: 70rem;
+    height: 100%;
+    border-left: 1px solid #e8e6e6;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.stock_main .info_button{
+    height: 60px;
+    border-bottom: 1px solid #e8e6e6;
+    position: relative;
+    display: flex;
+}
+.stock_main .info_button button{
+    text-align: center;
+    background-color: white;
+    border: 0;
+    outline: 0;
+    height: 100%;
+    width: 9.92rem;
+    cursor: pointer;
+    position: relative;
+}
+.stock_main .info_button button div{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+
+    background-position: center;
+}
+.stock_main .button_img1{
+    background: url('../img/news.png');
+    background-size: 30px;
+}
+.stock_main .button_img2{
+    background: url('../img/info.png');
+    background-size: 30px;
+}
+.stock_main .button_img3{
+    background: url('../img/talk.png');
+    background-size: 40px;
+}
+.stock_main .button_img4{
+    background: url('../img/heart.png');
+    background-size: 30px;
+}
+.stock_main .info_detail{
+    height: 60px;
+    border-bottom: 1px solid #e8e6e6;
+    position: relative;
+    display: flex;
+}
