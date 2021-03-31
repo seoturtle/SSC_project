@@ -10,6 +10,9 @@ class third extends Component{
                         토론방
                     </li>
                 </ol>
+                <div>
+                    토론방 입니다
+                </div>
             </div>
         );
     }

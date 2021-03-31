@@ -10,6 +10,9 @@ class fourth extends Component{
                         관심목록
                     </li>
                 </ol>
+                <div>
+                    관심목록 입니다
+                </div>
             </div>
         );
     }
