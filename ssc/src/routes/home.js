@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import '../css/home.css';
 
-class home extends Component {
-  render() {
+function Home() {
     return (
       <div className="home">
         <div className="left-side">
@@ -34,6 +33,5 @@ class home extends Component {
       </div>
     );
   }
-}
 
-export default home;
+export default Home;

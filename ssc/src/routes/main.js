@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { Link } from "react-router-dom";
 import Header from "../components/header.js";
 import '../css/main.css';
 
-class main extends Component {
-    render() {
+function Main() {
       return (
         <div className="main">
           <Header />
@@ -23,6 +22,5 @@ class main extends Component {
         </div>
       );
     }
-}
 
-export default main;
+export default Main;

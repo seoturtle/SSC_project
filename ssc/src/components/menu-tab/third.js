@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../css/menu-tab_css/third.css';
 
-class third extends Component{
-    render(){
+function Third() {
         return (
             <div className="third">
                 <ol className="menu">
@@ -16,6 +15,5 @@ class third extends Component{
             </div>
         );
     }
-}
 
-export default third;
+export default Third;

@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { Link } from "react-router-dom";
 import '../css/register.css';
 
-class register extends Component {
-  render() {
+function Register() {
     return (
         <div className="register">
             <div id="header">
@@ -126,6 +125,6 @@ class register extends Component {
         </div>
     );
   }
-}
 
-export default register;
+
+export default Register;

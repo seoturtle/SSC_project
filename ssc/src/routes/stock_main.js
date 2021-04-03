@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 // import { Link } from "react-router-dom";
 import Header from "../components/header.js";
 import First from "../components/menu-tab/first.js";
@@ -14,16 +14,13 @@ const obj = {
   3: <Fourth />
 }
 
-class stock_main extends Component {
-  state = {
-    activeTab : 0
+function Stock_main() {
+  let [activeTab, SetActiveTab] = useState(0);
+
+const ClickHandler = (id) => {
+    SetActiveTab(id)
   }
 
-  clickHandler = (id) => {
-    this.setState({activeTab : id})
-  }
-
-    render() {
       return (
         <div className="stock_main">
           <Header />
@@ -33,31 +30,30 @@ class stock_main extends Component {
             </div>
             <div className="stock_info">
               <div className="info_button">
-                <button onClick={() => this.clickHandler(0)} type="button">
+                <button onClick={() => ClickHandler(0)} type="button">
                   <div className="button_img1"> {/* 아이콘 1*/}
                   </div>
                 </button>
-                <button onClick={() => this.clickHandler(1)} type="button">
+                <button onClick={() => ClickHandler(1)} type="button">
                   <div className="button_img2"> {/* 아이콘 2*/}
                   </div>
                 </button>
-                <button onClick={() => this.clickHandler(2)} type="button">
+                <button onClick={() => ClickHandler(2)} type="button">
                   <div className="button_img3"> {/* 아이콘 3*/}
                   </div>
                 </button>
-                <button onClick={() => this.clickHandler(3)} type="button">
+                <button onClick={() => ClickHandler(3)} type="button">
                   <div className="button_img4"> {/* 아이콘 4*/}
                   </div>
                 </button>
               </div>
               <div className="info_detail">
-                  {obj[this.state.activeTab]}
+                  {obj[activeTab]}
               </div>
             </div>
           </div>
         </div>
       );
     }
-}
 
-export default stock_main;
+export default Stock_main;

@@ -9,12 +9,24 @@
 }
 
 .first .menu_tab{
-    line-height: 60px;
+    top: 25%;
     font-weight: bold;
     text-align: center;
     border: 0;
     outline: 0;
-    height: 60px;
+    height: 30px;
+    width: 50%;
+    cursor: pointer;
+    position: relative;
+}
+.first .menu_tab_clicked{
+    color: red;
+    top: 25%;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    height: 30px;
     width: 50%;
     cursor: pointer;
     position: relative;

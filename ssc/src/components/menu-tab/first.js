@@ -1,57 +1,49 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../../css/menu-tab_css/first.css';
 
 
-class First extends Component{
-    render(){
+function FirstDetail() {
         return(
             <div className="First_first">
                 뉴스 입니다
             </div>
         );
     }
-}
 
-class Second extends Component{
-    render(){
+function SecondDetail() {
         return(
             <div className="First_second">
                 특징종목 입니다
             </div>
         );
     }
-}
 
 const obj = {
-    0: <First />,
-    1: <Second />
+    0: <FirstDetail />,
+    1: <SecondDetail />
   }
 
-class first extends Component{
-    state = {
-        activeTab : 0
+function First() {
+    let [act, setAct] = useState(0);
+
+    const clickHandler = (id) => {
+        setAct(id)
       }
-    
-    clickHandler = (id) => {
-        this.setState({activeTab : id})
-      }
-    render(){
         return (
             <div className="first">
                 <ol className="menu">
-                    <li onClick={() => this.clickHandler(0)} className="menu_tab">
+                    <li onClick={() => clickHandler(0)} className="menu_tab">
                         뉴스
                     </li>
-                    <li onClick={() => this.clickHandler(1)} className="menu_tab">
+                    <li onClick={() => clickHandler(1)} className="menu_tab">
                         특징종목
                     </li>
                 </ol>
                 <div>
-                    {obj[this.state.activeTab]}
+                    {obj[act]}
                 </div>
             </div>
         );
     }
-}
 
-export default first;
+export default First;
