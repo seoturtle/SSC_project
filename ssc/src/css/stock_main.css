@@ -55,6 +55,9 @@
 .stock_main .info_button button:hover{
     background-color: #e8e6e6;
 }
+.stock_main .info_button .clicked{
+    background-color: #e8e6e6;
+}
 .stock_main .info_button button div{
     display: inline-block;
     width: 50px;
@@ -83,4 +86,8 @@
     border-bottom: 1px solid #e8e6e6;
     position: relative;
     display: flex;
+}
+.stock_main .button_img1_clicked{
+    background: url('../img/news2.png');
+    background-size: 30px;
 }

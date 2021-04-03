@@ -24,23 +24,25 @@ const obj = {
   }
 
 function First() {
-    let [act, setAct] = useState(0);
+    let [color, setColor] = useState(0);
+    let [activeTab, SetActiveTab] = useState(0);
 
     const clickHandler = (id) => {
-        setAct(id)
+        setColor(id);
+        SetActiveTab(id)
       }
         return (
             <div className="first">
                 <ol className="menu">
-                    <li onClick={() => clickHandler(0)} className="menu_tab">
+                    <li onClick={() => clickHandler(0)} className={color===0 ? "menu_tab_clicked" : "menu_tab"}>
                         뉴스
                     </li>
-                    <li onClick={() => clickHandler(1)} className="menu_tab">
+                    <li onClick={() => clickHandler(1)} className={color===1 ? "menu_tab_clicked" : "menu_tab"}>
                         특징종목
                     </li>
                 </ol>
                 <div>
-                    {obj[act]}
+                    {obj[activeTab]}
                 </div>
             </div>
         );

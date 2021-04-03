@@ -19,3 +19,15 @@
     cursor: pointer;
     position: relative;
 }
+.second .menu_tab_clicked{
+    color: #D50000;
+    top: 25%;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    height: 30px;
+    width: 25%;
+    cursor: pointer;
+    position: relative;
+}

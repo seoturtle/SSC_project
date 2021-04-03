@@ -41,24 +41,26 @@ const obj = {
   }
 
 function Second() {
+    let [color, setColor] = useState(0);
     let [activeTab, SetActiveTab] = useState(0);
 
     const clickHandler = (id) => {
+        setColor(id);
         SetActiveTab(id)
       }
         return (
             <div className="second">
                 <ol className="menu">
-                    <li onClick={() => clickHandler(0)} className="menu_tab">
+                    <li onClick={() => clickHandler(0)} className={color===0 ? "menu_tab_clicked" : "menu_tab"}>
                         종목요약
                     </li>
-                    <li onClick={() => clickHandler(1)} className="menu_tab">
+                    <li onClick={() => clickHandler(1)} className={color===1 ? "menu_tab_clicked" : "menu_tab"}>
                         재무정보
                     </li>
-                    <li onClick={() => clickHandler(2)} className="menu_tab">
+                    <li onClick={() => clickHandler(2)} className={color===2 ? "menu_tab_clicked" : "menu_tab"}>
                         종목이슈
                     </li>
-                    <li onClick={() => clickHandler(3)} className="menu_tab">
+                    <li onClick={() => clickHandler(3)} className={color===3 ? "menu_tab_clicked" : "menu_tab"}>
                         종목메모
                     </li>
                 </ol>

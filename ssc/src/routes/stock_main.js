@@ -16,8 +16,10 @@ const obj = {
 
 function Stock_main() {
   let [activeTab, SetActiveTab] = useState(0);
+  let [color, setColor] = useState(0);
 
-const ClickHandler = (id) => {
+  const clickHandler = (id) => {
+    setColor(id);
     SetActiveTab(id)
   }
 
@@ -30,19 +32,19 @@ const ClickHandler = (id) => {
             </div>
             <div className="stock_info">
               <div className="info_button">
-                <button onClick={() => ClickHandler(0)} type="button">
+                <button className={color===0 ? "clicked" : ""} onClick={() => clickHandler(0)} type="button">
                   <div className="button_img1"> {/* 아이콘 1*/}
                   </div>
                 </button>
-                <button onClick={() => ClickHandler(1)} type="button">
+                <button className={color===1 ? "clicked" : ""} onClick={() => clickHandler(1)} type="button">
                   <div className="button_img2"> {/* 아이콘 2*/}
                   </div>
                 </button>
-                <button onClick={() => ClickHandler(2)} type="button">
+                <button className={color===2 ? "clicked" : ""} onClick={() => clickHandler(2)} type="button">
                   <div className="button_img3"> {/* 아이콘 3*/}
                   </div>
                 </button>
-                <button onClick={() => ClickHandler(3)} type="button">
+                <button className={color===3 ? "clicked" : ""} onClick={() => clickHandler(3)} type="button">
                   <div className="button_img4"> {/* 아이콘 4*/}
                   </div>
                 </button>

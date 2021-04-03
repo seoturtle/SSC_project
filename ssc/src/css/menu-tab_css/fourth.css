@@ -9,6 +9,7 @@
 }
 
 .fourth .menu_tab{
+    color: #D50000;
     top: 25%;
     font-weight: bold;
     text-align: center;
@@ -18,4 +19,5 @@
     width: 100%;
     cursor: pointer;
     position: relative;
+
 }
