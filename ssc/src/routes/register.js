@@ -1,12 +1,16 @@
 import React from 'react';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../css/register.css';
 
 function Register() {
     return (
         <div className="register">
             <div id="header">
-                <a href="메인으로 합시다." target="_blank" title="메인메인">{/*<img src="../img/logo.png" id="logo" />*/}</a>
+                <Link to='/'>
+                    <div className="logo">
+                        
+                    </div>
+                </Link>
             </div>
 
             <div id="wrapper">

@@ -16,14 +16,14 @@ function Home() {
             <Link to="/main"><input className="login-btn" type="submit" value="로그인"></input></Link>
           </div>
           <div className="logo-ment-register">
-            <div className="logo">
+            <div className="home_logo">
             </div>
-            <div className="ment">
+            <div className="home_ment">
               주식은 처음이지?
             </div>
-            <div className="register">
+            <div className="home_register">
               <Link to="/register">
-                <button className="register-btn">
+                <button className="home_register-btn">
                   가입하기
                 </button>
               </Link>

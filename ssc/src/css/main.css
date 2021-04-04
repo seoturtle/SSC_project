@@ -18,14 +18,14 @@
     box-sizing: border-box; 
     height: 350px; 
     width: 520px; 
-    border: 1px solid red;
+    border: 1px solid #d50000;
 }
 .main .korea_index .img_kosdaq{
     float:left; 
     box-sizing: border-box;
     height: 350px; 
     width: 520px; 
-    border: 1px solid red; 
+    border: 1px solid #d50000; 
     margin-left: 40px;
 }
 .main .main_four_index{  
@@ -36,7 +36,7 @@
     box-sizing: border-box; 
     height: 350px; 
     width: 1080px; 
-    border: 1px solid red;
+    border: 1px solid #d50000;
 }
 .main .main_invest{
     clear: both; 
@@ -46,5 +46,5 @@
     box-sizing: border-box;
     height: 350px; 
     width: 1080px; 
-    border: 1px solid red;
+    border: 1px solid #d50000;
 }
