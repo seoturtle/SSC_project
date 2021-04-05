@@ -1,10 +1,6 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-*{
-  color: #696969;
-}
-
 option{
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -143,14 +139,26 @@ input::placeholder{
 .header .header_stock{
   background: url('../img/stock2.png');
 }
+.header .header_stock:hover{
+  background: url('../img/stock-red.png');
+}
 .header .header_coin{
   background: url('../img/coin2.png');
+}
+.header .header_coin:hover{
+  background: url('../img/coin-red.png');
 }
 .header .header_chat{
   background: url('../img/chat2.png');
 }
+.header .header_chat:hover{
+  background: url('../img/chat-red.png');
+}
 .header .header_notice{
   background: url('../img/bulb2.png');
+}
+.header .header_notice:hover{
+  background: url('../img/bulb-red.png');
 }
 .header .header_cont .header_category li:last-child{
   padding-right: 0;

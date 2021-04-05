@@ -32,20 +32,20 @@ function Stock_main() {
             </div>
             <div className="stock_info">
               <div className="info_button">
-                <button className={color===0 ? "clicked" : ""} onClick={() => clickHandler(0)} type="button">
-                  <div className="button_img1"> {/* 아이콘 1*/}
+                <button onClick={() => clickHandler(0)} type="button">
+                  <div className={color===0 ? "button_img1_clicked" : "button_img1"}> {/* 아이콘 1*/}
                   </div>
                 </button>
-                <button className={color===1 ? "clicked" : ""} onClick={() => clickHandler(1)} type="button">
-                  <div className="button_img2"> {/* 아이콘 2*/}
+                <button onClick={() => clickHandler(1)} type="button">
+                  <div className={color===1 ? "button_img2_clicked" : "button_img2"}> {/* 아이콘 2*/}
                   </div>
                 </button>
-                <button className={color===2 ? "clicked" : ""} onClick={() => clickHandler(2)} type="button">
-                  <div className="button_img3"> {/* 아이콘 3*/}
+                <button onClick={() => clickHandler(2)} type="button">
+                  <div className={color===2 ? "button_img3_clicked" : "button_img3"}> {/* 아이콘 3*/}
                   </div>
                 </button>
-                <button className={color===3 ? "clicked" : ""} onClick={() => clickHandler(3)} type="button">
-                  <div className="button_img4"> {/* 아이콘 4*/}
+                <button onClick={() => clickHandler(3)} type="button">
+                  <div className={color===3 ? "button_img4_clicked" : "button_img4"}> {/* 아이콘 4*/}
                   </div>
                 </button>
               </div>

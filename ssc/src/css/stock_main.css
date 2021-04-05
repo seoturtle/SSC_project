@@ -53,10 +53,7 @@
     position: relative;
 }
 .stock_main .info_button button:hover{
-    background-color: #e8e6e6;
-}
-.stock_main .info_button .clicked{
-    background-color: #e8e6e6;
+    
 }
 .stock_main .info_button button div{
     display: inline-block;
@@ -69,16 +66,32 @@
     background: url('../img/news2.png');
     background-size: 30px;
 }
+.stock_main .button_img1_clicked{
+    background: url('../img/news-red.png');
+    background-size: 30px;
+}
 .stock_main .button_img2{
     background: url('../img/info2.png');
+    background-size: 30px;
+}
+.stock_main .button_img2_clicked{
+    background: url('../img/info-red.png');
     background-size: 30px;
 }
 .stock_main .button_img3{
     background: url('../img/talk3.png');
     background-size: 30px;
 }
+.stock_main .button_img3_clicked{
+    background: url('../img/talk-red.png');
+    background-size: 30px;
+}
 .stock_main .button_img4{
     background: url('../img/heart2.png');
+    background-size: 30px;
+}
+.stock_main .button_img4_clicked{
+    background: url('../img/heart-red.png');
     background-size: 30px;
 }
 .stock_main .info_detail{
@@ -88,6 +101,6 @@
     display: flex;
 }
 .stock_main .button_img1_clicked{
-    background: url('../img/news2.png');
+    background: url('../img/news-red.png');
     background-size: 30px;
 }
