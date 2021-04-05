@@ -32,3 +32,12 @@
     cursor: pointer;
     position: relative;
 }
+.second .menu_tab_clicked::after{
+    content: "";
+    width: 75px;
+    height: 2px;
+    position: absolute;
+    left: 18.5%;
+    bottom: -15px;
+    background-color: #d50000;
+}
