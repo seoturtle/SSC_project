@@ -23,7 +23,7 @@ const handleEmail = (e) => {
         
 //   };
 const handleClick = async() => {
-    const response = await axios('http://localhost:3002/text', {
+    const response = await axios.post('http://localhost:3002/text', {
         email: email
     });
     console.log(response.data);

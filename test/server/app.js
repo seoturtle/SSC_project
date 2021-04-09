@@ -10,10 +10,20 @@ app.use(cors());
 
 app.use('/api', api);
 
+
 app.post("/text", (req, res) => {//데이터 받는 곳
     const text1 = req.body.email;
     console.log(text1);
-  });
+    const sql = "INSERT INTO `users` (`email`) VALUES (?)"
+    db.query(sql, [text1], (err, data) => {
+      if(!err) {
+        console.log("성공");
+      }else{
+        console.log(err);
+      }
+    })
+    }
+  );
 
 const port = 3002;
 app.listen(port, ()=>console.log(`Listening on port ${port}`));
