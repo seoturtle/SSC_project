@@ -61,45 +61,6 @@ function Register() {
                     </div>
 
                     <div>
-                        <h3 className="join_title">
-                            <label for="yy">생년월일</label>
-                        </h3>
-                        <div id="bir_wrap">
-                            {/* <!-- BIRTH_YY --> */}
-                            <div id="bir_yy">
-                                <span className="box">
-                                    <input type="text" id="yy" className="int" maxlength="4" placeholder="년(4자)" />
-                                </span>
-                            </div>
-                            <div id="bir_mm">
-                                <span className="box">
-                                    <select id="mm" className="sel">
-                                        <option>월</option>
-                                        <option value="01">1</option>
-                                        <option value="02">2</option>
-                                        <option value="03">3</option>
-                                        <option value="04">4</option>
-                                        <option value="05">5</option>
-                                        <option value="06">6</option>
-                                        <option value="07">7</option>
-                                        <option value="08">8</option>
-                                        <option value="09">9</option>                                    
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                </span>
-                            </div>
-                            <div id="bir_dd">
-                                <span className="box">
-                                    <input type="text" id="dd" className="int" maxlength="2" placeholder="일" />
-                                </span>
-                            </div>
-                        </div>
-                        <span className="error_next_box"></span>    
-                    </div>
-
-                    <div>
                         <h3 className="join_title"><label for="gender">성별</label></h3>
                         <span className="box gender_code">
                             <select id="gender" className="sel">
