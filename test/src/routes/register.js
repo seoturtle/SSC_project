@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import axios from 'axios';
+// import axios from 'axios';
 import '../css/register.css';
 
 function Register() {
+const [data, setData] = useState("");
 const [email, setEmail] = useState("");
 // const [pwd, setPwd] = useState("");
 // const [nickname, setNickname] = useState("");
@@ -22,11 +23,32 @@ const handleEmail = (e) => {
 //     e.preventDefault();
         
 //   };
-const handleClick = async() => {
-    const response = await axios.post('http://localhost:3002/text', {
-        email: email
-    });
-    console.log(response.data);
+const handleClick = () => {
+    // const post = {
+    //     email : email,
+    // };
+    // fetch("http://localhost:3002/text", {
+    //     method : "post", // 통신방법
+    //     headers : {
+    //       "content-type" : "application/json",
+    //     },
+    //     body : JSON.stringify(post),
+    //   })
+    //   .then((res)=>res.json())
+    //   .then((json)=>{
+    //       setEmail(json.text)
+    //   });
+    fetch("http://localhost:3002/text2", {
+        method:"post",
+        headers : {
+            "content-type" : "application/json",
+          },
+          body : JSON.stringify(),
+        })
+        .then((res)=>res.json())
+        .then((json)=>{
+            setData(json.email)
+        });
   };
 
     return (
@@ -110,6 +132,7 @@ const handleClick = async() => {
                         <button onClick={handleClick} type="button" id="btnJoin">
                             <span>가입하기</span>
                         </button>
+                        {data}
                     </div>
                 </div> 
             </div>
