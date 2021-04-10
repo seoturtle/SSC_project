@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 // import axios from 'axios';
 import '../css/register.css';
 
 function Register() {
+const history = useHistory();
 const [data, setData] = useState("");
 const [email, setEmail] = useState("");
 const [emailCheck, setEmailCheck] = useState("");
@@ -11,8 +12,8 @@ const [pwd, setPwd] = useState("");
 const [repwd, setRepwd] = useState("");
 const [pwCheck, setPwCheck] = useState("");
 const [name, setName] = useState("");
-// const [sex, setSex] = useState("");
-// const [phone, setPhone] = useState("");
+const [sex, setSex] = useState("남자");
+const [phone, setPhone] = useState("");
 
 const handleEmail = (e) => {
     e.preventDefault();
@@ -88,6 +89,15 @@ const checkPwd = (e) => {
       }
     }
   };
+
+const handleSex = (e) => {
+    e.preventDefault();
+    setSex(e.target.value);
+}
+const handlePhone = (e) => {
+    e.preventDefault();
+    setPhone(e.target.value);
+}
 const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -98,11 +108,15 @@ const handleSubmit = (e) => {
         pwd,
         repwd,
         pwCheck,
+        sex,
+        phone
     }
     const signupInfo = {
         email: emailCheck,
         pwd: pwCheck,
-        name : name
+        name : name,
+        sex : sex,
+        phone : phone
     }
 
     const signup_info = {
@@ -118,43 +132,19 @@ const handleSubmit = (e) => {
           name &&
           pwd &&
           repwd &&
+          sex &&
+          phone &&
           email === emailCheck &&
           pwd === repwd &&
           repwd === pwCheck
       ) {
           fetch("http://localhost:3002/user", signup_info)
           .then(alert("가입이 완료되었습니다."))
-          .then(this.props.history.push("/"));
+          .then(history.push("/"));
       } else {
           alert("입력값을 확인해주세요");
+          console.log(sex);
       }
-  };
-const handleClick = () => {
-    const post = {
-        email : email,
-    };
-    fetch("http://localhost:3002/text", {
-        method : "post", // 통신방법
-        headers : {
-          "content-type" : "application/json",
-        },
-        body : JSON.stringify(post),
-      })
-      .then((res)=>res.json())
-      .then((json)=>{
-          setEmail(json.text)
-      });
-    // fetch("http://localhost:3002/text2", {
-    //     method:"post",
-    //     headers : {
-    //         "content-type" : "application/json",
-    //       },
-    //       body : JSON.stringify(),
-    //     })
-    //     .then((res)=>res.json())
-    //     .then((json)=>{
-    //         setData(json.email)
-    //     });
   };
 
     return (
@@ -218,10 +208,9 @@ const handleClick = () => {
                     <div>
                         <h3 className="join_title"><label for="gender">성별</label></h3>
                         <span className="box gender_code">
-                            <select id="gender" className="sel">
-                                <option>성별</option>
-                                <option value="M">남자</option>
-                                <option value="F">여자</option>
+                            <select onChange={handleSex} value={sex} id="gender" className="sel">
+                                <option value="남자">남자</option>
+                                <option value="여자">여자</option>
                             </select>                            
                         </span>
                         <span className="error_next_box">필수 정보입니다.</span>
@@ -230,7 +219,7 @@ const handleClick = () => {
                     <div>
                         <h3 className="join_title"><label for="phoneNo">휴대전화</label></h3>
                         <span className="box int_mobile">
-                            <input type="tel" id="mobile" className="int" maxlength="16" placeholder="전화번호 입력" />
+                            <input onChange={handlePhone}type="tel" id="mobile" className="int" maxlength="16" placeholder="전화번호 입력" />
                         </span>
                         <span className="error_next_box"></span>    
                     </div>

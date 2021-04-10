@@ -58,8 +58,18 @@ app.post('/user', (req, res) => {
   const email = req.body.email;
   const pwd = req.body.pwd;
   const name = req.body.name;
-
-  const sql = "INSERT INTO `users` (`email`) VALUES (?)"
+  const sex = req.body.sex;
+  const phone = req.body.phone;
+  console.log(sex);
+  const add = [email, pwd, name, sex, phone];
+  const sql = "INSERT INTO `users` (`email`, `pwd`, `name`, `sex`, `phone`) VALUES (?, ?, ?, ?, ?)"
+  db.query(sql, add, (err, data) => {
+    if(err){
+      console.log(err);
+    }else{
+      console.log("성공");
+    }
+  })
 })
 
 const port = 3002;
