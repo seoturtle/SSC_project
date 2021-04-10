@@ -4,100 +4,53 @@ import { Link,useHistory } from "react-router-dom";
 import '../css/register.css';
 
 function Register() {
-const history = useHistory();
-const [data, setData] = useState("");
-const [email, setEmail] = useState("");
-const [emailCheck, setEmailCheck] = useState("");
-const [pwd, setPwd] = useState("");
-const [repwd, setRepwd] = useState("");
-const [pwCheck, setPwCheck] = useState("");
-const [name, setName] = useState("");
-const [sex, setSex] = useState("남자");
-const [phone, setPhone] = useState("");
+          const history = useHistory();
+          const [data, setData] = useState("");
+          const [email, setEmail] = useState("");
+          const [emailCheck, setEmailCheck] = useState("");
+          const [pwd, setPwd] = useState("");
+          const [repwd, setRepwd] = useState("");
+          const [pwCheck, setPwCheck] = useState("");
+          const [name, setName] = useState("");
+          const [sex, setSex] = useState("남자");
+          const [phone, setPhone] = useState("");
 
-const handleEmail = (e) => {
-    e.preventDefault();
-        setEmail(e.target.value);
-  };
-const checkEmail = (e) => {
-    e.preventDefault();
+          const handleEmail = (e) => {
+              e.preventDefault();
+                  setEmail(e.target.value);
+            };
+          const checkEmail = (e) => {
+              e.preventDefault();
 
-    //이메일 유효성 검사 함수
-    const chkEmail = function(str) {
-      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-      return regExp.test(str) ? true : false;
-    };
-
-    const inputEmail = {
-      email: email
-    };
-    const email_info = {
-      method: "POST",
-      body: JSON.stringify(inputEmail),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-
-    if (chkEmail(email) === false) {
-      alert("이메일 형식이 유효하지 않습니다.");
-      setEmail("")
-    } else {
-      fetch("http://localhost:3002/email", email_info)
-        .then(res => res.json())
-        .then(json => {
-          if (json === true) {
-            alert("사용가능 한 아이디입니다");
-            setEmailCheck(email)
-          } else {
-            alert("이미 존재하는 아이디입니다");
+              //이메일 유효성 검사 함수
+              
+            };
+          const handleName = (e) => {
+              e.preventDefault();
+              setName(e.target.value)
+            };
+          const handlePwd = (e) => {
+              e.preventDefault();
+              setPwd(e.target.value);
+            };
+          const handleRepwd = (e) => {
+              e.preventDefault();
+              setRepwd(e.target.value);
           }
-        });
-    }
-  };
-const handleName = (e) => {
-    e.preventDefault();
-    setName(e.target.value)
-  };
-const handlePwd = (e) => {
-    e.preventDefault();
-    setPwd(e.target.value);
-  };
-const handleRepwd = (e) => {
-    e.preventDefault();
-    setRepwd(e.target.value);
-}
-const checkPwd = (e) => {
-    e.preventDefault();
+          const checkPwd = (e) => {
+              e.preventDefault();
 
-    //비밀번호 유효성검사(영문,숫자 혼합 6~20)
-    const chkPwd = function(str) {
-      var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-      return !reg_pwd.test(str) ? false : true;
-    };
+              //비밀번호 유효성검사(영문,숫자 혼합 6~20)
+          }
 
-    if (chkPwd(pwd) === false) {
-      alert("영문,숫자를 혼합하여 6~12자 이내");
-      setPwd("");
-      setRepwd("");
-    } else {
-      if (pwd === repwd) {
-        alert("일치합니다.");
-          setPwCheck(repwd)
-      } else {
-        alert("불일치합니다.");
-      }
-    }
-  };
-
-const handleSex = (e) => {
-    e.preventDefault();
-    setSex(e.target.value);
-}
-const handlePhone = (e) => {
-    e.preventDefault();
-    setPhone(e.target.value);
-}
+          const handleSex = (e) => {
+              e.preventDefault();
+              setSex(e.target.value);
+          }
+          const handlePhone = (e) => {
+              e.preventDefault();
+              setPhone(e.target.value);
+          }
 const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -112,8 +65,8 @@ const handleSubmit = (e) => {
         phone
     }
     const signupInfo = {
-        email: emailCheck,
-        pwd: pwCheck,
+        email: email,
+        pwd: pwd,
         name : name,
         sex : sex,
         phone : phone
@@ -127,25 +80,70 @@ const handleSubmit = (e) => {
         }
       };
 
-      if (
-          email &&
-          name &&
-          pwd &&
-          repwd &&
-          sex &&
-          phone &&
-          email === emailCheck &&
-          pwd === repwd &&
-          repwd === pwCheck
-      ) {
-          fetch("http://localhost:3002/user", signup_info)
-          .then(alert("가입이 완료되었습니다."))
-          .then(history.push("/"));
+      const chkEmail = function(str) {
+        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        return regExp.test(str) ? true : false;
+      };
+  
+      const inputEmail = {
+        email: email
+      };
+      const email_info = {
+        method: "POST",
+        body: JSON.stringify(inputEmail),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+
+      const chkPwd = function(str) {
+        var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+        return !reg_pwd.test(str) ? false : true;
+      };
+
+      if (chkEmail(email) === false) {
+        alert("이메일 형식이 유효하지 않습니다.");
+        setEmail("");
       } else {
-          alert("입력값을 확인해주세요");
-          console.log(sex);
+        fetch("http://localhost:3002/email", email_info)
+          .then(res => res.json())
+          .then(json => {
+            if (json === true) {
+              setEmailCheck(email);
+
+              if (chkPwd(pwd) === false) {
+                alert("영문,숫자를 혼합하여 6~12자 이내");
+                setPwd("");
+                setRepwd("");
+              } else {
+                if (pwd === repwd) {
+                    setPwCheck(repwd);
+
+                    if (
+                      email &&
+                      name &&
+                      pwd &&
+                      repwd &&
+                      sex &&
+                      phone &&
+                      pwd === repwd
+                  ) {
+                      fetch("http://localhost:3002/user", signup_info)
+                      .then(alert("가입이 완료되었습니다."))
+                      .then(history.push("/"));
+                  } else {
+                      alert("입력값을 확인해주세요");
+                  }
+                } else {
+                  alert("비밀번호가 불일치합니다.");
+                }
+              }
+            }else {
+              alert("이미 존재하는 아이디입니다");
+            }
+          });
       }
-  };
+    };
 
     return (
         <div className="register">
@@ -161,21 +159,20 @@ const handleSubmit = (e) => {
                 <div id="content">
                     <div>
                         <h3 className="join_title">
-                            <label for="id">이메일</label>
+                            <label htmlFor="id">이메일</label>
                         </h3>
                         <span className="box int_id">
-                            <input onChange={handleEmail} type="text" id="email" className="int" maxlength="20" />
-                            <button onClick={checkEmail}>중복체크</button>
+                            <input onChange={handleEmail} type="text" id="email" className="int" maxLength={20} />
                         </span>
                         <span className="error_next_box"></span>
                     </div>
 
                     <div>
                         <h3 className="join_title">
-                            <label for="pswd1">비밀번호</label>
+                            <label htmlFor="pswd1">비밀번호</label>
                         </h3>
                         <span className="box int_pass">
-                            <input onChange={handlePwd} type="password" id="pswd1" className="int" maxlength="20" />
+                            <input onChange={handlePwd} type="password" id="pswd1" className="int" maxLength={20} />
                             <span id="alertTxt">사용불가</span>
                             {/* <img src="../img/cancel.png" id="pswd1_img1" className="pswdImg" /> */}
                         </span>
@@ -185,28 +182,27 @@ const handleSubmit = (e) => {
                 {/* <!-- PW2 --> */}
                     <div>
                         <h3 className="join_title">
-                            <label for="pswd2">비밀번호 재확인</label>
+                            <label htmlFor="pswd2">비밀번호 재확인</label>
                         </h3>
                         <span className="box int_pass_check">
-                            <input onChange={handleRepwd} type="password" id="pswd2" className="int" maxlength="20" />
+                            <input onChange={handleRepwd} type="password" id="pswd2" className="int" maxLength={20} />
                             {/* <img src="../img/cancel.png" id="pswd2_img1" className="pswdImg" /> */}
                         </span>
                         <span className="error_next_box"></span>
                     </div>
-                    <button onClick={checkPwd}>중복체크</button>
                 {/* <!-- NAME --> */}
                     <div>
                         <h3 className="join_title">
-                            <label for="name">닉네임</label>
+                            <label htmlFor="name">닉네임</label>
                         </h3>
                         <span className="box int_name">
-                            <input onChange={handleName} type="text" id="nickname" className="int" maxlength="20" />
+                            <input onChange={handleName} type="text" id="nickname" className="int" maxLength={20} />
                         </span>
                         <span className="error_next_box"></span>
                     </div>
 
                     <div>
-                        <h3 className="join_title"><label for="gender">성별</label></h3>
+                        <h3 className="join_title"><label htmlFor="gender">성별</label></h3>
                         <span className="box gender_code">
                             <select onChange={handleSex} value={sex} id="gender" className="sel">
                                 <option value="남자">남자</option>
@@ -217,9 +213,9 @@ const handleSubmit = (e) => {
                     </div>
 
                     <div>
-                        <h3 className="join_title"><label for="phoneNo">휴대전화</label></h3>
+                        <h3 className="join_title"><label htmlFor="phoneNo">휴대전화</label></h3>
                         <span className="box int_mobile">
-                            <input onChange={handlePhone}type="tel" id="mobile" className="int" maxlength="16" placeholder="전화번호 입력" />
+                            <input onChange={handlePhone}type="tel" id="mobile" className="int" maxLength={16} placeholder="전화번호 입력" />
                         </span>
                         <span className="error_next_box"></span>    
                     </div>
