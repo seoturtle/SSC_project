@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link,useHistory } from "react-router-dom";
 // import axios from 'axios';
 import '../css/register.css';
@@ -14,6 +14,10 @@ function Register() {
           const [name, setName] = useState("");
           const [sex, setSex] = useState("남자");
           const [phone, setPhone] = useState("");
+          const [emailText, setEmailText] = useState("");
+          const [pwdText, setPwdText] = useState("");
+          const [regText, setRegText] = useState("");
+
 
           const handleEmail = (e) => {
               e.preventDefault();
@@ -51,100 +55,103 @@ function Register() {
               e.preventDefault();
               setPhone(e.target.value);
           }
-const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const post = {
-        email,
-        emailCheck,
-        name,
-        pwd,
-        repwd,
-        pwCheck,
-        sex,
-        phone
-    }
-    const signupInfo = {
-        email: email,
-        pwd: pwd,
-        name : name,
-        sex : sex,
-        phone : phone
-    }
+          const handleSubmit = (e) => {
+              e.preventDefault();
+              setRegText("");
+              setEmailText("");
+              setPwdText("");
 
-    const signup_info = {
-        method: "POST",
-        body: JSON.stringify(signupInfo),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      };
+              const post = {
+                  email,
+                  emailCheck,
+                  name,
+                  pwd,
+                  repwd,
+                  pwCheck,
+                  sex,
+                  phone
+              }
 
-      const chkEmail = function(str) {
-        var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        return regExp.test(str) ? true : false;
-      };
-  
-      const inputEmail = {
-        email: email
-      };
-      const email_info = {
-        method: "POST",
-        body: JSON.stringify(inputEmail),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      };
+              const chkEmail = function(str) {
+                var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                return regExp.test(str) ? true : false;
+              };
+            
+              const inputEmail = {
+                email: email
+              };
+              const email_info = {
+                method: "POST",
+                body: JSON.stringify(inputEmail),
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              };
 
-      const chkPwd = function(str) {
-        var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-        return !reg_pwd.test(str) ? false : true;
-      };
-
-      if (chkEmail(email) === false) {
-        alert("이메일 형식이 유효하지 않습니다.");
-        setEmail("");
-      } else {
-        fetch("http://localhost:3002/email", email_info)
-          .then(res => res.json())
-          .then(json => {
-            if (json === true) {
-              setEmailCheck(email);
-
+              const chkPwd = function(str) {
+                var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+                return !reg_pwd.test(str) ? false : true;
+              };
+            
+              const signupInfo = {
+                email: email,
+                pwd: pwd,
+                name : name,
+                sex : sex,
+                phone : phone
+              }
+            
+              const signup_info = {
+                method: "POST",
+                body: JSON.stringify(signupInfo),
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              };
+            
+              if (
+                email &&
+                name &&
+                pwd &&
+                repwd &&
+                sex &&
+                phone &&
+                pwd === repwd
+              ) {
+                fetch("http://localhost:3002/user", signup_info)
+                .then(alert("가입이 완료되었습니다."))
+                .then(history.push("/"));
+              } else {
+                setRegText("입력값을 확인해주세요");
+              }
               if (chkPwd(pwd) === false) {
-                alert("영문,숫자를 혼합하여 6~12자 이내");
+                setPwdText("영문,숫자를 혼합하여 6~12자 이내");
                 setPwd("");
                 setRepwd("");
               } else {
                 if (pwd === repwd) {
-                    setPwCheck(repwd);
-
-                    if (
-                      email &&
-                      name &&
-                      pwd &&
-                      repwd &&
-                      sex &&
-                      phone &&
-                      pwd === repwd
-                  ) {
-                      fetch("http://localhost:3002/user", signup_info)
-                      .then(alert("가입이 완료되었습니다."))
-                      .then(history.push("/"));
-                  } else {
-                      alert("입력값을 확인해주세요");
-                  }
+                  setPwCheck(repwd);
                 } else {
-                  alert("비밀번호가 불일치합니다.");
+                  setPwdText("비밀번호가 불일치합니다.");
                 }
               }
-            }else {
-              alert("이미 존재하는 아이디입니다");
-            }
-          });
-      }
-    };
 
+              if (chkEmail(email) === false) {
+                setEmailText("이메일 형식이 유효하지 않습니다.");
+                setEmail("");
+              } else {
+                fetch("http://localhost:3002/email", email_info)
+                .then(res => res.json())
+                .then(json => {
+                  if (json === true) {
+                    setEmailCheck(email);
+                  }else {
+                    setEmailText("이미 존재하는 아이디입니다");
+                  }
+                });
+              }
+
+              };
     return (
         <div className="register">
             <div id="header">
@@ -157,13 +164,14 @@ const handleSubmit = (e) => {
 
             <div id="wrapper">
                 <div id="content">
-                    <div>
+                    <div style={{height:"105px"}}>
                         <h3 className="join_title">
                             <label htmlFor="id">이메일</label>
                         </h3>
                         <span className="box int_id">
                             <input onChange={handleEmail} type="text" id="email" className="int" maxLength={20} />
                         </span>
+                        <div style={{color:"#d50000", fontWeight:"bold"}}>{emailText}</div>
                         <span className="error_next_box"></span>
                     </div>
 
@@ -180,7 +188,7 @@ const handleSubmit = (e) => {
                     </div>
 
                 {/* <!-- PW2 --> */}
-                    <div>
+                    <div style={{height:"105px"}}>
                         <h3 className="join_title">
                             <label htmlFor="pswd2">비밀번호 재확인</label>
                         </h3>
@@ -188,6 +196,7 @@ const handleSubmit = (e) => {
                             <input onChange={handleRepwd} type="password" id="pswd2" className="int" maxLength={20} />
                             {/* <img src="../img/cancel.png" id="pswd2_img1" className="pswdImg" /> */}
                         </span>
+                        <div style={{color:"#d50000", fontWeight:"bold"}}>{pwdText}</div>
                         <span className="error_next_box"></span>
                     </div>
                 {/* <!-- NAME --> */}
@@ -224,7 +233,7 @@ const handleSubmit = (e) => {
                         <button onClick={handleSubmit} type="button" id="btnJoin">
                             <span>가입하기</span>
                         </button>
-                        {data}
+                        {regText}
                     </div>
                 </div> 
             </div>
