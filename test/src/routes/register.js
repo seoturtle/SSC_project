@@ -5,7 +5,6 @@ import '../css/register.css';
 
 function Register() {
           const history = useHistory();
-          const [data, setData] = useState("");
           const [email, setEmail] = useState("");
           const [emailCheck, setEmailCheck] = useState("");
           const [pwd, setPwd] = useState("");
@@ -23,12 +22,6 @@ function Register() {
               e.preventDefault();
                   setEmail(e.target.value);
             };
-          const checkEmail = (e) => {
-              e.preventDefault();
-
-              //이메일 유효성 검사 함수
-              
-            };
           const handleName = (e) => {
               e.preventDefault();
               setName(e.target.value)
@@ -41,12 +34,6 @@ function Register() {
               e.preventDefault();
               setRepwd(e.target.value);
           }
-          const checkPwd = (e) => {
-              e.preventDefault();
-
-              //비밀번호 유효성검사(영문,숫자 혼합 6~20)
-          }
-
           const handleSex = (e) => {
               e.preventDefault();
               setSex(e.target.value);
@@ -119,7 +106,7 @@ function Register() {
                 pwd === repwd
               ) {
                 fetch("http://localhost:3002/user", signup_info)
-                .then(alert("가입이 완료되었습니다."))
+                .then(alert("가입이 완료되었습니다"))
                 .then(history.push("/"));
               } else {
                 setRegText("입력값을 확인해주세요");
@@ -132,7 +119,7 @@ function Register() {
                 if (pwd === repwd) {
                   setPwCheck(repwd);
                 } else {
-                  setPwdText("비밀번호가 불일치합니다.");
+                  setPwdText("비밀번호가 일치하지 않습니다");
                 }
               }
 

@@ -1,15 +1,12 @@
 const express = require('express');
 const app = express();
-const api = require('./routes/index');
 const cors = require('cors');
 const db = require('./routes/db');
+const crypto = require('crypto');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-
-app.use('/api', api);
-
 
 app.post('/text', (req, res) => {//데이터 받는 곳
     const text1 = req.body.email;
@@ -54,22 +51,51 @@ app.post('/email', (req, res) => {
   })
 })
 
-app.post('/user', (req, res) => {
-  const email = req.body.email;
-  const pwd = req.body.pwd;
-  const name = req.body.name;
-  const sex = req.body.sex;
-  const phone = req.body.phone;
-  console.log(sex);
-  const add = [email, pwd, name, sex, phone];
-  const sql = "INSERT INTO `users` (`email`, `pwd`, `name`, `sex`, `phone`) VALUES (?, ?, ?, ?, ?)"
-  db.query(sql, add, (err, data) => {
-    if(err){
-      console.log(err);
-    }else{
-      console.log("성공");
-    }
-  })
+// app.post('/user', (req, res) => {
+
+//   const email = req.body.email;
+//   const pwd = req.body.pwd;
+//   const name = req.body.name;
+//   const sex = req.body.sex;
+//   const phone = req.body.phone;
+//   console.log(sex);
+//   const add = [email, pwd, name, sex, phone];
+//   const sql = "INSERT INTO `users` (`email`, `pwd`, `name`, `sex`, `phone`) VALUES (?, ?, ?, ?, ?)"
+//   db.query(sql, add, (err, data) => {
+//     if(err){
+//       console.log(err);
+//     }else{
+//       console.log("성공");
+//     }
+//   })
+// })
+
+
+app.post('/user', (req,res) => {
+  crypto.randomBytes(64, (err, buf) => {
+    const email = req.body.email;
+    const pwd = req.body.pwd;
+    const name = req.body.name;
+    const sex = req.body.sex;
+    const phone = req.body.phone;
+    //salt는 생성하는 해시값 이외에 추가적인 암호화 값
+      const salt = buf.toString('base64');
+      console.log('salt :: ', salt);
+      //crypto.pbkdf2의 salt 뒤 숫자 파라미터는 임의의 값으로 주어준다.
+      crypto.pbkdf2(pwd, salt, 1203947, 64, 'sha512', (err, key) => {
+          console.log('password :: ', key.toString('base64')); // 'dWhPkH6c4X1Y71A/DrAHhML3DyKQdEkUOIaSmYCI7xZkD5bLZhPF0dOSs2YZA/Y4B8XNfWd3DHIqR5234RtHzw=='
+          // 쿼리 작성하여 전달
+          const sql = "INSERT INTO `users` (`email`, `pwd`, `salt`, `name`, `sex`, `phone`) VALUES (?, ?, ?, ?, ?, ?)"
+          const param = [email, key.toString('base64'), salt, name, sex, phone]
+          db.query(sql, param, (err, data) => {
+              if(!err) {
+                  res.send(data)
+              } else {
+                  res.send(err)
+              }
+          })
+      });
+  });
 })
 
 const port = 3002;
