@@ -52,14 +52,15 @@ app.post('/email', (req, res) => {
 })
 
 app.post('/login', (req,res) => {
-  console.log(`= = = > req : ${util.inspect(req.query)}`)
+  console.log(req.body.email);
+  console.log(req.body.pwd);
 
   const sql = 'SELECT ifnull(`pwd`, NULL) AS `pwd`, ifnull(`salt`, NULL) AS `salt` FROM `users` RIGHT OUTER JOIN (SELECT "") AS `users` ON `email` = ?'
-  const param = [req.query.email]
+  const param = [req.body.email]
   db.query(sql, param, (err, data) => {
       if(!err) {
           if(data[0].salt !== null){
-              crypto.pbkdf2(req.query.pwd, data[0].salt, 1203947, 64, 'sha512', (err, key) => {
+              crypto.pbkdf2(req.body.pwd, data[0].salt, 1203947, 64, 'sha512', (err, key) => {
               console.log('비밀번호 일치 여부 :: ', key.toString('base64') === data[0].pwd);
               // true : 아이디, 비밀번호 일치
               // false : 아이디 일치, 비밀번호 불일치

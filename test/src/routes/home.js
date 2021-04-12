@@ -7,6 +7,7 @@ function Home() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const [logText, setLogText] = useState("");
 
   //handler
   const handleEmail = (e) => {
@@ -34,9 +35,18 @@ function Home() {
       pwd
       ) {
       fetch("http://localhost:3002/login", login_info)
-      .then(history.push("/main"));
+      .then(res=>res.json())
+      .then(res=> {
+        if (res.result === true) {
+          history.push("/main")
+        } else if (res.result === false) {
+          setLogText("비밀번호가 틀렸습니다")
+        } else{
+          setLogText("아이디가 존재하지 않습니다")
+        }
+      })
     } else {
-      alert("err");
+      setLogText("아이디와 비밀번호를 입력해주세요")
         }
     }
   
@@ -50,7 +60,8 @@ function Home() {
           <div className="login-tab">
             <input className="login-email" onChange={handleEmail} type="email" placeholder="이메일"></input>
             <input className="login-pwd" onChange={handlePwd} type="password" placeholder="비밀번호"></input>
-            <Link to="/main"><input className="login-btn" onClick={handleSubmit} type="submit" value="로그인"></input></Link>
+            <input className="login-btn" onClick={handleSubmit} type="submit" value="로그인"></input>
+            <p style={{color:"#d50000", fontWeight:"bold"}}>{logText}</p>
           </div>
           <div className="logo-ment-register">
             <div className="home_logo">

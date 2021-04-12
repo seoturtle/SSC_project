@@ -146,14 +146,14 @@ function Register() {
               }
 
               // 핸드폰번호 입력
-              if (phone == "") {
+              if (phone === "") {
                 setPhoneText("핸드폰 번호를 입력해주세요");
               }else{
                 setPhoneText("");
               }
 
               // 이름 입력
-              if (name == "") {
+              if (name === "") {
                 setNameText("이름을 입력해주세요");
               }else{
                 setNameText("");
