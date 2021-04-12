@@ -51,25 +51,29 @@ app.post('/email', (req, res) => {
   })
 })
 
-// app.post('/user', (req, res) => {
+app.post('/login', (req,res) => {
+  console.log(`= = = > req : ${util.inspect(req.query)}`)
 
-//   const email = req.body.email;
-//   const pwd = req.body.pwd;
-//   const name = req.body.name;
-//   const sex = req.body.sex;
-//   const phone = req.body.phone;
-//   console.log(sex);
-//   const add = [email, pwd, name, sex, phone];
-//   const sql = "INSERT INTO `users` (`email`, `pwd`, `name`, `sex`, `phone`) VALUES (?, ?, ?, ?, ?)"
-//   db.query(sql, add, (err, data) => {
-//     if(err){
-//       console.log(err);
-//     }else{
-//       console.log("성공");
-//     }
-//   })
-// })
-
+  const sql = 'SELECT ifnull(`pwd`, NULL) AS `pwd`, ifnull(`salt`, NULL) AS `salt` FROM `users` RIGHT OUTER JOIN (SELECT "") AS `users` ON `email` = ?'
+  const param = [req.query.email]
+  db.query(sql, param, (err, data) => {
+      if(!err) {
+          if(data[0].salt !== null){
+              crypto.pbkdf2(req.query.pwd, data[0].salt, 1203947, 64, 'sha512', (err, key) => {
+              console.log('비밀번호 일치 여부 :: ', key.toString('base64') === data[0].pwd);
+              // true : 아이디, 비밀번호 일치
+              // false : 아이디 일치, 비밀번호 불일치
+              res.send({ result : key.toString('base64') === data[0].pwd })
+              });
+          } else {
+              // null : 아이디 불일치
+              res.send({ result : data[0].salt })
+          }
+      } else {
+          res.send(err)
+      }
+  })
+})
 
 app.post('/user', (req,res) => {
   crypto.randomBytes(64, (err, buf) => {
