@@ -51,6 +51,19 @@ app.post('/email', (req, res) => {
   })
 })
 
+app.post('/phone', (req, res) => {
+  const sql = "SELECT phone from users where phone = ?"
+  db.query(sql, req.body.phone, (err, data) => {
+    if(err) {
+      console.log(err)
+    }else if(data[0] == undefined) {
+      res.send({data: true});
+    }else{
+      res.send({data: false});
+    }
+  })
+})
+
 app.post('/login', (req,res) => {
   console.log(req.body.email);
   console.log(req.body.pwd);

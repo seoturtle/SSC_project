@@ -145,12 +145,34 @@ function Register() {
                 });
               }
 
-              // 핸드폰번호 입력
-              if (phone === "") {
-                setPhoneText("핸드폰 번호를 입력해주세요");
+              if (phone) {
+                fetch("http://localhost:3002/phone", {
+                  method: "POST",
+                  headers: {
+                    'Content-type' : 'application/json'
+                  },
+                  body: JSON.stringify({
+                    phone: phone
+                  })
+                })
+                .then(res=>res.json())
+                .then(res=>{
+                  if (res.data === true){
+                    setPhoneText("")
+                  }else{
+                    setPhoneText("이미 존재하는 번호입니다");
+                  }
+                })
               }else{
-                setPhoneText("");
+                setPhoneText("핸드폰 번호를 입력해주세요");
               }
+
+              // 핸드폰번호 입력
+              // if (phone === "") {
+              //   setPhoneText("핸드폰 번호를 입력해주세요");
+              // }else{
+              //   setPhoneText("");
+              // }
 
               // 이름 입력
               if (name === "") {
