@@ -4,6 +4,8 @@ import { Link,useHistory } from "react-router-dom";
 import '../css/register.css';
 
 function Register() {
+
+          // state
           const history = useHistory();
           const [email, setEmail] = useState("");
           const [emailCheck, setEmailCheck] = useState("");
@@ -15,9 +17,11 @@ function Register() {
           const [phone, setPhone] = useState("");
           const [emailText, setEmailText] = useState("");
           const [pwdText, setPwdText] = useState("");
+          const [phoneText, setPhoneText] = useState("");
+          const [nameText, setNameText] = useState("");
           const [regText, setRegText] = useState("");
 
-
+          // handler
           const handleEmail = (e) => {
               e.preventDefault();
                   setEmail(e.target.value);
@@ -44,10 +48,10 @@ function Register() {
           }
           const handleSubmit = (e) => {
               e.preventDefault();
-              setRegText("");
               setEmailText("");
               setPwdText("");
 
+              // 데이터 DB에 넣기
               const post = {
                   email,
                   emailCheck,
@@ -58,27 +62,6 @@ function Register() {
                   sex,
                   phone
               }
-
-              const chkEmail = function(str) {
-                var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-                return regExp.test(str) ? true : false;
-              };
-            
-              const inputEmail = {
-                email: email
-              };
-              const email_info = {
-                method: "POST",
-                body: JSON.stringify(inputEmail),
-                headers: {
-                  "Content-Type": "application/json"
-                }
-              };
-
-              const chkPwd = function(str) {
-                var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-                return !reg_pwd.test(str) ? false : true;
-              };
             
               const signupInfo = {
                 email: email,
@@ -109,8 +92,15 @@ function Register() {
                 .then(alert("가입이 완료되었습니다"))
                 .then(history.push("/"));
               } else {
-                setRegText("입력값을 확인해주세요");
+                  setRegText("입력값을 확인해주세요");
               }
+              
+              // 비밀번호 체크
+              const chkPwd = function(str) {
+                var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+                return !reg_pwd.test(str) ? false : true;
+              };
+
               if (chkPwd(pwd) === false) {
                 setPwdText("영문,숫자를 혼합하여 6~12자 이내");
                 setPwd("");
@@ -122,6 +112,23 @@ function Register() {
                   setPwdText("비밀번호가 일치하지 않습니다");
                 }
               }
+
+              // 이메일 체크
+              const chkEmail = function(str) {
+                var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                return regExp.test(str) ? true : false;
+              };
+            
+              const inputEmail = {
+                email: email
+              };
+              const email_info = {
+                method: "POST",
+                body: JSON.stringify(inputEmail),
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              };
 
               if (chkEmail(email) === false) {
                 setEmailText("이메일 형식이 유효하지 않습니다.");
@@ -136,6 +143,20 @@ function Register() {
                     setEmailText("이미 존재하는 아이디입니다");
                   }
                 });
+              }
+
+              // 핸드폰번호 입력
+              if (phone == "") {
+                setPhoneText("핸드폰 번호를 입력해주세요");
+              }else{
+                setPhoneText("");
+              }
+
+              // 이름 입력
+              if (name == "") {
+                setNameText("이름을 입력해주세요");
+              }else{
+                setNameText("");
               }
 
               };
@@ -187,13 +208,14 @@ function Register() {
                         <span className="error_next_box"></span>
                     </div>
                 {/* <!-- NAME --> */}
-                    <div>
+                    <div style={{height: "105px"}}>
                         <h3 className="join_title">
-                            <label htmlFor="name">닉네임</label>
+                            <label htmlFor="name">이름</label>
                         </h3>
                         <span className="box int_name">
                             <input onChange={handleName} type="text" id="nickname" className="int" maxLength={20} />
                         </span>
+                        <div style={{color:"#d50000", fontWeight:"bold"}}>{nameText}</div>
                         <span className="error_next_box"></span>
                     </div>
 
@@ -208,11 +230,12 @@ function Register() {
                         <span className="error_next_box">필수 정보입니다.</span>
                     </div>
 
-                    <div>
+                    <div style={{height: "105px"}}>
                         <h3 className="join_title"><label htmlFor="phoneNo">휴대전화</label></h3>
                         <span className="box int_mobile">
                             <input onChange={handlePhone}type="tel" id="mobile" className="int" maxLength={16} placeholder="전화번호 입력" />
                         </span>
+                        <div style={{color:"#d50000", fontWeight:"bold"}}>{phoneText}</div>
                         <span className="error_next_box"></span>    
                     </div>
 
@@ -220,7 +243,7 @@ function Register() {
                         <button onClick={handleSubmit} type="button" id="btnJoin">
                             <span>가입하기</span>
                         </button>
-                        {regText}
+                        
                     </div>
                 </div> 
             </div>
