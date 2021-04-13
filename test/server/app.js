@@ -3,6 +3,10 @@ const app = express();
 const cors = require('cors');
 const db = require('./routes/db');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config({path: './.env'});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -67,17 +71,42 @@ app.post('/phone', (req, res) => {
 app.post('/login', (req,res) => {
   console.log(req.body.email);
   console.log(req.body.pwd);
-
-  const sql = 'SELECT ifnull(`pwd`, NULL) AS `pwd`, ifnull(`salt`, NULL) AS `salt` FROM `users` RIGHT OUTER JOIN (SELECT "") AS `users` ON `email` = ?'
+  const sql = 'SELECT * FROM `users` RIGHT OUTER JOIN (SELECT "") AS `users` ON `email` = ?'
   const param = [req.body.email]
   db.query(sql, param, (err, data) => {
       if(!err) {
           if(data[0].salt !== null){
+            const user = {
+              idx : data[0].idx,
+              email : data[0].email,
+              phone : data[0].phone,
+              sex : data[0].sex
+            }
               crypto.pbkdf2(req.body.pwd, data[0].salt, 1203947, 64, 'sha512', (err, key) => {
               console.log('비밀번호 일치 여부 :: ', key.toString('base64') === data[0].pwd);
               // true : 아이디, 비밀번호 일치
               // false : 아이디 일치, 비밀번호 불일치
-              res.send({ result : key.toString('base64') === data[0].pwd })
+              if(key.toString('base64') === data[0].pwd){
+                const token = jwt.sign(user, process.env.JWT_SECRET,{
+                  expiresIn: process.env.JWT_EXPIRES_IN,
+                  algorithm : process.env.JWT_ALGORITHM,
+                  issuer : "ssc",
+                });
+        
+          //			console.log(token);
+                const cookieOption = {
+                  expires: new Date(
+                    Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                  ),
+                  httpOnly: true
+                }
+        //				req.session.email = body.email;
+                res.cookie('jwt', token, cookieOption);
+                console.log(token);
+                res.send({result: true, token: token});
+              }else{
+                res.send({result:false});
+              }
               });
           } else {
               // null : 아이디 불일치

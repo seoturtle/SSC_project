@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
+import {useCookies} from 'react-cookie';
 import '../css/home.css';
 
 function Home() {
@@ -8,6 +9,7 @@ function Home() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [logText, setLogText] = useState("");
+  const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
 
   //handler
   const handleEmail = (e) => {
@@ -39,6 +41,7 @@ function Home() {
       .then(res=> {
         if (res.result === true) {
           history.push("/main")
+          setCookie('jwt', res.token);
         } else if (res.result === false) {
           setLogText("비밀번호가 틀렸습니다")
         } else{
@@ -49,7 +52,6 @@ function Home() {
       setLogText("아이디와 비밀번호를 입력해주세요")
         }
     }
-  
     return (
       <div className="home">
         <div className="left-side">
@@ -81,5 +83,4 @@ function Home() {
       </div>
     );
   }
-
 export default Home;
