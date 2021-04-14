@@ -21,10 +21,14 @@ function Main() {
       setUserName(decode.name);
       console.log(decode);
     }else {
-      history.push("/")
+      history.push("/");
     }
-    
   }, []);
+
+  const handleClick = (e) => {
+    removeCookie("jwt");
+    history.push("/");
+  }
 
       return (
         <div className="main">
@@ -39,6 +43,7 @@ function Main() {
             </div>
             <div className="main_invest">
                 <div className="img_invest">투자 동향</div>
+                <button onClick={handleClick} style={{height:"20px", width:"20px"}}></button>
             </div>
         </div>
         </div>
