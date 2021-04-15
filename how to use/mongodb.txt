@@ -1,0 +1,10 @@
+1. cmd -> mongo로 접속
+2. show dbs : database 확인
+3. use ssc(데이터베이스가 있으면 사용 없으면 생성)
+4. show dbs 하면 db가 안나오는데 이유는 ssc안에 아무것도 없어서 걱정 ㄴㄴ
+5. db 로 확인하면 ssc로 나옴
+6. db.createCollection("users)
+7. show dbs 검색하면 ssc 나옴
+8. show collections하면 users가 나옴
+9. db.person.insert({"email":"seosj0319","pwd":"qwer1234", "name":"홍길동", "sex":"남자", "phone" : "01012345432"})
+10. db.users.find() 검색하면 결과값나옴
