@@ -10,7 +10,7 @@ app.use(express.json());
 
 //routes
 app.use('/', require('./routes/login'));
-
+app.use('/search', require('./routes/search'));
 //mongodb
 const mdb = mongoose.connection;
 mdb.on('error', console.error);
