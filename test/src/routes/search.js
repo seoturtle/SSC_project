@@ -72,13 +72,14 @@ function Search() {
         <div className="search">
             <input onChange={handleChange}></input>
             <div>
-                {!searchEmail.map || searchEmail[0].idx == "" ? <div></div> : searchEmail.map(user => 
+                {!searchEmail.map || searchEmail[0].idx=='' ? <div></div> : searchEmail.map(user => 
                     <ol className="search_result" key={user.idx}>
                         <li>{user.email}</li>
                         <li>{user.name}</li>
                         <button onClick={handleClick} name={user.idx} style={{height:"20px", width:"50px"}}></button>
                     </ol>)}
             </div>
+            {console.log(searchEmail)}
         </div>
     )
 }

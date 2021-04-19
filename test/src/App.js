@@ -5,6 +5,7 @@ import main from "./routes/main"
 import register from "./routes/register"
 import stock_main from "./routes/stock_main"
 import search from "./routes/search"
+import chat from "./routes/chat"
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/stock_main" component={stock_main} />
         <Route path="/register" component={register} />
         <Route path="/search" component={search} />
+        <Route path="/chat" component={chat} />
       </HashRouter>
     );
   }
