@@ -13,7 +13,7 @@ function Chat() {
 					</div>
 					<div id="conversation-list">
 						<div className="conversation active">
-							<img src="../images/profiles/man.png" alt="Daryl Duckmanton" />
+							<div className="chat-img-man"></div>
 							<div className="title-text">Daryl Duckmanton</div>
 							<div className="created-date">Apr 16</div>
 							<div className="conversation-message">

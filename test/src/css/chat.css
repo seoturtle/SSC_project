@@ -104,12 +104,15 @@
     cursor: pointer;
 }
 
-.chat .conversation > img {
+.chat .conversation > .chat-img-man {
     grid-row: span 2;
     height: 40px;
     width: 40px;
     border-radius: 100%;
+    background: url(../images/profiles/man.png) no-repeat;
+    background-size: 40px;
     background-color: white;
+
 }
 
 .chat .title-text {
