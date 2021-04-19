@@ -21,7 +21,7 @@ function Chat() {
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="../images/profiles/woman.png" alt="Kim O'Neil" />
+							<div className="chat-img-woman"></div>
 							<div className="title-text">Kim O'Neil</div>
 							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
@@ -29,68 +29,77 @@ function Chat() {
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="images/profiles/man.png" alt="John Anderson" />
-							<div className="title-text">John Anderson</div>
-							<div className="created-date">1 week ago</div>
+							<div className="chat-img-man"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
-								Yes I love how Python does that
+								Very funny
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="images/profiles/man.png" alt="Ben Smith" />
-							<div className="title-text">Ben Smith</div>
-							<div className="created-date">2:49 PM</div>
+							<div className="chat-img-woman"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
-								Yeah Miami Heat are done
+								Very funny
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="images/profiles/man.png" alt="Douglas Johannasen" />
-							<div className="title-text">Douglas Johannasen</div>
-							<div className="created-date">6:14 PM</div>
+							<div className="chat-img-man"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
-								No it does not
+								Very funny
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="images/profiles/man.png" alt="Jacob Manly" />
-							<div className="title-text">Jacob Manly</div>
-							<div className="created-date">3 secs ago</div>
+							<div className="chat-img-woman"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
-								Just be very careful doing that
+								Very funny
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="images/profiles/woman.png" alt="Stacey Wilson" />
-							<div className="title-text">Stacey Wilson</div>
-							<div className="created-date">30 mins ago</div>
+							<div className="chat-img-woman"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
-								Awesome!!! Congratulations!!!!
+								Very funny
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="images/profiles/woman.png" alt="Stan George" />
-							<div className="title-text">Stan George</div>
-							<div className="created-date">1 week ago</div>
+							<div className="chat-img-man"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
-								Good job
+								Very funny
 							</div>
 						</div>
 						<div className="conversation">
-							<img src="images/profiles/woman.png" alt="Sarah Momes" />
-							<div className="title-text">Sarah Momes</div>
-							<div className="created-date">1 year ago</div>
+							<div className="chat-img-man"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
 							<div className="conversation-message">
-								Thank you. I appreciate that.
+								Very funny
 							</div>
 						</div>
+						<div className="conversation">
+							<div className="chat-img-woman"></div>
+							<div className="title-text">Kim O'Neil</div>
+							<div className="created-date">2 days ago</div>
+							<div className="conversation-message">
+								Very funny
+							</div>
+						</div>
+						
 					</div>
 					<div id="new-message-container">
 						<a href="/">+</a>
 					</div>
 					<div id="chat-title">
 						<span>Daryl Duckmanton</span>
-						<img src="images/icons/trash-logo.svg" alt="Delete Conversation" />
+						<div className="trash-logo"></div>
 					</div>
 					<div id="chat-message-list">
 						<div className="message-row you-message">
@@ -101,7 +110,7 @@ function Chat() {
 						</div>
 						<div className="message-row other-message">
 							<div className="message-content">
-								<img src="images/profiles/man.png" alt="Daryl Duckmanton" />
+								<div className="message-img-man"></div>
 								<div className="message-text">
 									Yeah I think it's best we do that. Otherwise things won't work well at all. 
 									I'm adding more text here to test the sizing of the speech bubble and the 
@@ -120,7 +129,7 @@ function Chat() {
 						</div>
 						<div className="message-row other-message">
 							<div className="message-content">
-								<img src="images/profiles/man.png" alt="Daryl Duckmanton" />
+								<div className="message-img-man"></div>
 								<div className="message-text">
 									All I know is where I live it's too hard
 									to record because of all the street noise.
@@ -139,7 +148,7 @@ function Chat() {
 						</div>
 						<div className="message-row other-message">
 							<div className="message-content">
-								<img src="images/profiles/man.png" alt="Daryl Duckmanton" />
+								<div className="message-img-man"></div>
 								<div className="message-text">
 									I'm just in the process of finishing off the
 									last pieces of material for the course.
@@ -157,7 +166,7 @@ function Chat() {
 						</div>
 						<div className="message-row other-message">
 							<div className="message-content">
-								<img src="images/profiles/man.png" alt="Daryl Duckmanton" />
+								<div className="message-img-man"></div>
 								<div className="message-text">
 									Hey mate what's up?
 								</div>
@@ -174,7 +183,7 @@ function Chat() {
 						</div>
 					</div>
 					<div id="chat-form">
-						<img src="images/icons/attachment-logo.svg" alt="Add Attachment" />
+						<div className="attachment-logo"></div>
 						<input type="text" placeholder="type a message" />
 					</div>
 				</div>

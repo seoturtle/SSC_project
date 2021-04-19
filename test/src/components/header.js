@@ -23,7 +23,7 @@ function Header() {
                         <ul className="header_category">
                             <li><Link to='/stock_main'><button herf="#" className="header_stock">주식</button></Link></li>
                             <li><button herf="#" className="header_coin">코인</button></li>
-                            <li><button herf="#" className="header_chat">채팅</button></li>
+                            <li><Link to='/chat'><button herf="#" className="header_chat">채팅</button></Link></li>
                             <li><button herf="#" className="header_notice">알림</button></li>
                         </ul>
                     </div>
