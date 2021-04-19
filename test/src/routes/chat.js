@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../css/chat.css';
 import Header from '../components/header'
+import Popup from './popup'
 
 function Chat() {
+	const [ modalOpen, setModalOpen ] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
+    const closeModal = () => {
+        setModalOpen(false);
+    }
     return(
         <div className="chat">
 			<Header />
@@ -95,8 +104,10 @@ function Chat() {
 						
 					</div>
 					<div id="new-message-container">
-						<a href="/">+</a>
+						<button onClick={ openModal }>+</button>
 					</div>
+					<Popup open={ modalOpen } close={ closeModal } header="채팅 추가">
+					</Popup>
 					<div id="chat-title">
 						<span>Daryl Duckmanton</span>
 						<div className="trash-logo"></div>
