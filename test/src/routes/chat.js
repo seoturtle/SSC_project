@@ -23,85 +23,68 @@ function Chat() {
 					<div id="conversation-list">
 						<div className="conversation active">
 							<div className="chat-img-man"></div>
-							<div className="title-text">Daryl Duckmanton</div>
-							<div className="created-date">Apr 16</div>
+							<div className="title-text">김사과</div>
+							<div className="created-date">04.16</div>
 							<div className="conversation-message">
-								This is a message
+								안녕하세요. 김사과 입니다. 저는 컴퓨터공학과를 전공하였으며
 							</div>
 						</div>
 						<div className="conversation">
 							<div className="chat-img-woman"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
+							<div className="title-text">반하나</div>
+							<div className="created-date">2일전</div>
 							<div className="conversation-message">
-								Very funny
+								안녕
 							</div>
 						</div>
 						<div className="conversation">
 							<div className="chat-img-man"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
+							<div className="title-text">이메론</div>
+							<div className="created-date">3일전</div>
 							<div className="conversation-message">
-								Very funny
+								ㄱㄱ
 							</div>
 						</div>
 						<div className="conversation">
 							<div className="chat-img-woman"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
+							<div className="title-text">김예지</div>
+							<div className="created-date">3일전</div>
 							<div className="conversation-message">
-								Very funny
+								과제좀 부탁드립니다.
 							</div>
 						</div>
 						<div className="conversation">
 							<div className="chat-img-man"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
+							<div className="title-text">홍길동</div>
+							<div className="created-date">2주전</div>
 							<div className="conversation-message">
-								Very funny
+								연락 좀 부탁드립니다!!
 							</div>
 						</div>
 						<div className="conversation">
 							<div className="chat-img-woman"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
+							<div className="title-text">이체리</div>
+							<div className="created-date">한달전</div>
 							<div className="conversation-message">
-								Very funny
+								겜 ㄱㄱ?
 							</div>
 						</div>
 						<div className="conversation">
 							<div className="chat-img-woman"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
+							<div className="title-text">김태희</div>
+							<div className="created-date">3달전</div>
 							<div className="conversation-message">
-								Very funny
+								ㅎㅇㅎㅇ
 							</div>
 						</div>
 						<div className="conversation">
 							<div className="chat-img-man"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
+							<div className="title-text">김철수</div>
+							<div className="created-date">1년전</div>
 							<div className="conversation-message">
-								Very funny
+								살아있니???
 							</div>
 						</div>
-						<div className="conversation">
-							<div className="chat-img-man"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
-							<div className="conversation-message">
-								Very funny
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-woman"></div>
-							<div className="title-text">Kim O'Neil</div>
-							<div className="created-date">2 days ago</div>
-							<div className="conversation-message">
-								Very funny
-							</div>
-						</div>
-						
 					</div>
 					<div id="new-message-container">
 						<button onClick={ openModal }>+</button>
@@ -109,87 +92,76 @@ function Chat() {
 					<Popup open={ modalOpen } close={ closeModal } header="채팅 추가">
 					</Popup>
 					<div id="chat-title">
-						<span>Daryl Duckmanton</span>
+						<span>김사과</span>
 						<div className="trash-logo"></div>
 					</div>
 					<div id="chat-message-list">
+						<div className="message-row other-message">
+							<div className="message-content">
+								<div className="message-img-man"></div>
+								<div className="message-text">
+									안녕하세요. 김사과 입니다. 저는 컴퓨터공학과를 전공하였으며 ... 자바, 파이썬, 자바스크립트, 노드 등등 여러가지 언어를 접했으며....
+								</div>
+								<div className="message-time">04.16</div>
+							</div>
+						</div>
 						<div className="message-row you-message">
 							<div className="message-content">
-								<div className="message-text">Ok then</div>
-								<div className="message-time">Apr 16</div>
+								<div className="message-text">
+									면접 준비한거 보여줘봐~
+								</div>
+								<div className="message-time">04.16</div>
 							</div>
 						</div>
 						<div className="message-row other-message">
 							<div className="message-content">
 								<div className="message-img-man"></div>
 								<div className="message-text">
-									Yeah I think it's best we do that. Otherwise things won't work well at all. 
-									I'm adding more text here to test the sizing of the speech bubble and the 
-									wrapping of it too.
+									도와줰ㅋㅋㅋㅋㅋㅋ
 								</div>
-								<div className="message-time">Apr 16</div>
+								<div className="message-time">04.16</div>
 							</div>
 						</div>
 						<div className="message-row you-message">
 							<div className="message-content">
 								<div className="message-text">
-									Maybe we can use Jim's studio.
+									ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅅㄱ
 								</div>
-								<div className="message-time">Apr 15</div>
+								<div className="message-time">04.15</div>
 							</div>
 						</div>
 						<div className="message-row other-message">
 							<div className="message-content">
 								<div className="message-img-man"></div>
 								<div className="message-text">
-									All I know is where I live it's too hard
-									to record because of all the street noise.
+									캡스톤 프로젝트하면서 면접 준비하는 중...살려줘 너무 어려워... 왜이렇게 어렵냐;;
 								</div>
-								<div className="message-time">Apr 16</div>
+								<div className="message-time">04.14</div>
 							</div>
 						</div>
 						<div className="message-row you-message">
 							<div className="message-content">
 								<div className="message-text">
-									Well we need to work out sometime soon where
-									we really want to record our video course.
+									그냥 뭐하고 있어?
 								</div>
-								<div className="message-time">Apr 15</div>
+								<div className="message-time">04.13</div>
 							</div>
 						</div>
 						<div className="message-row other-message">
 							<div className="message-content">
 								<div className="message-img-man"></div>
 								<div className="message-text">
-									I'm just in the process of finishing off the
-									last pieces of material for the course.
+									왜?? 무슨일 있어?
 								</div>
-								<div className="message-time">Apr 14</div>
+								<div className="message-time">04.13</div>
 							</div>
 						</div>
 						<div className="message-row you-message">
 							<div className="message-content">
 								<div className="message-text">
-									How's it going?
+									야 김사과!
 								</div>
-								<div className="message-time">Apr 13</div>
-							</div>
-						</div>
-						<div className="message-row other-message">
-							<div className="message-content">
-								<div className="message-img-man"></div>
-								<div className="message-text">
-									Hey mate what's up?
-								</div>
-								<div className="message-time">Apr 13</div>
-							</div>
-						</div>
-						<div className="message-row you-message">
-							<div className="message-content">
-								<div className="message-text">
-									Hey Daryl?
-								</div>
-								<div className="message-time">Apr 13</div>
+								<div className="message-time">04.13</div>
 							</div>
 						</div>
 					</div>
