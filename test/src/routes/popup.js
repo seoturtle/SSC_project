@@ -92,7 +92,7 @@ const Popup = ( props ) => {
                                         <li className="chat-people-email">{user.email}</li>
                                         <li className="chat-people-name">{user.name}</li>
                                     </ol>
-                                    <button onClick={handleClick} name={user.idx} style={{height:"20px", width:"50px"}}></button>
+                                    <button className="chat-add-bnt" onClick={handleClick} name={user.idx}>+</button>
                                 </div>
                                 )}
                         </div>
