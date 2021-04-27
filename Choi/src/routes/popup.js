@@ -3,7 +3,7 @@ import '../css/popup.css';
 import { useHistory } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
-import { decode } from 'jsonwebtoken';
+import axios from 'axios';
 
 const Popup = ( props ) => {
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -14,11 +14,10 @@ const Popup = ( props ) => {
     const [idx, setIdx] = useState("");
     const [otherName, setOtherName] = useState("");
 
+    const decode = jwtDecode(cookie.jwt);
+
     useEffect(() => {
-        console.log(otherName);
-        
         if (cookie.jwt){
-          const decode = jwtDecode(cookie.jwt);
           setIdx(decode.idx);
           console.log("idx: "+decode.idx);
         }else {
@@ -26,34 +25,34 @@ const Popup = ( props ) => {
         }
       }, []);
 
+    useEffect(async () => {
+        if(otherName==""){
+            console.log(otherName);
+        }else{
+        //     fetch("http://localhost:3002/search/add", {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         oidx : otherName,
+        //         midx : decode.idx
+        //       }),
+        //     headers: {
+        //       "Content-Type": "application/json"
+        //     }
+        //   })
+        await axios.post("http://localhost:3002/search/add", {
+            oidx : otherName,
+            midx : decode.idx
+        })
+        }
+        console.log(otherName);
+    }, [otherName])
+
     const handleEmail = (e) => {
         setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
     }
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        
-        const decode = jwtDecode(cookie.jwt);
-        setOtherName(e.target.name);
-        console.log(otherName);
-        fetch("http://localhost:3002/search/add", {
-            method: "POST",
-            body: JSON.stringify({
-                oidx : otherName,
-                midx : decode.idx
-              }),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(res=>res.json())
-            .then(res=> {
-                if(res.result==false){
-                    console.log("finish")
-                }else{
-                    console.log("err")
-                }
-            })
+    const handleClick = async (e) => {
+        await setOtherName(e.target.name);
     }
     
     const handleChange = (e) => {

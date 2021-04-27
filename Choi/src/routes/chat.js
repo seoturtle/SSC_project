@@ -11,23 +11,23 @@ function Chat() {
 	const [ modalOpen, setModalOpen ] = useState(false);
 
 	useEffect(() => {
-		const decode = jwtDecode(cookie.jwt);
+		// const decode = jwtDecode(cookie.jwt);
 
-		fetch("http://localhost:3002/search/chatList", {
-            method: "POST",
-            body: JSON.stringify({midx: decode.idx}),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(res=>res.json())
-            .then(res=> {
-                if(res.result==false){
-                    // setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
-                }else{
-                    // setSearchEmail(res.result);
-                }
-            })
+		// fetch("http://localhost:3002/search/chatList", {
+        //     method: "POST",
+        //     body: JSON.stringify({midx: decode.idx}),
+        //     headers: {
+        //       "Content-Type": "application/json"
+        //     }
+        //   })
+        //     .then(res=>res.json())
+        //     .then(res=> {
+        //         if(res.result==false){
+        //             // setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
+        //         }else{
+        //             // setSearchEmail(res.result);
+        //         }
+        //     })
 	}, [])
 
     const openModal = () => {

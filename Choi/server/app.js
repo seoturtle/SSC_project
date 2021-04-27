@@ -13,10 +13,12 @@ app.use(express.json());
 //routes
 app.use('/', require('./routes/login'));
 app.use('/search', require('./routes/search'));
+
 //mongodb
-mongoose.connect('mongodb://localhost:27017/ssc')
+mongoose.connect('mongodb://localhost:27017/ssc', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('connected successful'))
 .catch((err) => console.error(err));
+mongoose.set('useCreateIndex', true);
 
 
 
