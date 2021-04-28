@@ -3,6 +3,7 @@ import '../css/popup.css';
 import { useHistory } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
+import Chat from './chat'
 
 const Popup = ( props ) => {
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -12,6 +13,7 @@ const Popup = ( props ) => {
     const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
     const [idx, setIdx] = useState("");
     const [otherName, setOtherName] = useState("");
+    const [count, setCount] = useState(0);
     const decode = jwtDecode(cookie.jwt);
 
     useEffect(() => {
@@ -37,7 +39,6 @@ const Popup = ( props ) => {
               "Content-Type": "application/json"
             }
           })
-          .then(res=>res.json())
           .then(res=> {
              setCount(res.count);
           })

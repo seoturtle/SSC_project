@@ -5,12 +5,10 @@ import Popup from './popup'
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
 
-function Chat() {
-
+function Chat(){
 	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
 	const [ modalOpen, setModalOpen ] = useState(false);
-	const [chatUserList, setChatUserList] = useState([{name: '', email: '', sex: ''}]);
-	const [count, setCount] = useState(0);
+	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: ''}]);
 	const decode = jwtDecode(cookie.jwt);
 
 	// useEffect(() => {
@@ -39,9 +37,8 @@ function Chat() {
             .then(res=>res.json())
             .then(res=> {
                 setChatUserList(res.result);
-				setCount(res.count);
             })
-	}, [count])
+	}, [])
 
     const openModal = () => {
         setModalOpen(true);
@@ -63,13 +60,14 @@ function Chat() {
 							<div className="title-text">김사과</div>
 							<div className="created-date">04.16</div>
 							<div className="conversation-message">
-							{!chatUserList.map || chatUserList[0].name=='' ? <div></div> : chatUserList.map(user => 
-                                <div className="search_result" key={user.name}>
+							{/* {!chatUserList.map || chatUserList[0]._id=='' ? <div></div> : chatUserList.map(user => 
+                                <div className="search_result" key={user._id}>
                                     <ol>
                                         <li className="chat-people-email">{user.email}</li>
                                     </ol>
                                 </div>
-                                )}
+                                )} */}
+								{console.log(chatUserList)}
 							</div>
 						</div>
 						<div className="conversation">
