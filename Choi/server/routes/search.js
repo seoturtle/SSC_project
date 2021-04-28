@@ -33,7 +33,7 @@ router.post('/add', (req, res) => {
         if(err) {
             console.log(err);
         }else{
-           UserChat.findOne({email: data[0].email}).exec(function(err, result) {
+           UserChat.findOne({midx: midx, email: data[0].email}).exec(function(err, result) {
                if(err){
                    console.log(err);
                }else{
@@ -46,13 +46,6 @@ router.post('/add', (req, res) => {
                             sex: data[0].sex,
                         }
                     )
-                    UserChat.countDocuments({midx: midx}, function(err, result2) {
-                        if(err){
-                            console.log(err)
-                        }else{
-                            res.send({count: result2})
-                        }
-                    })
                     console.log("mongodb 저장");
                }else{
                    console.log("이미 존재합니다");
@@ -66,12 +59,19 @@ router.post('/add', (req, res) => {
 
 router.post('/chatList', (req, res) => {
     const midx = req.body.midx;
-
+    const userID = req.body.chatUserID;
+    const length = req.body.length;
     UserChat.find({midx: midx}).exec(function(err, result) {
         if(err) {
             console.log("err");
         }else{
-            res.send({result: result});
+            if(result==0){
+                res.send({result: false});
+            }else if (result.length == length && userID != ''){
+                res.send({result: false});
+            }else{
+                res.send({result: result});
+            }
         }
     })
 })

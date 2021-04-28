@@ -39,9 +39,6 @@ const Popup = ( props ) => {
               "Content-Type": "application/json"
             }
           })
-          .then(res=> {
-             setCount(res.count);
-          })
         }
         setOtherName("");
     }, [otherName])

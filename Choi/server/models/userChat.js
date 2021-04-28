@@ -6,7 +6,7 @@ var UserChatSchema = new mongoose.Schema({
 
   name: {type: String, required: true},
 
-  email: {type: String, required: true, unique: true},
+  email: {type: String, required: true},
 
   sex: {type: String, required: true},
 

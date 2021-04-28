@@ -4,12 +4,46 @@ import Header from '../components/header'
 import Popup from './popup'
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
+import axios from 'axios';
 
-function Chat(){
+function Chat() {
 	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
 	const [ modalOpen, setModalOpen ] = useState(false);
-	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: ''}]);
+	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: '', __v: 0}]);
 	const decode = jwtDecode(cookie.jwt);
+
+	useEffect(async() => {
+		await axios.post('http://localhost:3002/search/chatList', {
+			midx: decode.idx,
+		})
+        .then(res=> {
+			if(res.result){
+				setChatUserList(res.result);
+			}
+        })
+		console.log(chatUserList.length);
+	}, [chatUserList])
+
+	// function c() {
+	// 	// fetch("http://localhost:3002/search/chatList", {
+    //     //     method: "POST",
+    //     //     body: JSON.stringify({
+	// 	// 		midx: decode.idx,
+	// 	// 	}),
+    //     //     headers: {
+    //     //       "Content-Type": "application/json"
+    //     //     }
+    //     //   })
+	// 	await axios.post('/user', {
+	// 		firstName: 'Fred',
+	// 		lastName: 'Flintstone'
+	// 	})
+    //         .then(res=> {
+	// 			if(res.result){
+	// 				setChatUserList(res.result);
+	// 			}
+    //         })
+	// }
 
 	// useEffect(() => {
 	// 	fetch("http://localhost:3002/search/chatList", {
@@ -23,22 +57,8 @@ function Chat(){
     //         .then(res=> {
     //             setChatUserList(res.result);
     //         })
-	// 		console.log(chatUserList);
-	// }, [chatUserList])
-
-	useEffect(() => {
-		fetch("http://localhost:3002/search/chatList", {
-            method: "POST",
-            body: JSON.stringify({midx: decode.idx}),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(res=>res.json())
-            .then(res=> {
-                setChatUserList(res.result);
-            })
-	}, [])
+	// 		console.log(count);
+	// }, [])
 
     const openModal = () => {
         setModalOpen(true);
@@ -60,14 +80,14 @@ function Chat(){
 							<div className="title-text">김사과</div>
 							<div className="created-date">04.16</div>
 							<div className="conversation-message">
-							{/* {!chatUserList.map || chatUserList[0]._id=='' ? <div></div> : chatUserList.map(user => 
-                                <div className="search_result" key={user._id}>
+							{!chatUserList.map || chatUserList[0]._id=='' ? <div></div> : chatUserList.map(user => 
+                                <div key={user._id}>
                                     <ol>
-                                        <li className="chat-people-email">{user.email}</li>
+                                        <li>{user.email}</li>
                                     </ol>
                                 </div>
-                                )} */}
-								{console.log(chatUserList)}
+                                )}
+								{chatUserList.length}
 							</div>
 						</div>
 						<div className="conversation">
