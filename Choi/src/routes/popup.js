@@ -3,7 +3,6 @@ import '../css/popup.css';
 import { useHistory } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
-import axios from 'axios';
 
 const Popup = ( props ) => {
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -13,7 +12,6 @@ const Popup = ( props ) => {
     const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
     const [idx, setIdx] = useState("");
     const [otherName, setOtherName] = useState("");
-
     const decode = jwtDecode(cookie.jwt);
 
     useEffect(() => {
@@ -25,34 +23,35 @@ const Popup = ( props ) => {
         }
       }, []);
 
-    useEffect(async () => {
+    useEffect(() => {
         if(otherName==""){
             console.log(otherName);
         }else{
-        //     fetch("http://localhost:3002/search/add", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         oidx : otherName,
-        //         midx : decode.idx
-        //       }),
-        //     headers: {
-        //       "Content-Type": "application/json"
-        //     }
-        //   })
-        await axios.post("http://localhost:3002/search/add", {
-            oidx : otherName,
-            midx : decode.idx
-        })
+            fetch("http://localhost:3002/search/add", {
+            method: "POST",
+            body: JSON.stringify({
+                oidx : otherName,
+                midx : decode.idx
+              }),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+          .then(res=>res.json())
+          .then(res=> {
+             setCount(res.count);
+          })
         }
-        console.log(otherName);
+        setOtherName("");
     }, [otherName])
 
     const handleEmail = (e) => {
         setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
     }
 
-    const handleClick = async (e) => {
-        await setOtherName(e.target.name);
+    const handleClick = (e) => {
+        e.preventDefault();
+        setOtherName(e.target.name);
     }
     
     const handleChange = (e) => {

@@ -9,26 +9,39 @@ function Chat() {
 
 	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
 	const [ modalOpen, setModalOpen ] = useState(false);
+	const [chatUserList, setChatUserList] = useState([{name: '', email: '', sex: ''}]);
+	const [count, setCount] = useState(0);
+	const decode = jwtDecode(cookie.jwt);
+
+	// useEffect(() => {
+	// 	fetch("http://localhost:3002/search/chatList", {
+    //         method: "POST",
+    //         body: JSON.stringify({midx: decode.idx}),
+    //         headers: {
+    //           "Content-Type": "application/json"
+    //         }
+    //       })
+    //         .then(res=>res.json())
+    //         .then(res=> {
+    //             setChatUserList(res.result);
+    //         })
+	// 		console.log(chatUserList);
+	// }, [chatUserList])
 
 	useEffect(() => {
-		// const decode = jwtDecode(cookie.jwt);
-
-		// fetch("http://localhost:3002/search/chatList", {
-        //     method: "POST",
-        //     body: JSON.stringify({midx: decode.idx}),
-        //     headers: {
-        //       "Content-Type": "application/json"
-        //     }
-        //   })
-        //     .then(res=>res.json())
-        //     .then(res=> {
-        //         if(res.result==false){
-        //             // setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
-        //         }else{
-        //             // setSearchEmail(res.result);
-        //         }
-        //     })
-	}, [])
+		fetch("http://localhost:3002/search/chatList", {
+            method: "POST",
+            body: JSON.stringify({midx: decode.idx}),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+            .then(res=>res.json())
+            .then(res=> {
+                setChatUserList(res.result);
+				setCount(res.count);
+            })
+	}, [count])
 
     const openModal = () => {
         setModalOpen(true);
@@ -50,7 +63,13 @@ function Chat() {
 							<div className="title-text">김사과</div>
 							<div className="created-date">04.16</div>
 							<div className="conversation-message">
-								안녕하세요. 김사과 입니다. 저는 컴퓨터공학과를 전공하였으며
+							{!chatUserList.map || chatUserList[0].name=='' ? <div></div> : chatUserList.map(user => 
+                                <div className="search_result" key={user.name}>
+                                    <ol>
+                                        <li className="chat-people-email">{user.email}</li>
+                                    </ol>
+                                </div>
+                                )}
 							</div>
 						</div>
 						<div className="conversation">
