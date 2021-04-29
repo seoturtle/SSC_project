@@ -40,18 +40,8 @@ const Popup = ( props ) => {
             }
           })
         }
-        setOtherName("");
-    }, [otherName])
-
-    const handleEmail = (e) => {
-        setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
-    }
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        setOtherName(e.target.name);
-
-        fetch("http://localhost:3002/search/count", {
+        setTimeout(() => {
+            fetch("http://localhost:3002/search/count", {
             method: "POST",
             body: JSON.stringify({
                 midx : decode.idx
@@ -64,6 +54,16 @@ const Popup = ( props ) => {
           .then(res=> {
               console.log(res.count);
           })
+            }, 50)
+    }, [otherName])
+
+    const handleEmail = (e) => {
+        setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        setOtherName(e.target.name);
     }
     
     const handleChange = (e) => {
