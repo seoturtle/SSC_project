@@ -29,7 +29,6 @@ input::placeholder{
 .header a {
   text-decoration: none;
 }
-
 /* 헤더 */
 .header #header{
   position:relative;
@@ -48,7 +47,7 @@ input::placeholder{
   padding: 10px 10px 0;
   width: 160px;
 }
-.header header > a > h1 > p {
+.header header > a > h1> p {
   color: #d50000;
   float: right;
   margin-top: 15px;

@@ -3,6 +3,7 @@ import '../css/popup.css';
 import { useHistory } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
+import Chat from './chat'
 
 const Popup = ( props ) => {
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -12,10 +13,11 @@ const Popup = ( props ) => {
     const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
     const [idx, setIdx] = useState("");
     const [otherName, setOtherName] = useState("");
+    const [count, setCount] = useState(0);
+    const decode = jwtDecode(cookie.jwt);
 
     useEffect(() => {
         if (cookie.jwt){
-          const decode = jwtDecode(cookie.jwt);
           setIdx(decode.idx);
           console.log("idx: "+decode.idx);
         }else {
@@ -23,30 +25,45 @@ const Popup = ( props ) => {
         }
       }, []);
 
-    const handleEmail = (e) => {
-        setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
-    }
-
-    const handleClick = (e) => {
-        setOtherName(e.target.name);
-        
-        fetch("http://localhost:3002/search/add", {
+    useEffect(() => {
+        if(otherName==""){
+            console.log(otherName);
+        }else{
+            fetch("http://localhost:3002/search/add", {
             method: "POST",
             body: JSON.stringify({
-                idx : otherName
+                oidx : otherName,
+                midx : decode.idx
               }),
             headers: {
               "Content-Type": "application/json"
             }
           })
-            .then(res=>res.json())
-            .then(res=> {
-                if(res.result==false){
-                    setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
-                }else{
-                    setSearchEmail(res.result);
-                }
-            })
+        }
+        setTimeout(() => {
+            fetch("http://localhost:3002/search/count", {
+            method: "POST",
+            body: JSON.stringify({
+                midx : decode.idx
+              }),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+          .then(res=>res.json())
+          .then(res=> {
+              console.log(res.count);
+          })
+            }, 50)
+    }, [otherName])
+
+    const handleEmail = (e) => {
+        setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        setOtherName(e.target.name);
     }
     
     const handleChange = (e) => {
@@ -92,7 +109,7 @@ const Popup = ( props ) => {
                                         <li className="chat-people-email">{user.email}</li>
                                         <li className="chat-people-name">{user.name}</li>
                                     </ol>
-                                    <button className="chat-add-bnt" onClick={handleClick} name={user.idx}>+</button>
+                                    <button onClick={handleClick} name={user.idx} style={{height:"20px", width:"50px"}}></button>
                                 </div>
                                 )}
                         </div>

@@ -1,10 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/chat.css';
 import Header from '../components/header'
 import Popup from './popup'
+import jwtDecode from 'jwt-decode';
+import {useCookies} from 'react-cookie';
 
-function Chat() {
+function Chat(props) {
+	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
 	const [ modalOpen, setModalOpen ] = useState(false);
+	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: '', __v: 0}]);
+	const decode = jwtDecode(cookie.jwt);
+
+	useEffect(() => {
+		fetch("http://localhost:3002/search/chatList", {
+            method: "POST",
+            body: JSON.stringify({midx: decode.idx}),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+            .then(res=>res.json())
+            .then(res=> {
+				if(res.result == false){
+					console.log(false)
+				}else{
+					if(chatUserList.length == res.result.length && chatUserList[0]._id == ''){
+						console.log("id : 0");
+					}else if(chatUserList.length != res.result.length){
+						console.log(res.result);
+						setChatUserList(res.result);
+					}
+				}
+            })
+	}, [chatUserList])
+
+	// useEffect(() => {
+	// 	fetch("http://localhost:3002/search/chatList", {
+    //         method: "POST",
+    //         body: JSON.stringify({midx: decode.idx}),
+    //         headers: {
+    //           "Content-Type": "application/json"
+    //         }
+    //       })
+    //         .then(res=>res.json())
+    //         .then(res=> {
+    //             setChatUserList(res.result);
+    //         })
+	// 		console.log(count);
+	// }, [])
 
     const openModal = () => {
         setModalOpen(true);
@@ -23,10 +66,17 @@ function Chat() {
 					<div id="conversation-list">
 						<div className="conversation active">
 							<div className="chat-img-man"></div>
-							<div className="title-text">김사과</div>
+							<div className="title-text">김사과{props.count}</div>
 							<div className="created-date">04.16</div>
 							<div className="conversation-message">
-								안녕하세요. 김사과 입니다. 저는 컴퓨터공학과를 전공하였으며
+							{!chatUserList.map || chatUserList[0]._id=='' ? <div></div> : chatUserList.map(user => 
+                                <div key={user._id}>
+                                    <ol>
+                                        <li>{user.email}</li>
+                                    </ol>
+                                </div>
+                                )}
+								{/* {chatUserList.length} */}
 							</div>
 						</div>
 						<div className="conversation">
