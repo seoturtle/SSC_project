@@ -40,7 +40,7 @@ input::placeholder{
   height: 70px;
   border-bottom: 1px solid #d50000;
 }
-.header header > h1 {
+.header header > a > h1 {
   position: absolute;
   height: 70px; 
   font-size: 20px;
@@ -48,13 +48,13 @@ input::placeholder{
   padding: 10px 10px 0;
   width: 160px;
 }
-.header header > h1> p {
+.header header > a > h1 > p {
   color: #d50000;
   float: right;
   margin-top: 15px;
   letter-spacing: 2px;
 }
-.header header > h1 > button {
+.header header > a > h1 > button {
   border: 0;
   outline: 0;
   cursor: pointer;
@@ -152,25 +152,13 @@ input::placeholder{
 .header .header_chat:hover{
   background: url('../img/chat-red.png');
 }
-.header .header_notice{
-  background: url('../img/bulb2.png');
+.header .header_logout{
+  background: url('../img/logout.png');
 }
-.header .header_notice:hover{
-  background: url('../img/bulb-red.png');
+.header .header_logout:hover{
+  background: url('../img/logout-red.png');
 }
 .header .header_cont .header_category li:last-child{
   padding-right: 0;
 }
-/* 
-.header .option-list {
-  list-style: none;
-  padding: 0;
-  border-radius: 5px;
-  box-shadow: 0 0 2px rgba(0,0,0,0.3);
-}
-.header .option-list .option {
-  padding: 10px 15px;
-}
-.header .option-list .option:hover {
-  background-color: #f2f2f2;
-} */
+

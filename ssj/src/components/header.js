@@ -1,19 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/header.css'
+import { useHistory } from "react-router-dom";
+import jwtDecode from 'jwt-decode';
+import {useCookies} from 'react-cookie';
 
 function Header() {
+    const history = useHistory();
+    const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
+    const decode = jwtDecode(cookie.jwt);
+
+    const handleClick = (e) => {
+        alert(`${decode.name}님이 로그아웃 하셨습니다.`);
+        removeCookie("jwt");
+        history.push("/");
+    }
     return (
         <div className="header">
             <header id="header">
-                <h1>
+                <Link to='/main'><h1>
                     <button type="button">
                         로r고
                     </button>
                     <p>
                         떠블에스씨
                     </p>
-                </h1>
+                </h1></Link>
                 <div className="search_box">
                     <span className="search_con">
                     </span>
@@ -24,7 +36,7 @@ function Header() {
                         <li><Link to='/stock_main'><button herf="#" className="header_stock">주식</button></Link></li>
                         <li><button herf="#" className="header_coin">코인</button></li>
                         <li><Link to='/chat'><button herf="#" className="header_chat">채팅</button></Link></li>
-                        <li><button herf="#" className="header_notice">알림</button></li>
+                        <li><button herf="#" className="header_logout" onClick={handleClick}>로그아웃</button></li>
                     </ul>
                 </div>
             </header>
