@@ -50,6 +50,20 @@ const Popup = ( props ) => {
     const handleClick = (e) => {
         e.preventDefault();
         setOtherName(e.target.name);
+
+        fetch("http://localhost:3002/search/count", {
+            method: "POST",
+            body: JSON.stringify({
+                midx : decode.idx
+              }),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+          .then(res=>res.json())
+          .then(res=> {
+              console.log(res.count);
+          })
     }
     
     const handleChange = (e) => {

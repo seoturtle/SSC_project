@@ -59,19 +59,29 @@ router.post('/add', (req, res) => {
 
 router.post('/chatList', (req, res) => {
     const midx = req.body.midx;
-    const userID = req.body.chatUserID;
-    const length = req.body.length;
     UserChat.find({midx: midx}).exec(function(err, result) {
         if(err) {
             console.log("err");
         }else{
             if(result==0){
                 res.send({result: false});
-            }else if (result.length == length && userID != ''){
-                res.send({result: false});
+                console.log("result==0 :"+ result)
             }else{
                 res.send({result: result});
+                console.log(result)
             }
+        }
+    })
+})
+
+router.post('/count', (req, res) => {
+    const midx = req.body.midx;
+    UserChat.countDocuments({midx: midx}, function(err, result) {
+        if(err) {
+            console.log(err)
+        }else {
+            res.send({count: result});
+            console.log(result)
         }
     })
 })

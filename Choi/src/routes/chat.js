@@ -4,7 +4,6 @@ import Header from '../components/header'
 import Popup from './popup'
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
-import axios from 'axios';
 
 function Chat() {
 	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
@@ -12,38 +11,28 @@ function Chat() {
 	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: '', __v: 0}]);
 	const decode = jwtDecode(cookie.jwt);
 
-	useEffect(async() => {
-		await axios.post('http://localhost:3002/search/chatList', {
-			midx: decode.idx,
-		})
-        .then(res=> {
-			if(res.result){
-				setChatUserList(res.result);
-			}
-        })
-		console.log(chatUserList.length);
+	useEffect(() => {
+		fetch("http://localhost:3002/search/chatList", {
+            method: "POST",
+            body: JSON.stringify({midx: decode.idx}),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+            .then(res=>res.json())
+            .then(res=> {
+				if(res.result == false){
+					console.log(false)
+				}else{
+					if(chatUserList.length == res.result.length && chatUserList[0]._id == ''){
+						console.log("id : 0");
+					}else if(chatUserList.length != res.result.length){
+						console.log(res.result);
+						setChatUserList(res.result);
+					}
+				}
+            })
 	}, [chatUserList])
-
-	// function c() {
-	// 	// fetch("http://localhost:3002/search/chatList", {
-    //     //     method: "POST",
-    //     //     body: JSON.stringify({
-	// 	// 		midx: decode.idx,
-	// 	// 	}),
-    //     //     headers: {
-    //     //       "Content-Type": "application/json"
-    //     //     }
-    //     //   })
-	// 	await axios.post('/user', {
-	// 		firstName: 'Fred',
-	// 		lastName: 'Flintstone'
-	// 	})
-    //         .then(res=> {
-	// 			if(res.result){
-	// 				setChatUserList(res.result);
-	// 			}
-    //         })
-	// }
 
 	// useEffect(() => {
 	// 	fetch("http://localhost:3002/search/chatList", {
@@ -87,7 +76,7 @@ function Chat() {
                                     </ol>
                                 </div>
                                 )}
-								{chatUserList.length}
+								{/* {chatUserList.length} */}
 							</div>
 						</div>
 						<div className="conversation">
