@@ -4,9 +4,9 @@ import Header from '../components/header'
 import jwtDecode from 'jwt-decode';
 import queryString from 'query-string';
 import {useCookies} from 'react-cookie';
-import socketIoClient from 'socket.io-client';
+import socketIoClient from "socket.io-client";
 
-const socket = socketIoClient("http://localhost:8463", { autoConnect: false});
+const socket = socketIoClient("http://localhost:5555", { autoConnect: false });
 
 const Message = ({ msg }) => {
 	return(
@@ -21,17 +21,18 @@ const Message = ({ msg }) => {
 	)
 }
 const MessageBox = () => {
-	const [value, setValue] = useState("");
 
-	const postMessage = e => {
-		e.preventDefault();
+    const [value, setValue] = useState("");
 
-		if(!value) return;
+    const postMessage = e => {
+        e.preventDefault();
 
-		socket.emit("message", value);
+        if (!value) return;
 
-		setValue("");
-	};
+        socket.emit("message", value);
+
+        setValue("");
+    };
 
 	return (
 		<form onSubmit={ postMessage }>
@@ -53,10 +54,11 @@ function ChatRoom({location}) {
 	const decode = jwtDecode(cookie.jwt);
 
 	const addMessage = (msg) => {
-		setMessages(oldMessages => [...oldMessages, ...(Array.isArray(msg) ? msg.reverse() : [msg])]);
-	}
+        setMessages(oldMessages => [...oldMessages, ...(Array.isArray(msg) ? msg.reverse() : [msg])]);
+    };
 
 	useEffect(() => {
+
 		const { id, midx, name, email } = queryString.parse(location.search);
 		console.log(id, midx, name, email);
 		setId(name);
@@ -84,7 +86,7 @@ function ChatRoom({location}) {
 						<div className="trash-logo"></div>
 					</div>
 					<div id="chat-message-list">
-						{ messages.map((msg, index) => <Message msg={msg} />)}
+						{ messages.map((msg, index) => <Message key={index} msg={msg} />) }
                     </div>
 					<MessageBox />
 				</div>
