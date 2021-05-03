@@ -8,6 +8,7 @@ import chat from "./routes/chat"
 import chatUserList from "./routes/chatUserList"
 import chatRoom from "./routes/chatRoom"
 import chatUserAdd from "./routes/chatUserAdd"
+import ccc from "./routes/ccc"
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/chatUserList" component={chatUserList} />
         <Route path="/chatRoom" component={chatRoom} />
         <Route path="/chatUserAdd" component={chatUserAdd} />
+        <Route path="/ccc" component={ccc} />
       </HashRouter>
     );
   }

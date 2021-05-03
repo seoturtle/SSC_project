@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
 
 function ChatUserList() {
+	
 	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
 	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: '', __v: 0}]);
 	const decode = jwtDecode(cookie.jwt);
@@ -42,12 +43,14 @@ function ChatUserList() {
 					<div id="conversation-list">
 					{!chatUserList.map || chatUserList[0]._id=='' ? <div></div> : chatUserList.map(user => 
                                 <div key={user._id}>
+									<Link to={`/chatRoom?id=${user._id}&midx=${decode.idx}&name=${user.name}&email=${user.email}`}>
                                     <ol className="conversation">
 										{user.sex == '남자' ? <div className="chat-img-man"></div> : <div className="chat-img-woman"></div>}
                                         <li className="userName">{user.name}</li>
 										<li className="userEmail">({user.email})</li>
 										<li className="userText">안녕하세요</li>
                                     </ol>
+									</Link>
                                 </div>
                                 )}
 					</div>
