@@ -154,11 +154,11 @@ input::placeholder{
 .header .header_chat:hover{
   background: url('../img/chat-red.png');
 }
-.header .header_notice{
-  background: url('../img/bulb2.png');
+.header .header_logout{
+  background: url('../img/logout.png');
 }
-.header .header_notice:hover{
-  background: url('../img/bulb-red.png');
+.header .header_logout:hover{
+  background: url('../img/logout-red.png');
 }
 .header .header_cont .header_category li:last-child{
   padding-right: 0;

@@ -53,6 +53,12 @@ function Home() {
       setLogText("아이디와 비밀번호를 입력해주세요")
         }
     }
+    const onKeyPress = (e) => {
+      if (e.key === 'Enter') { 
+        handleSubmit();
+      } 
+    };
+
     return (
       <div className="home">
         <div className="left-side">
@@ -62,7 +68,7 @@ function Home() {
         <div className="right-side">
           <div className="login-tab">
             <input className="login-email" onChange={handleEmail} type="email" placeholder="이메일"></input>
-            <input className="login-pwd" onChange={handlePwd} type="password" placeholder="비밀번호"></input>
+            <input className="login-pwd" onChange={handlePwd} onKeyPress={onKeyPress} type="password" placeholder="비밀번호"></input>
             <input className="login-btn" onClick={handleSubmit} type="submit" value="로그인"></input>
             <p style={{color:"#d50000", fontWeight:"bold"}}>{logText}</p>
           </div>
