@@ -4,8 +4,10 @@ import home from "./routes/home"
 import main from "./routes/main"
 import register from "./routes/register"
 import stock_main from "./routes/stock_main"
-import search from "./routes/search"
 import chat from "./routes/chat"
+import chatUserList from "./routes/chatUserList"
+import chatRoom from "./routes/chatRoom"
+import chatUserAdd from "./routes/chatUserAdd"
 
 function App() {
     return (
@@ -14,8 +16,10 @@ function App() {
         <Route path="/main" component={main} />
         <Route path="/stock_main" component={stock_main} />
         <Route path="/register" component={register} />
-        <Route path="/search" component={search} />
         <Route path="/chat" component={chat} />
+        <Route path="/chatUserList" component={chatUserList} />
+        <Route path="/chatRoom" component={chatRoom} />
+        <Route path="/chatUserAdd" component={chatUserAdd} />
       </HashRouter>
     );
   }

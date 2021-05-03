@@ -29,6 +29,9 @@ input::placeholder{
 .header a {
   text-decoration: none;
 }
+#wrap {
+  
+}
 /* 헤더 */
 .header #header{
   position:relative;
@@ -39,7 +42,7 @@ input::placeholder{
   height: 70px;
   border-bottom: 1px solid #d50000;
 }
-.header header > a > h1 {
+.header header > h1 {
   position: absolute;
   height: 70px; 
   font-size: 20px;
@@ -47,13 +50,13 @@ input::placeholder{
   padding: 10px 10px 0;
   width: 160px;
 }
-.header header > a > h1> p {
+.header header > h1> p {
   color: #d50000;
   float: right;
   margin-top: 15px;
   letter-spacing: 2px;
 }
-.header header > a > h1 > button {
+.header header > h1 > button {
   border: 0;
   outline: 0;
   cursor: pointer;
@@ -160,4 +163,3 @@ input::placeholder{
 .header .header_cont .header_category li:last-child{
   padding-right: 0;
 }
-

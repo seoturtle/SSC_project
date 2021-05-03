@@ -8,10 +8,13 @@
     height: 100%;
 }
 .main #container { 
-    padding-bottom: 70px; 
-    padding-top: 50px; 
-    width: 1080px; 
-    margin: 0 auto;
+    margin: 0 100px;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 70px;
+    padding-top: 50px;
+    display: flex;
+    min-width: 1080px;
 }
 .main .korea_index .img_kospi{
     float:left; 

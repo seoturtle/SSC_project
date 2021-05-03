@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
-import '../css/chat.css';
+import '../css/chatRoom.css';
 import Header from '../components/header'
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
 
-function Chat() {
+function ChatRoom() {
 	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
-	const [ modalOpen, setModalOpen ] = useState(false);
 	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: '', __v: 0}]);
 	const decode = jwtDecode(cookie.jwt);
 
@@ -31,112 +30,14 @@ function Chat() {
 					}
 				}
             })
-	}, [chatUserList])
+	}, [])
 
-	// useEffect(() => {
-	// 	fetch("http://localhost:3002/search/chatList", {
-    //         method: "POST",
-    //         body: JSON.stringify({midx: decode.idx}),
-    //         headers: {
-    //           "Content-Type": "application/json"
-    //         }
-    //       })
-    //         .then(res=>res.json())
-    //         .then(res=> {
-    //             setChatUserList(res.result);
-    //         })
-	// 		console.log(count);
-	// }, [])
-
-    const openModal = () => {
-        setModalOpen(true);
-    }
-    const closeModal = () => {
-        setModalOpen(false);
-    }
     return(
-        <div className="chat">
+        <div className="chatRoom">
 			<Header />
             <div id = "chat-background">
 				<div id="chat-container">
-					<div id="search-container">
-						<input type="text" placeholder="Search" />
-					</div>
-					<div id="conversation-list">
-						<div className="conversation active">
-							<div className="chat-img-man"></div>
-							<div className="title-text">김사과</div>
-							<div className="created-date">04.16</div>
-							<div className="conversation-message">
-							{!chatUserList.map || chatUserList[0]._id=='' ? <div></div> : chatUserList.map(user => 
-                                <div key={user._id}>
-                                    <ol>
-                                        <li>{user.email}</li>
-                                    </ol>
-                                </div>
-                                )}
-								
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-woman"></div>
-							<div className="title-text">반하나</div>
-							<div className="created-date">2일전</div>
-							<div className="conversation-message">
-								안녕
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-man"></div>
-							<div className="title-text">이메론</div>
-							<div className="created-date">3일전</div>
-							<div className="conversation-message">
-								ㄱㄱ
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-woman"></div>
-							<div className="title-text">김예지</div>
-							<div className="created-date">3일전</div>
-							<div className="conversation-message">
-								과제좀 부탁드립니다.
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-man"></div>
-							<div className="title-text">홍길동</div>
-							<div className="created-date">2주전</div>
-							<div className="conversation-message">
-								연락 좀 부탁드립니다!!
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-woman"></div>
-							<div className="title-text">이체리</div>
-							<div className="created-date">한달전</div>
-							<div className="conversation-message">
-								겜 ㄱㄱ?
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-woman"></div>
-							<div className="title-text">김태희</div>
-							<div className="created-date">3달전</div>
-							<div className="conversation-message">
-								ㅎㅇㅎㅇ
-							</div>
-						</div>
-						<div className="conversation">
-							<div className="chat-img-man"></div>
-							<div className="title-text">김철수</div>
-							<div className="created-date">1년전</div>
-							<div className="conversation-message">
-								살아있니???
-							</div>
-						</div>
-					</div>
 					<div id="new-message-container">
-						<button onClick={ openModal }>+</button>
 					</div>
 					<div id="chat-title">
 						<span>김사과</span>
@@ -152,7 +53,7 @@ function Chat() {
 								<div className="message-time">04.16</div>
 							</div>
 						</div>
-						<div className="message-row you-message">
+                        <div className="message-row you-message">
 							<div className="message-content">
 								<div className="message-text">
 									면접 준비한거 보여줘봐~
@@ -211,7 +112,7 @@ function Chat() {
 								<div className="message-time">04.13</div>
 							</div>
 						</div>
-					</div>
+                    </div>
 					<div id="chat-form">
 						<div className="attachment-logo"></div>
 						<input type="text" placeholder="type a message" />
@@ -222,4 +123,4 @@ function Chat() {
     )
 }
 
-export default Chat;
+export default ChatRoom;

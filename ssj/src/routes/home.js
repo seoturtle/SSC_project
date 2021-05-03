@@ -58,6 +58,7 @@ function Home() {
         handleSubmit();
       } 
     };
+
     return (
       <div className="home">
         <div className="left-side">

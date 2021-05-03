@@ -10,8 +10,8 @@ router.use(cors());
 
 router.post('/', (req,res) => {
     const email = req.body.email;
-    const uemail = req.body.uemail;
-    const param = [email+'%', uemail]
+    const memail = req.body.memail;
+    const param = [email+'%', memail]
     const sql = "SELECT idx, email, name, sex FROM users where email LIKE ? and not email = ?"
     if(email===""){
         res.send({result: false});

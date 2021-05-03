@@ -18,14 +18,14 @@ function Header() {
     return (
         <div className="header">
             <header id="header">
-                <Link to='/main'><h1>
+                <h1>
                     <button type="button">
-                        로r고
+                        로고
                     </button>
                     <p>
                         떠블에스씨
                     </p>
-                </h1></Link>
+                </h1>
                 <div className="search_box">
                     <span className="search_con">
                     </span>
@@ -35,7 +35,7 @@ function Header() {
                     <ul className="header_category">
                         <li><Link to='/stock_main'><button herf="#" className="header_stock">주식</button></Link></li>
                         <li><button herf="#" className="header_coin">코인</button></li>
-                        <li><Link to='/chat'><button herf="#" className="header_chat">채팅</button></Link></li>
+                        <li><Link to='/chatUserList'><button herf="#" className="header_chat">채팅</button></Link></li>
                         <li><button herf="#" className="header_logout" onClick={handleClick}>로그아웃</button></li>
                     </ul>
                 </div>
