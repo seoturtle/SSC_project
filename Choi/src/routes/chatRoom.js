@@ -21,7 +21,7 @@ const Message = ({ msg }) => {
 				<div className="message-text">
 					{ msg.content }
 				</div>
-				<div className="message-time">{ new Date(msg.date).toLocaleDateString() }</div>
+				<div className="message-time">{ new Date(msg.date).toLocaleDateString() }{ new Date(msg.date).toLocaleTimeString() }</div>
 			</div>
 			</div>
 			:
@@ -30,7 +30,7 @@ const Message = ({ msg }) => {
 				<div className="message-text">
 					{ msg.content }
 				</div>
-				<div className="message-time">{ new Date(msg.date).toLocaleDateString() }</div>
+				<div className="message-time">{ new Date(msg.date).toLocaleDateString() }{ new Date(msg.date).toLocaleTimeString() }</div>
 			</div>
 		</div>
 		}
