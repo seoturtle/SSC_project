@@ -1,0 +1,33 @@
+.fourth{
+    width: 100%;
+}
+.fourth .menu{
+    width: 100%;
+    height: 60px;
+    position: relative;
+    display: flex;
+    color: #989696;
+}
+
+.fourth .menu_tab{
+    color: #D50000;
+    top: 25%;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+
+}
+.fourth .menu_tab::after{
+    content: "";
+    width: 75px;
+    height: 2px;
+    position: absolute;
+    left: 42.5%;
+    bottom: -15px;
+    background-color: #d50000;
+}
