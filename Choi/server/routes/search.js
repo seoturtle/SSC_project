@@ -132,8 +132,10 @@ router.post('/delete', (req, res) => {
 
 router.post('/check', (req, res) => {
     const midx = req.body.midx;
-    l_result = function(doc) { return doc.oidx; }
-    UserChat.find({midx: midx}, {_id:0, "oidx":1}).map( l_result )
+    UserChat.find({midx: midx}, {_id:0, "oidx":1}).distinct('oidx').exec(function(err, result) {
+        console.log(result);
+        res.send({result: result});
+    })
 })
 
 module.exports = router;

@@ -16,6 +16,7 @@ function ChatUserAdd() {
     const [idx, setIdx] = useState("");
     const [otherName, setOtherName] = useState("");
     const [count, setCount] = useState([]);
+    const [count2, setCount2] = useState();
     const decode = jwtDecode(cookie.jwt);
 
     useEffect(() => {
@@ -35,10 +36,13 @@ function ChatUserAdd() {
           })
           .then(res => res.json())
           .then(res => {
-            console.log(res.result);
             setCount(res.result);
           })
       }, []);
+
+      useEffect(() => {
+
+      }, [count])
 
     useEffect(() => {
         if(otherName==""){
@@ -94,18 +98,6 @@ function ChatUserAdd() {
 
     return (
         <div className="chatUserAdd">
-                {/* <div className="userAdd_header">
-                    <header id="header">
-                        <h1>
-                            <button type="button">뒤로가기</button>
-                        </h1>
-                        <div className="search_box">
-                            <span className="search_con">
-                            </span>
-                            <input onChange={handleChange} className="search_bar" title="검색어를 입력하세요" placeholder="검색어를 입력하세요"></input>
-                        </div>
-                    </header>
-                </div> */}
                 <Header />
                         <div className="content">
                             <h2 style={{width: "800px"}}>채팅 추가</h2>
@@ -127,7 +119,7 @@ function ChatUserAdd() {
                                     <ol>
                                         <li className="chat-people-name"><div>{user.name}</div></li>
                                         <li className="chat-people-email"><div>{user.email}</div></li>
-                                        <li className="btnli"><button className="chat-people-btn" onClick={handleClick} name={user.idx}></button></li>
+                                        {count.includes(user.idx) === true ? <li style={{width: "200px"}}></li> : <li className="btnli"><button className="chat-people-btn" onClick={handleClick} name={user.idx}></button></li>}
                                     </ol>   
                                 </div>
                                 )}
