@@ -121,4 +121,19 @@ router.post('/count', (req, res) => {
     })
 })
 
+router.post('/delete', (req, res) => {
+    const midx = req.body.midx;
+    const oidx = req.body.oidx;
+    UserChat.remove({midx: midx, oidx: oidx}, function(err, result) {
+        console.log(result);
+    });
+    res.end();
+})
+
+router.post('/check', (req, res) => {
+    const midx = req.body.midx;
+    l_result = function(doc) { return doc.oidx; }
+    UserChat.find({midx: midx}, {_id:0, "oidx":1}).map( l_result )
+})
+
 module.exports = router;

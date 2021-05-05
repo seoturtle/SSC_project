@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 import '../css/chatRoom.css';
 import Header from '../components/header'
 import jwtDecode from 'jwt-decode';
@@ -82,6 +83,7 @@ function ChatRoom({location}) {
 	const [messages, setMessages] = useState([]);
 	const [loading, setLoading] = useState(true)
 	const decode = jwtDecode(cookie.jwt);
+	const history = useHistory();
 
 	const addMessage = (msg) => {
         setMessages(oldMessages => [...oldMessages, ...(Array.isArray(msg) ? msg.reverse() : [msg])]);
@@ -91,6 +93,21 @@ function ChatRoom({location}) {
 
 	const scrollToBottom = () => {
 		messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
+	}
+
+	const clickHandle = (e) => {
+		fetch("http://localhost:3002/search/delete", {
+            method: "POST",
+            body: JSON.stringify({
+                oidx : otherIdx,
+                midx : myIdx
+              }),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+		  console.log("oidx : "+otherIdx, myIdx)
+		history.push("/chatUserList");
 	}
 
 	useEffect(() => {
@@ -132,7 +149,7 @@ function ChatRoom({location}) {
 					</div>
 					<div id="chat-title">
 						<span>{otherName}</span>
-						<div className="trash-logo"></div>
+						<div onClick={clickHandle} className="trash-logo"></div>
 					</div>
 					<div id="chat-message-list">
 						<div className="fix"></div>

@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
 import { Link } from 'react-router-dom';
 import Header from '../components/header.js'
+import { json } from 'body-parser';
 
 
 function ChatUserAdd() {
@@ -14,7 +15,7 @@ function ChatUserAdd() {
     const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
     const [idx, setIdx] = useState("");
     const [otherName, setOtherName] = useState("");
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState([]);
     const decode = jwtDecode(cookie.jwt);
 
     useEffect(() => {
@@ -24,6 +25,19 @@ function ChatUserAdd() {
         }else {
           history.push("/");
         }
+
+        fetch("http://localhost:3002/search/check", {
+            method: "POST",
+            body: JSON.stringify({midx: decode.idx}),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+          .then(res => res.json())
+          .then(res => {
+            console.log(res.result);
+            setCount(res.result);
+          })
       }, []);
 
     useEffect(() => {
