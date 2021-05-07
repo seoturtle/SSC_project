@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import queryString from 'query-string';
+import React, { useState } from 'react';
 // import { Link } from "react-router-dom";
 import Header from "../components/header.js";
 import First from "../components/menu-tab/first.js";
@@ -8,16 +7,16 @@ import Third from "../components/menu-tab/third.js";
 import Fourth from "../components/menu-tab/fourth.js";
 import '../css/stock_main.css';
 
+const obj = {
+  0: <First />,
+  1: <Second />,
+  2: <Third />,
+  3: <Fourth />
+}
 
-
-function Stock_main({location}) {
-  const [activeTab, SetActiveTab] = useState(0);
-  const [color, setColor] = useState(0);
-
-
-    useEffect(() =>{
-        
-    },[])
+function Stock_main() {
+  let [activeTab, SetActiveTab] = useState(0);
+  let [color, setColor] = useState(0);
 
   const clickHandler = (id) => {
     setColor(id);
@@ -51,14 +50,7 @@ function Stock_main({location}) {
                 </button>
               </div>
               <div className="info_detail">
-                {
-                {
-                  0 : <First />,
-                  1 : <Second />,
-                  2 : <Third />,
-                  3 : <Fourth />
-                }[activeTab]
-                }
+                {obj[activeTab]}
               </div>
             </div>
           </div>

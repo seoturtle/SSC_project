@@ -49,7 +49,7 @@ function Home() {
           setLogText("아이디가 존재하지 않습니다")
         }
       })
-    } else {
+    }else {
       setLogText("아이디와 비밀번호를 입력해주세요")
         }
     }

@@ -10,8 +10,8 @@
     align-items: center;
     flex-direction: column;
     min-width: 800px;
-    margin-top: 100px;
     margin: 0px 100px;
+    padding-top: 70px;
 }
 .chatUserAdd .user_search{
     width: 800px;
@@ -42,10 +42,7 @@
     width: 500px;
 }
 .chatUserAdd .content .search_result{
-    margin-top: 5px;
-    width: 800px;
-    background-color: #eee;
-    border-radius: 15px;
+    
 }
 
 .chatUserAdd .content .search_result ol{
@@ -55,6 +52,10 @@
     font-size: 25px;
     padding: 0;
     border: 2px solid white;
+    margin-top: 5px;
+    width: 800px;
+    /* background-color: #eee; */
+    border-radius: 15px;
 
 }
 .chatUserAdd .content .search_result .chat-people-name{

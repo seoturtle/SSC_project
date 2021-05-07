@@ -33,12 +33,11 @@
 }
 
 .chatRoom #chat-background{
-    margin: 0;
+    margin: 0 100px;
     padding: 0;
-    width: 100%;
+    padding-top: 120px;
     height: 100%;
     background: white;
-    margin-top: 50px;
 }
 
 .chatRoom #new-message-container {
@@ -99,13 +98,15 @@
 }
 
 .chatRoom #chat-message-list {
-    grid-area: chat-message-list;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 0 20px;
     overflow-y: scroll;
     border: 1px solid rgba(0,0,0, 0.25);
-    height: 450px;
+    height: 100%;
+}
+.chatRoom .fix {
+    flex: 1 auto;
 }
 
 .chatRoom .message-row {
@@ -127,8 +128,7 @@
 }
 
 .chatRoom .other-message .message-content {
-    grid-template-columns: 48px 1fr;
-    grid-column-gap: 20px;
+    justify-items: start;
 }
 
 .chatRoom .message-row .message-img-man{

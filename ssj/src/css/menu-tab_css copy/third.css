@@ -30,31 +30,3 @@
     bottom: -15px;
     background-color: #d50000;
 }
-
-.third .story .story_tab{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-}
-
-.third .story .story_write {
-    width : 90%;
-    height: 150px;
-}
-
-.third .story .story_sub{
-    width: 90%;
-    height: 50px;
-    text-align: center;
-}
-
-.third .story .story_list{
-    display: flex;
-    height: 100%;
-    width: 90%;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 15px;
-    border: 1px solid #989696;
-}

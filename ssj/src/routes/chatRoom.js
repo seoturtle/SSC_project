@@ -1,35 +1,147 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { useHistory } from 'react-router-dom'
 import '../css/chatRoom.css';
 import Header from '../components/header'
 import jwtDecode from 'jwt-decode';
+import queryString from 'query-string';
 import {useCookies} from 'react-cookie';
+import socketIoClient from "socket.io-client";
 
-function ChatRoom() {
-	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
-	const [chatUserList, setChatUserList] = useState([{_id: '', name: '', email: '', sex: '', __v: 0}]);
+const socket = socketIoClient("http://localhost:5555", { autoConnect: false });
+
+const Message = ({ msg }) => {
+	const [cookie] = useCookies('["jwt"]');
 	const decode = jwtDecode(cookie.jwt);
 
-	useEffect(() => {
-		fetch("http://localhost:3002/search/chatList", {
+	return(
+		<div>
+		{msg.midx == decode.idx ? 
+			<div className="message-row you-message">
+			<div className="message-content">
+				<div className="message-text">
+					{ msg.content }
+				</div>
+				<div className="message-time">{ new Date(msg.date).toLocaleDateString() }{ new Date(msg.date).toLocaleTimeString() }</div>
+			</div>
+			</div>
+			:
+			<div className="message-row other-message">
+			<div className="message-content">
+				<div className="message-text">
+					{ msg.content }
+				</div>
+				<div className="message-time">{ new Date(msg.date).toLocaleDateString() }{ new Date(msg.date).toLocaleTimeString() }</div>
+			</div>
+		</div>
+		}
+	  </div>
+	)
+}
+const MessageBox = (props) => {
+	
+    const [value, setValue] = useState("");
+
+    const postMessage = e => {
+        e.preventDefault();
+		
+        if (!value) return;
+		console.log(props.oid);
+        socket.emit("message", {value: value, oid: props.oid, midx: props.midx} );
+
+		setValue("");
+
+		fetch("http://localhost:3002/search/add2", {
             method: "POST",
-            body: JSON.stringify({midx: decode.idx}),
+            body: JSON.stringify({
+                oidx : props.oid,
+                midx : props.midx
+              }),
             headers: {
               "Content-Type": "application/json"
             }
           })
-            .then(res=>res.json())
-            .then(res=> {
-				if(res.result == false){
-					console.log(false)
-				}else{
-					if(chatUserList.length == res.result.length && chatUserList[0]._id == ''){
-						console.log("id : 0");
-					}else if(chatUserList.length != res.result.length){
-						console.log(res.result);
-						setChatUserList(res.result);
-					}
-				}
-            })
+    };
+
+	return (
+		<form onSubmit={ postMessage }>
+			<div id="chat-form">
+				<div className="attachment-logo"></div>
+				<input value={ value } onChange={ e => setValue(e.target.value)} type="text" placeholder="type a message" />
+			</div>
+		</form>
+	)
+}
+
+
+function ChatRoom({location}) {
+
+	const [cookie] = useCookies('["jwt"]');
+	const [otherIdx, setOtherIdx] = useState('');
+	const [otherName, setOtherName] = useState('');
+	const [otherEmail, setOtherEmail] = useState('');
+	const [myIdx, setMyIdx] = useState('');
+	const [messages, setMessages] = useState([]);
+	const [loading, setLoading] = useState(true)
+	const decode = jwtDecode(cookie.jwt);
+	const history = useHistory();
+
+	const addMessage = (msg) => {
+        setMessages(oldMessages => [...oldMessages, ...(Array.isArray(msg) ? msg.reverse() : [msg])]);
+    };
+
+	const messagesEndRef = useRef(null)
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
+	}
+
+	const clickHandle = (e) => {
+		fetch("http://localhost:3002/search/delete", {
+            method: "POST",
+            body: JSON.stringify({
+                oidx : otherIdx,
+                midx : myIdx
+              }),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+		  console.log("oidx : "+otherIdx, myIdx)
+		  
+		setTimeout(()=> {
+			history.push("/chatUserList");
+		}, 50);
+		
+	}
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [messages]);
+
+	useEffect(() => {
+		return () => setLoading(false);
+	  }, []);
+
+	useEffect(() => {
+		const { oid, midx, name, email } = queryString.parse(location.search);
+		console.log(oid, midx, name, email);
+		setOtherIdx(oid);
+		setOtherEmail(email);
+		setOtherName(name);
+		setMyIdx(midx);
+
+		socket.emit("latest", {oid:oid, midx:midx})
+
+		socket.on("latest", (data) => {
+            // expect server to send us the latest messages
+            addMessage(data);
+        });
+        socket.on("message", (msg) => {
+            addMessage(msg);
+        });
+
+        socket.connect();
+		
 	}, [])
 
     return(
@@ -40,83 +152,15 @@ function ChatRoom() {
 					<div id="new-message-container">
 					</div>
 					<div id="chat-title">
-						<span>김사과</span>
-						<div className="trash-logo"></div>
+						<span>{otherName}</span>
+						<div onClick={clickHandle} className="trash-logo"></div>
 					</div>
 					<div id="chat-message-list">
-						<div className="message-row other-message">
-							<div className="message-content">
-								<div className="message-img-man"></div>
-								<div className="message-text">
-									안녕하세요. 김사과 입니다. 저는 컴퓨터공학과를 전공하였으며 ... 자바, 파이썬, 자바스크립트, 노드 등등 여러가지 언어를 접했으며....
-								</div>
-								<div className="message-time">04.16</div>
-							</div>
-						</div>
-                        <div className="message-row you-message">
-							<div className="message-content">
-								<div className="message-text">
-									면접 준비한거 보여줘봐~
-								</div>
-								<div className="message-time">04.16</div>
-							</div>
-						</div>
-						<div className="message-row other-message">
-							<div className="message-content">
-								<div className="message-img-man"></div>
-								<div className="message-text">
-									도와줰ㅋㅋㅋㅋㅋㅋ
-								</div>
-								<div className="message-time">04.16</div>
-							</div>
-						</div>
-						<div className="message-row you-message">
-							<div className="message-content">
-								<div className="message-text">
-									ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅅㄱ
-								</div>
-								<div className="message-time">04.15</div>
-							</div>
-						</div>
-						<div className="message-row other-message">
-							<div className="message-content">
-								<div className="message-img-man"></div>
-								<div className="message-text">
-									캡스톤 프로젝트하면서 면접 준비하는 중...살려줘 너무 어려워... 왜이렇게 어렵냐;;
-								</div>
-								<div className="message-time">04.14</div>
-							</div>
-						</div>
-						<div className="message-row you-message">
-							<div className="message-content">
-								<div className="message-text">
-									그냥 뭐하고 있어?
-								</div>
-								<div className="message-time">04.13</div>
-							</div>
-						</div>
-						<div className="message-row other-message">
-							<div className="message-content">
-								<div className="message-img-man"></div>
-								<div className="message-text">
-									왜?? 무슨일 있어?
-								</div>
-								<div className="message-time">04.13</div>
-							</div>
-						</div>
-						<div className="message-row you-message">
-							<div className="message-content">
-								<div className="message-text">
-									야 김사과!
-								</div>
-								<div className="message-time">04.13</div>
-							</div>
-						</div>
+						<div className="fix"></div>
+						{ messages.map((msg, index) => <Message key={index} msg={msg} />) }
+						<div ref={messagesEndRef} />
                     </div>
-					<div id="chat-form">
-						<div className="attachment-logo"></div>
-						<input type="text" placeholder="type a message" />
-					</div>
+					<MessageBox oid={otherIdx} midx={myIdx} />
 				</div>
 			</div>
         </div>

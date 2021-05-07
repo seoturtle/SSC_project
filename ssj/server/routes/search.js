@@ -33,7 +33,7 @@ router.post('/add', (req, res) => {
         if(err) {
             console.log(err);
         }else{
-           UserChat.findOne({midx: midx, email: data[0].email}).exec(function(err, result) {
+           UserChat.findOne({midx: midx, oidx: oidx}).exec(function(err, result) {
                if(err){
                    console.log(err);
                }else{
@@ -41,6 +41,7 @@ router.post('/add', (req, res) => {
                     UserChat.create(
                         {
                             midx: midx,
+                            oidx: oidx,
                             name: data[0].name,
                             email: data[0].email,
                             sex: data[0].sex,
@@ -57,6 +58,40 @@ router.post('/add', (req, res) => {
     })
 })
 
+router.post('/add2', (req, res) => {
+    const oidx = req.body.oidx;
+    const midx = req.body.midx;
+    const sql = "SELECT email, name, sex from users where idx = ?"
+    msql.query(sql, midx, (err, data) => {
+        if(err) {
+            console.log(err);
+        }else{
+           UserChat.findOne({midx: oidx, oidx: midx}).exec(function(err, result) {
+               if(err){
+                   console.log(err);
+               }else{
+                   if(result==null){
+                    UserChat.create(
+                        {
+                            midx: oidx,
+                            oidx: midx,
+                            name: data[0].name,
+                            email: data[0].email,
+                            sex: data[0].sex,
+                        }
+                    )
+                    console.log("mongodb 저장");
+               }else{
+                   console.log("이미 존재합니다");
+               }
+            }
+           })
+        }
+        res.end();
+    })
+})
+
+
 router.post('/chatList', (req, res) => {
     const midx = req.body.midx;
     UserChat.find({midx: midx}).exec(function(err, result) {
@@ -65,10 +100,8 @@ router.post('/chatList', (req, res) => {
         }else{
             if(result==0){
                 res.send({result: false});
-                console.log("result==0 :"+ result)
             }else{
                 res.send({result: result});
-                console.log(result)
             }
         }
     })
@@ -81,8 +114,22 @@ router.post('/count', (req, res) => {
             console.log(err)
         }else {
             res.send({count: result});
-            console.log(result)
         }
+    })
+})
+
+router.post('/delete', (req, res) => {
+    const midx = req.body.midx;
+    const oidx = req.body.oidx;
+    UserChat.remove({midx: midx, oidx: oidx}, function(err, result) {
+    });
+    res.end();
+})
+
+router.post('/check', (req, res) => {
+    const midx = req.body.midx;
+    UserChat.find({midx: midx}, {_id:0, "oidx":1}).distinct('oidx').exec(function(err, result) {
+        res.send({result: result});
     })
 })
 

@@ -4,6 +4,8 @@ var UserChatSchema = new mongoose.Schema({
 
   midx: {type: Number, required: true},
 
+  oidx: {type: Number, required: true},
+
   name: {type: String, required: true},
 
   email: {type: String, required: true},

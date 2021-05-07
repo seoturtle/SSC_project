@@ -33,10 +33,10 @@
 .chatUserList #chat-background{
     margin: 0;
     padding: 0;
+    padding-top: 120px;
     height: 100%;
     background: white;
     margin: 0 100px;
-    margin-top: 50px;
 }
 
 .chatUserList #new-message-container {
@@ -75,7 +75,7 @@
     grid-area: search-container;
     padding: 0 20px;
     border-radius: 10px 10px 0 0;
-    border-right: 1px solid white;
+    border-bottom: 1px solid white;
     z-index: 1;
     height: 75px;
 }
@@ -102,7 +102,12 @@
 }
 
 .chatUserList #conversation-list {
+    border-radius: 0 0 10px 10px;
     overflow-y: scroll;
+}
+.chatUserList #conversation-list a {
+    text-decoration: none;
+    color: black;
 }
 
 .chatUserList .conversation {
@@ -111,6 +116,7 @@
     padding: 20px 20px 20px 15px;
     vertical-align: 0;
     line-height: 15px;
+    text-decoration: none;
 }
 
 .chatUserList .conversation.active,
