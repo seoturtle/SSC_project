@@ -19,12 +19,7 @@ function SecondDetail() {
         );
     }
 
-const obj = {
-    0: <FirstDetail />,
-    1: <SecondDetail />
-  }
-
-function First(props) {
+function First() {
     let [color, setColor] = useState(0);
     let [activeTab, SetActiveTab] = useState(0);
 
@@ -43,7 +38,12 @@ function First(props) {
                     </li>
                 </ol>
                 <div>
-                    {obj[activeTab]}
+                {
+                {
+                  0 : <FirstDetail />,
+                  1 : <SecondDetail />         
+                }[activeTab]
+                }
                 </div>
             </div>
         );

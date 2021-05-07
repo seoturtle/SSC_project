@@ -27,8 +27,7 @@ function Header() {
                     </p>
                 </h1>
                 <div className="search_box">
-                    <span className="search_con">
-                    </span>
+                    <div className="search_icon"></div>
                     <input type="search" className="search_bar" title="검색어를 입력하세요" placeholder="검색어를 입력하세요"></input>
                 </div>
                 <div className="header_cont">

@@ -51,69 +51,7 @@ function Register() {
     setEmailText("");
     setPwdText("");
 
-  // 데이터 DB에 넣기
-  const post = {
-      email,
-      emailCheck,
-      name,
-      pwd,
-      repwd,
-      pwCheck,
-      sex,
-      phone
-  }
-
-  const signupInfo = {
-    email: email,
-    pwd: pwd,
-    name : name,
-    sex : sex,
-    phone : phone
-  }
-
-  const signup_info = {
-    method: "POST",
-    body: JSON.stringify(signupInfo),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
-  if (
-    email &&
-    name &&
-    pwd &&
-    repwd &&
-    sex &&
-    phone &&
-    pwd === repwd
-  ) {
-    fetch("http://localhost:3002/login/user", signup_info)
-    .then(alert("가입이 완료되었습니다"))
-    .then(history.push("/"));
-  } else {
-      setRegText("입력값을 확인해주세요");
-  }
-  
-  // 비밀번호 체크
-  const chkPwd = function(str) {
-    var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-    return !reg_pwd.test(str) ? false : true;
-  };
-
-  if (chkPwd(pwd) === false) {
-    setPwdText("영문,숫자를 혼합하여 6~12자 이내");
-    setPwd("");
-    setRepwd("");
-  } else {
-    if (pwd === repwd) {
-      setPwCheck(repwd);
-    } else {
-      setPwdText("비밀번호가 일치하지 않습니다");
-    }
-  }
-
-  // 이메일 체크
+    // 이메일 체크
   const chkEmail = function(str) {
     var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     return regExp.test(str) ? true : false;
@@ -144,6 +82,26 @@ function Register() {
       }
     });
   }
+  
+  // 비밀번호 체크
+  const chkPwd = function(str) {
+    var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+    return !reg_pwd.test(str) ? false : true;
+  };
+
+  if (chkPwd(pwd) === false) {
+    setPwdText("영문,숫자를 혼합하여 6~12자 이내");
+    setPwd("");
+    setRepwd("");
+  } else {
+    if (pwd === repwd) {
+      setPwCheck(repwd);
+    } else {
+      setPwdText("비밀번호가 일치하지 않습니다");
+    }
+  }
+
+  
 
   //핸드폰번호 체크
   if (phone) {
@@ -173,6 +131,41 @@ function Register() {
     setNameText("이름을 입력해주세요");
   }else{
     setNameText("");
+  }
+  
+  // 데이터 DB에 넣기
+
+  const signupInfo = {
+    email: email,
+    pwd: pwd,
+    name : name,
+    sex : sex,
+    phone : phone
+  }
+
+  const signup_info = {
+    method: "POST",
+    body: JSON.stringify(signupInfo),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  if (
+    email &&
+    emailCheck &&
+    name &&
+    pwd &&
+    repwd &&
+    sex &&
+    phone &&
+    pwd === repwd
+  ) {
+    fetch("http://localhost:3002/login/user", signup_info)
+    .then(alert("가입이 완료되었습니다"))
+    .then(history.push("/"));
+  } else {
+      setRegText("입력값을 확인해주세요");
   }
 
   };

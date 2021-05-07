@@ -65,7 +65,14 @@ function Second() {
                     </li>
                 </ol>
                 <div>
-                    {obj[activeTab]}
+                {
+                {
+                  0 : <FirstDetail />,
+                  1 : <SecondDetail />,
+                  2 : <ThirdDetail />,
+                  3 : <FourthDetail />
+                }[activeTab]
+                }
                 </div>
             </div>
         );
