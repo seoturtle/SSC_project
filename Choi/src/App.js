@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React from 'react';
 import { HashRouter, Route } from "react-router-dom";
 import home from "./routes/home"
 import main from "./routes/main"
@@ -10,7 +10,6 @@ import chatUserAdd from "./routes/chatUserAdd"
 import test from "./routes/test"
 
 function App() {
-
     return (
       <HashRouter>
         <Route path="/" exact={true} component={home} />

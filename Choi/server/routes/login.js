@@ -42,7 +42,7 @@ router.post('/phone', (req, res) => {
 })
 
 // 로그인, 토큰값
-router.post('/login', (req,res) => {
+router.post('/', (req,res) => {
   console.log(req.body.email);
   console.log(req.body.pwd);
   const sql = 'SELECT * FROM `users` RIGHT OUTER JOIN (SELECT "") AS `users` ON `email` = ?'

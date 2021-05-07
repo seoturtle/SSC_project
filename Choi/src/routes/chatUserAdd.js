@@ -1,17 +1,16 @@
-import React, { useState, useEffect, createContext, useContext} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/userAdd_header.css';
 import '../css/chatUserAdd.css'
 import { useHistory } from "react-router-dom";
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
-import { Link } from 'react-router-dom';
 import Header from '../components/header.js'
 
 function ChatUserAdd() {
     
   const history = useHistory();
   const [searchEmail, setSearchEmail] = useState([{idx: '', email: '', name: '', sex: ''}]);
-  const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
+  const [cookie] = useCookies('["jwt"]');
   const [idx, setIdx] = useState("");
   const [otherName, setOtherName] = useState("");
   const [check, setCheck] = useState([]);

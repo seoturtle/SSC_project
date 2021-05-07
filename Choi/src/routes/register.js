@@ -88,7 +88,7 @@ function Register() {
     phone &&
     pwd === repwd
   ) {
-    fetch("http://localhost:3002/user", signup_info)
+    fetch("http://localhost:3002/login/user", signup_info)
     .then(alert("가입이 완료되었습니다"))
     .then(history.push("/"));
   } else {
@@ -134,7 +134,7 @@ function Register() {
     setEmailText("이메일 형식이 유효하지 않습니다.");
     setEmail("");
   } else {
-    fetch("http://localhost:3002/email", email_info)
+    fetch("http://localhost:3002/login/email", email_info)
     .then(res => res.json())
     .then(json => {
       if (json === true) {
@@ -147,7 +147,7 @@ function Register() {
 
   //핸드폰번호 체크
   if (phone) {
-    fetch("http://localhost:3002/phone", {
+    fetch("http://localhost:3002/login/phone", {
       method: "POST",
       headers: {
         'Content-type' : 'application/json'

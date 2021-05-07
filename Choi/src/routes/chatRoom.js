@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import '../css/chatRoom.css';
 import Header from '../components/header'
@@ -10,7 +10,7 @@ import socketIoClient from "socket.io-client";
 const socket = socketIoClient("http://localhost:5555", { autoConnect: false });
 
 const Message = ({ msg }) => {
-	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
+	const [cookie] = useCookies('["jwt"]');
 	const decode = jwtDecode(cookie.jwt);
 
 	return(
@@ -75,7 +75,7 @@ const MessageBox = (props) => {
 
 function ChatRoom({location}) {
 
-	const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
+	const [cookie] = useCookies('["jwt"]');
 	const [otherIdx, setOtherIdx] = useState('');
 	const [otherName, setOtherName] = useState('');
 	const [otherEmail, setOtherEmail] = useState('');

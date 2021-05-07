@@ -7,7 +7,7 @@ import {useCookies} from 'react-cookie';
 
 function Header() {
     const history = useHistory();
-    const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
+    const [cookie, removeCookie] = useCookies('["jwt"]');
     const decode = jwtDecode(cookie.jwt);
 
     const handleClick = (e) => {

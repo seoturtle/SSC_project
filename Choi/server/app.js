@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //routes
-app.use('/', require('./routes/login'));
+app.use('/login', require('./routes/login'));
 app.use('/search', require('./routes/search'));
 app.use('/stock_back', require('./routes/stock_back'));
 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import queryString from 'query-string';
 import '../../css/menu-tab_css/first.css';
 
 
@@ -23,7 +24,7 @@ const obj = {
     1: <SecondDetail />
   }
 
-function First() {
+function First(props) {
     let [color, setColor] = useState(0);
     let [activeTab, SetActiveTab] = useState(0);
 
