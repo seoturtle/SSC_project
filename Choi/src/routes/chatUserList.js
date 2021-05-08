@@ -57,7 +57,7 @@ function ChatUserList() {
 									{user.sex == '남자' ? <div className="chat-img-man"></div> : <div className="chat-img-woman"></div>}
 									<li className="userName">{user.name}</li>
 									<li className="userEmail">({user.email})</li>
-									<li className="userText">안녕하세요</li>
+									<li className="userText"></li>
 								</ol>
 								</Link>
 							</div>
@@ -65,8 +65,6 @@ function ChatUserList() {
 					</div>
 				</div>
             </div>
-            <footer>
-            </footer>
         </div>
     )
 }

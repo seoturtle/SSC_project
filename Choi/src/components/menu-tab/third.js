@@ -56,7 +56,7 @@ function Third() {
                 {talkList.map(list => 
                 <div key={list.id}>
                     <div>{list.name}</div>
-                    <div>{list.email}</div>
+                    <div>{list.email.substring(0,3)}***</div>
                     <div>{list.content}</div>
                     <div>{new Date(list.date).toLocaleDateString('zh-Hans-CN')}</div>
                     <div>{new Date(list.date).toLocaleTimeString('en-GB')}</div>

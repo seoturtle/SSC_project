@@ -6,7 +6,7 @@
 }
 
 #root .chatUserList {
-
+    
 }
 
 .chatUserList .header .header_chat{
@@ -102,8 +102,11 @@
 }
 
 .chatUserList #conversation-list {
+    height: 662px;
+    border: 1px solid #e8e6e6;
     border-radius: 0 0 10px 10px;
     overflow-y: scroll;
+    border-bottom: 1px solid white;
 }
 .chatUserList #conversation-list a {
     text-decoration: none;
@@ -111,11 +114,12 @@
 }
 
 .chatUserList .conversation {
+    align-items: center;
+    display: flex;
+    height: 43px;
     font-size: 15px;
     border-bottom: 1px solid white;
     padding: 20px 20px 20px 15px;
-    vertical-align: 0;
-    line-height: 15px;
     text-decoration: none;
 }
 
@@ -160,7 +164,7 @@
 .chatUserList .userEmail {
     color: #989696;
     display: inline-block;
-    font-size: 10px;
+    font-size: 12px;
     padding-left: 10px;
     white-space: nowrap;
     overflow-x: hidden;

@@ -8,9 +8,11 @@ import chatUserList from "./routes/chatUserList"
 import chatRoom from "./routes/chatRoom"
 import chatUserAdd from "./routes/chatUserAdd"
 import test from "./routes/test"
+import StockStore from './store/stock_Item';
 
 function App() {
     return (
+      <StockStore>
       <HashRouter>
         <Route path="/" exact={true} component={home} />
         <Route path="/main" component={main} />
@@ -21,6 +23,7 @@ function App() {
         <Route path="/chatUserAdd" component={chatUserAdd} />
         <Route path="/test" component={test} />
       </HashRouter>
+      </StockStore>
     );
   }
 
