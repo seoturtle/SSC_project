@@ -72,9 +72,9 @@
 .chatUserList #search-container {
     display: flex;
     align-items: center;
-    grid-area: search-container;
     padding: 0 20px;
     border-radius: 10px 10px 0 0;
+    border: 1px solid #dae1e6;
     border-bottom: 1px solid white;
     z-index: 1;
     height: 75px;
@@ -103,10 +103,9 @@
 
 .chatUserList #conversation-list {
     height: 662px;
-    border: 1px solid #e8e6e6;
+    border: 1px solid #dae1e6;
     border-radius: 0 0 10px 10px;
     overflow-y: scroll;
-    border-bottom: 1px solid white;
 }
 .chatUserList #conversation-list a {
     text-decoration: none;
