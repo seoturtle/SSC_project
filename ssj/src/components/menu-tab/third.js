@@ -51,19 +51,40 @@ function Third() {
                     </li>
                 </ol>
                 <div className="story">
-                    <div className="story_tab">
-                        <input className="story_write" value={value} onChange={(e) => setValue(e.target.value)}></input>
-                        <input className="story_sub" onClick={clickHandler} type='submit'></input>
+                    <div className="story_tab_list">
+                        <div className="story_tab">
+                            <div className="story_name">{decode.name}</div>
+                            <input className="story_write" value={value} onChange={(e) => setValue(e.target.value)}></input>
+                            <input className="story_sub" onClick={clickHandler} type='submit'></input>
+                        </div>
                     </div>
                     <div className="story_list">
                         <div className="story_list1">
                             {talkList.map(list => 
                             <div className="story_list2" key={list.id}>
-                                <div>{list.name}</div>
-                                <div>{list.email}</div>
-                                <div>{list.content}</div>
-                                <div>{new Date(list.date).toLocaleDateString('zh-Hans-CN')}</div>
-                                <div>{new Date(list.date).toLocaleTimeString('en-GB')}</div>
+                                <div className="story_head">
+                                    <div className="story_head2">
+                                        <div className="story_email">{list.email}</div>
+                                        <div className="story_day">{new Date(list.date).toLocaleDateString('zh-Hans-CN')}</div>
+                                    </div>
+                                    <div className="story_del"></div>
+                                </div>
+                                <div className="story_content">{list.content}</div>
+
+                                <div className="story_footer">
+                                    <button className="btn_like">
+                                        <span className="spa_like">
+                                            <span className="like_btn"></span>
+                                            <span className="like_text">1</span>
+                                        </span>
+                                    </button>
+                                    <button className="btn_hate">
+                                        <span className="spa_hate">
+                                            <span className="hate_btn"></span>
+                                            <span className="hate_text">2</span>
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
                             )}
                         </div>
