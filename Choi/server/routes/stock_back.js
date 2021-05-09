@@ -66,6 +66,7 @@ router.post('/memo', (req,res) => {
                 })
             }
         }
+        res.end();
     })
 })
 
