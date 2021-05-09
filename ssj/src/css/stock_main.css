@@ -37,7 +37,7 @@
     border-left: 1px solid #e8e6e6;
     position: relative;
     overflow-x: hidden;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 .stock_main .info_button{

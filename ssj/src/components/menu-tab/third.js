@@ -50,12 +50,14 @@ function Third() {
                         토론방
                     </li>
                 </ol>
+                <div className="sto">
                 <div className="story">
                     <div className="story_tab_list">
                         <div className="story_tab">
                             <div className="story_name">{decode.name}</div>
+                            <form onSubmit={clickHandler}>
                             <input className="story_write" value={value} onChange={(e) => setValue(e.target.value)}></input>
-                            <input className="story_sub" onClick={clickHandler} type='submit'></input>
+                            </form>
                         </div>
                     </div>
                     <div className="story_list">
@@ -65,7 +67,7 @@ function Third() {
                                 <div className="story_head">
                                     <div className="story_head2">
                                         <div className="story_email">{list.email}</div>
-                                        <div className="story_day">{new Date(list.date).toLocaleDateString('zh-Hans-CN')}</div>
+                                        <div className="story_day">{new Date(list.date).toLocaleDateString('zh-Hans-CN')} {new Date(list.date).toLocaleTimeString('en-GB')}</div>
                                     </div>
                                     <div className="story_del"></div>
                                 </div>
@@ -89,6 +91,7 @@ function Third() {
                             )}
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         );

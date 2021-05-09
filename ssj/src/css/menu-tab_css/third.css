@@ -30,6 +30,19 @@
     bottom: -15px;
     background-color: #d50000;
 }
+.third .sto{
+    height: 48.5rem;
+}
+
+.third .story{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.third .story::-webkit-scrollbar {
+    display: none;
+}
+
 .third .story .story_tab_list{
     padding : 1.6rem 1.6rem 1.2rem 1.3rem;
     height: auto;
@@ -67,12 +80,10 @@
     border: none;
 }
 
-.third .story .story_list{
+.third .story .story_list {
     font-size: 100%;
     font: inherit;
     text-decoration: none;
-    height: 100%;
-    display: flex;
 }
 
 .third .story .story_list .story_list1 .story_list2{
