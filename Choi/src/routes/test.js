@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
+import '../css/test.css'
 
 function Test() {
     const [cookie] = useCookies('["jwt"]');
@@ -31,21 +32,17 @@ function Test() {
     }, [])
 
     const clickHandler = () => {
-        if(text == ""){
-            alert("내용을 입력해주세요");
-        }else{
-            setBoolean(true);
-            fetch("http://localhost:3002/stock_back/memo", {
-            method: "POST",
-            body: JSON.stringify({
-                midx : decode.idx,
-                memo : text
-              }),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
+        setBoolean(true);
+        fetch("http://localhost:3002/stock_back/memo", {
+        method: "POST",
+        body: JSON.stringify({
+            midx : decode.idx,
+            memo : text
+            }),
+        headers: {
+            "Content-Type": "application/json"
         }
+        })
     }
     const clickHandler2 = () => {
         setBoolean(false);

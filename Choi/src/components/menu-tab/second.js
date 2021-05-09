@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
+import {useCookies} from 'react-cookie';
 import '../../css/menu-tab_css/second.css';
 
 function FirstDetail() {
@@ -26,19 +28,75 @@ function ThirdDetail(){
     }
 
 function FourthDetail(){
+    const [cookie] = useCookies('["jwt"]');
+    const [boolean, setBoolean] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [text, setText] = useState("");
+    const decode = jwtDecode(cookie.jwt);
+
+    useEffect(() => {
+        fetch("http://localhost:3002/stock_back/memo2", {
+            method: "POST",
+            body: JSON.stringify({
+                midx: decode.idx,
+            }),
+            headers: {
+              "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            setText(res.result[0].memo);
+            res.result[0].memo !="" ? setBoolean(true) : setBoolean(false)
+        })
+        
+        setTimeout(() => {
+            setLoading(true);
+        }, 50)
+    }, [])
+
+    const clickHandler = () => {
+        setBoolean(true);
+        fetch("http://localhost:3002/stock_back/memo", {
+        method: "POST",
+        body: JSON.stringify({
+            midx : decode.idx,
+            memo : text
+            }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+        })
+    }
+    const clickHandler2 = () => {
+        setBoolean(false);
+    }
         return(
+            loading ?
             <div className="Second_fourth">
-                종목메모 입니다
+                <div className="memo_header">
+                <div style={{width:"100px"}}>종목명</div>
+                <div style={{width:"100%"}}></div>
+                {
+                boolean === true ? <input className="alter" value="수정" type="submit" onClick={clickHandler2} /> : <input className="submit" value="등록" type="submit" onClick={clickHandler} />
+                }
+                </div>
+                <div className="memo_main">
+                    <div className="memo">
+                        <div className="memo_title">
+                            메모
+                        </div>
+                        <div className="memo_content">
+                        {
+                        boolean === true ? <div>{text.split('\n').map((line, index) => { return (<div key={index}>{line}<br /></div>)})}</div> : <textarea value={text} type="text" onChange={(e) => setText(e.target.value)} />
+                        }
+                        </div>
+                    </div>
+                </div>
             </div>
+            : loading
         );
     }
-
-const obj = {
-    0: <FirstDetail />,
-    1: <SecondDetail />,
-    2: <ThirdDetail />,
-    3: <FourthDetail />
-  }
 
 function Second() {
     let [color, setColor] = useState(0);
