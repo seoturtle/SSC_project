@@ -72,18 +72,17 @@ function Third() {
                                     <div className="story_del"></div>
                                 </div>
                                 <div className="story_content">{list.content}</div>
-
                                 <div className="story_footer">
                                     <button className="btn_like">
                                         <span className="spa_like">
                                             <span className="like_btn"></span>
-                                            <span className="like_text">1</span>
+                                            <span className="like_text">100</span>
                                         </span>
                                     </button>
                                     <button className="btn_hate">
                                         <span className="spa_hate">
                                             <span className="hate_btn"></span>
-                                            <span className="hate_text">2</span>
+                                            <span className="hate_text">232</span>
                                         </span>
                                     </button>
                                 </div>
