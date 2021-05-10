@@ -107,6 +107,7 @@
     height:400px;
     width: 370px;
     overflow-y: scroll;
+    word-break: break-all;
 }
 
 ::-webkit-scrollbar{
