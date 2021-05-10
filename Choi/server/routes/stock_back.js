@@ -33,6 +33,20 @@ router.post('/talk_content', (req,res) => {
         }else{
             res.send({result: data});
         }
+        res.end();
+    })
+})
+
+router.post('/talk_delete', (req, res) => {
+    const id = req.body.id;
+    const sql = "DELETE FROM talk where id = ?"
+    msql.query(sql, id, (err, data) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log("삭제");
+        }
+        res.end();
     })
 })
 

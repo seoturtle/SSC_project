@@ -9,6 +9,7 @@ function Third() {
     const [likeBoolean, setLikeBoolean] = useState(false);
     const [value, setValue] = useState("");
     const [talkList, setTalkList] = useState([]);
+    const [talkDelete, setTalkDelete] = useState("");
     const decode = jwtDecode(cookie.jwt);
 
     useEffect(() => {
@@ -28,6 +29,37 @@ function Third() {
             })
         }, 50);
     }, [value==""])
+
+    useEffect(() => {
+        setTimeout(() => {
+            fetch("http://localhost:3002/stock_back/talk_content", {
+                method: "POST",
+                body: JSON.stringify({
+                    
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(res => res.json())
+            .then(res => {
+                setTalkList(res.result);
+            })
+        }, 50);
+    }, [talkDelete==""])
+
+    useEffect(() => {
+        fetch("http://localhost:3002/stock_back/talk_delete", {
+                method: "POST",
+                body: JSON.stringify({
+                    id: talkDelete
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+        setTalkDelete("");
+    }, [talkDelete != ""])
 
     const clickHandler = () => {
         fetch("http://localhost:3002/stock_back/talk_submit", {
@@ -65,7 +97,6 @@ function Third() {
                 <div className="story">
                     <div className="story_tab_list">
                         <div className="story_tab">
-                            <div className="story_name">{decode.name}</div>
                             <input className="story_write" value={value} onChange={(e) => setValue(e.target.value)}></input>
                             <div className="story_btn" onClick={clickHandler}></div>
                         </div>
@@ -79,7 +110,7 @@ function Third() {
                                         <div className="story_email">{list.email}</div>
                                         <div className="story_day">{new Date(list.date).toLocaleDateString('zh-Hans-CN')} {new Date(list.date).toLocaleTimeString('en-GB')}</div>
                                     </div>
-                                    <div className="story_del"></div>
+                                    {decode.idx == list.midx ? <div className="story_del" onClick={(e) => setTalkDelete(list.id)}></div> : <div></div>}
                                 </div>
                                 <div className="story_content">{list.content}</div>
                                 <div className="story_footer">
