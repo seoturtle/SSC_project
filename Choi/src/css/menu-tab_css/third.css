@@ -62,23 +62,24 @@
     padding-left: 1.6rem;
     padding-right: 1.6rem;
     width: 18rem;
-    font-size: 1rem;
-    height: 3rem;
+    font-size: 0.8rem;
+    height: 2rem;
     color: #676464;
-    background-color: #f1f0f0;
-    border: none;
+    background-color: white;
+    border: 1px solid #d50000;
 }
 
 .third .story .story_write:focus{
     outline: none;
 }
 .third .story_btn{
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background: url("../../img/send.png") no-repeat;
-    background-size: 30px;
+    background-size: 20px;
     position: absolute;
     right: 6rem;
+    cursor: pointer;
 }
 
 .third .story .story_sub{
@@ -126,18 +127,22 @@
 }
 
 .third .story .story_list .story_list1 .story_list2 .story_head .story_del{
-    width: 1.3rem;
-    height: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2rem;
     position: absolute;
     right: 0;
-    background: url(../../img/trash.png) no-repeat;
-    background-size: 1.3rem;
     cursor: pointer;
+    background-color: #989696;
+    color: white;
+    border-radius: 10px;
+    font-size: 13px;
 }
 
 .third .story .story_list .story_list1 .story_list2 .story_head .story_del:hover{
-    background: url(../../img/trash-red.png) no-repeat;
-    background-size: 1.3rem;
+    background-color: #d50000;
 }
 
 .third .story .story_list .story_list1 .story_list2 .story_content{

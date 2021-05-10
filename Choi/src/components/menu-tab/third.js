@@ -110,7 +110,7 @@ function Third() {
                                         <div className="story_email">{list.email}</div>
                                         <div className="story_day">{new Date(list.date).toLocaleDateString('zh-Hans-CN')} {new Date(list.date).toLocaleTimeString('en-GB')}</div>
                                     </div>
-                                    {decode.idx == list.midx ? <div className="story_del" onClick={(e) => setTalkDelete(list.id)}></div> : <div></div>}
+                                    {decode.idx == list.midx ? <div className="story_del" onClick={(e) => setTalkDelete(list.id)}>삭제</div> : <div></div>}
                                 </div>
                                 <div className="story_content">{list.content}</div>
                                 <div className="story_footer">
