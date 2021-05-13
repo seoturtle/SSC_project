@@ -46,8 +46,8 @@ function FourthDetail(){
         })
         .then(res => res.json())
         .then(res => {
-            setText(res.result[0].memo);
-            res.result[0].memo !="" ? setBoolean(true) : setBoolean(false)
+            setText(res.result[0].content);
+            res.result[0].content !="" ? setBoolean(true) : setBoolean(false)
         })
         
         setTimeout(() => {
@@ -61,7 +61,7 @@ function FourthDetail(){
         method: "POST",
         body: JSON.stringify({
             midx : decode.idx,
-            memo : text
+            content : text
             }),
         headers: {
             "Content-Type": "application/json"

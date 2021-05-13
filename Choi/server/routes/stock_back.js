@@ -8,13 +8,10 @@ router.use(express.json());
 router.use(cors());
 
 router.post('/talk_submit', (req,res) => {
-    const email = req.body.email;
-    const name = req.body.name;
     const idx = req.body.midx;
-    const sex = req.body.sex;
     const content = req.body.content;
-    const param = [email, name, idx, sex, content]
-    const sql = "INSERT INTO `talk` (`email`, `name`, `midx`, `sex`, `content`) VALUES (?, ?, ?, ?, ?)"
+    const param = [idx, content]
+    const sql = "INSERT INTO `talk` (`user_idx`, `content`) VALUES (?, ?)"
     msql.query(sql, param, (err, data) => {
         if(err){
             console.log(err);
@@ -26,7 +23,7 @@ router.post('/talk_submit', (req,res) => {
 })
 
 router.post('/talk_content', (req,res) => {
-    const sql = "SELECT * FROM talk order by date desc"
+    const sql = "SELECT talk.talk_idx, users.email, users.name, talk.content, talk.date FROM users, talk  where users.user_idx = talk.user_idx order by date desc"
     msql.query(sql, (err, data) => {
         if(err){
             console.log(err);
@@ -38,12 +35,12 @@ router.post('/talk_content', (req,res) => {
 
 router.post('/memo', (req,res) => {
     const midx = req.body.midx;
-    const memo = req.body.memo;
-    const params = [memo, midx]
+    const content = req.body.content;
+    const params = [content, midx]
 
-    const sql1 = "SELECT * FROM memo where midx = ?"
-    const sql2 = "INSERT INTO `memo` (`memo`, `midx`) VALUES (?, ?)"
-    const sql3 = "UPDATE memo set memo = ? where midx = ?"
+    const sql1 = "SELECT content FROM memo where user_idx = ?"
+    const sql2 = "INSERT INTO `memo` (`content`, `user_idx`) VALUES (?, ?)"
+    const sql3 = "UPDATE memo set content = ? where user_idx = ?"
     msql.query(sql1, midx, (err, data) => {
         if(err){
             console.log(err);
@@ -72,7 +69,7 @@ router.post('/memo', (req,res) => {
 
 router.post('/memo2', (req,res) => {
     const midx = req.body.midx;
-    const sql = "SELECT * FROM memo where midx = ?"
+    const sql = "SELECT content FROM memo where user_idx = ?"
     msql.query(sql, midx, (err, data) => {
         if(err){
             console.log(err);

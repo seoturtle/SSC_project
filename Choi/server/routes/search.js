@@ -12,7 +12,7 @@ router.post('/', (req,res) => {
     const email = req.body.email;
     const memail = req.body.memail;
     const param = [email+'%', memail]
-    const sql = "SELECT idx, email, name, sex FROM users where email LIKE ? and not email = ?"
+    const sql = "SELECT user_idx, email, name, sex FROM users where email LIKE ? and not email = ?"
     if(email===""){
         res.send({result: false});
     }else{
@@ -28,7 +28,7 @@ router.post('/', (req,res) => {
 router.post('/add', (req, res) => {
     const oidx = req.body.oidx;
     const midx = req.body.midx;
-    const sql = "SELECT email, name, sex from users where idx = ?"
+    const sql = "SELECT email, name, sex from users where user_idx = ?"
     msql.query(sql, oidx, (err, data) => {
         if(err) {
             console.log(err);
@@ -61,7 +61,7 @@ router.post('/add', (req, res) => {
 router.post('/add2', (req, res) => {
     const oidx = req.body.oidx;
     const midx = req.body.midx;
-    const sql = "SELECT email, name, sex from users where idx = ?"
+    const sql = "SELECT email, name, sex from users where user_idx = ?"
     msql.query(sql, midx, (err, data) => {
         if(err) {
             console.log(err);

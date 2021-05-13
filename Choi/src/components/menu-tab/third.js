@@ -24,6 +24,7 @@ function Third() {
             })
             .then(res => res.json())
             .then(res => {
+                console.log(res.result);
                 setTalkList(res.result);
             })
         }, 50);
@@ -73,7 +74,7 @@ function Third() {
                     <div className="story_list">
                         <div className="story_list1">
                             {talkList.map(list => 
-                            <div className="story_list2" key={list.id}>
+                            <div className="story_list2" key={list.talk_idx}>
                                 <div className="story_head">
                                     <div className="story_head2">
                                         <div className="story_email">{list.email}</div>

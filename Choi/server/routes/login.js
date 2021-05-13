@@ -51,7 +51,7 @@ router.post('/', (req,res) => {
       if(!err) {
           if(data[0].salt !== null){
             const user = {
-              idx : data[0].idx,
+              idx : data[0].user_idx,
               name : data[0].name,
               email : data[0].email,
               phone : data[0].phone,
