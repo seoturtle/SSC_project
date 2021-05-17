@@ -32,7 +32,7 @@ function Header() {
                 </div>
                 <div className="header_cont">
                     <ul className="header_category">
-                        <li><Link to='/stock_main'><button herf="#" className="header_stock">주식</button></Link></li>
+                        <li><Link to={`/stock_main?name=삼성전자&code=005930`}><button herf="#" className="header_stock">주식</button></Link></li>
                         <li><button herf="#" className="header_coin">코인</button></li>
                         <li><Link to={'/chatUserList'}><button herf="#" className="header_chat">채팅</button></Link></li>
                         <li><button herf="#" className="header_logout" onClick={handleClick}>로그아웃</button></li>

@@ -14,7 +14,13 @@ import '../css/stock_main.css';
 function Stock_main({location}) {
   const [activeTab, SetActiveTab] = useState(0);
   const [color, setColor] = useState(0);
-  const context = useContext(StockContext)
+  const { setStoreCode, setStoreName } = useContext(StockContext)
+  const { name, code } = queryString.parse(location.search);
+
+  useEffect(() => {
+    setStoreCode(code);
+    setStoreName(name);
+  }, [])
 
   const clickHandler = (id) => {
     setColor(id);
