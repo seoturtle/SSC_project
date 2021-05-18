@@ -66,7 +66,6 @@ function Third() {
                 <div className="story">
                     <div className="story_tab_list">
                         <div className="story_tab">
-                            <div className="story_name">{decode.name}</div>
                             <input className="story_write" value={value} onChange={(e) => setValue(e.target.value)}></input>
                             <div className="story_btn" onClick={clickHandler}></div>
                         </div>
@@ -80,7 +79,7 @@ function Third() {
                                         <div className="story_email">{list.email}</div>
                                         <div className="story_day">{new Date(list.date).toLocaleDateString('zh-Hans-CN')} {new Date(list.date).toLocaleTimeString('en-GB')}</div>
                                     </div>
-                                    <div className="story_del"></div>
+                                    <div className="story_del">삭제</div>
                                 </div>
                                 <div className="story_content">{list.content}</div>
                                 <div className="story_footer">
