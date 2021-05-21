@@ -76,18 +76,16 @@ function ChatUserAdd() {
     e.preventDefault();
     const decode = jwtDecode(cookie.jwt);
 
-    const emailinfo = {
-      email : e.target.value,
-      memail : decode.email
-    }
-    const email_info = {
-      method: "POST",
-      body: JSON.stringify(emailinfo),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-    fetch("http://localhost:3002/search", email_info)
+    fetch("http://localhost:3002/search", {
+        method: "POST",
+        body: JSON.stringify({
+          email : e.target.value,
+          memail : decode.email,
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
       .then(res=>res.json())
       .then(res=> {
         if(res.result==false){

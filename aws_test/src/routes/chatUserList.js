@@ -5,6 +5,7 @@ import Header from '../components/header'
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
 import socketIoClient from "socket.io-client";
+import { json } from 'body-parser';
 
 const socket = socketIoClient("http://localhost:5555", { autoConnect: false });
 
@@ -36,6 +37,32 @@ function ChatUserList() {
 		})
 	}, [])
 
+	const handleChange = (e) => {
+		e.preventDefault();
+		const decode = jwtDecode(cookie.jwt);
+	
+		fetch("http://localhost:3002/search/userlist", {
+			method: "POST",
+			body: JSON.stringify({
+				email : e.target.value,
+			  	memail : decode.email,
+			 	mname: decode.name,
+			  	midx: decode.idx
+			}),
+			headers: {
+				"Content-Type": "application/json"
+			}
+			})
+			.then(res=>res.json())
+            .then(res => {
+				if(res.result == 0){
+					// console.log(res.result)
+				}else{
+					setChatUserList(res.result)
+				}
+            })
+	  }
+
     return(
         <div className="chatUserList">
 			<Header />
@@ -47,7 +74,7 @@ function ChatUserList() {
 						</div>
 					</Link>
 					<div id="search-container">
-						<input type="text" placeholder="Search" />
+						<input type="text" placeholder="Search" onChange={handleChange}></input>
 					</div>
 					<div id="conversation-list">
 						{!chatUserList.map || chatUserList[0].oidx=='' ? <div></div> : chatUserList.map(user => 

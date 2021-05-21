@@ -23,13 +23,27 @@ router.post('/talk_submit', (req,res) => {
 })
 
 router.post('/talk_content', (req,res) => {
-    const sql = "SELECT talk.talk_idx, users.email, users.name, talk.content, talk.date FROM users, talk  where users.user_idx = talk.user_idx order by date desc"
-    msql.query(sql, (err, data) => {
+    const user_idx = req.body.user_idx;
+    const sql = "SELECT distinct talk.talk_idx, liked.user_idx, users.email, users.name, talk.content, talk.date, liked.like_check FROM users right join talk on users.user_idx = talk.user_idx left join liked ON talk.talk_idx = liked.talk_idx where liked.user_idx = ? or liked.user_idx is Null order by date desc"
+    msql.query(sql,user_idx, (err, data) => {
         if(err){
             console.log(err);
         }else{
             res.send({result: data});
         }
+        res.end();
+    })
+})
+
+router.post('/talk_delete', (req, res) => {
+    const id = req.body.id;
+    const sql = "DELETE FROM talk where talk_idx = ?"
+    msql.query(sql, id, (err, data) => {
+        if(err){
+            console.log(err);
+        }else{
+        }
+        res.end();
     })
 })
 
@@ -78,6 +92,52 @@ router.post('/memo2', (req,res) => {
                 console.log("데이터 없다");
             }else{
                 res.send({result: data});
+            }
+        }
+    })
+})
+
+router.post('/like', (req, res) => {
+    const user_idx = req.body.user_idx;
+    const talk_idx = req.body.talk_idx;
+    const param = [user_idx, talk_idx]
+    const sql = "SELECT * FROM liked where user_idx = ? AND talk_idx = ?"
+    const sql2 = "INSERT INTO `liked` (`user_idx`, `talk_idx`) VALUES (?, ?)"
+    const sql3 = "UPDATE liked set like_check = 1 where user_idx = ? AND talk_idx = ?"
+    const sql4 = "UPDATE talk set like_cnt = like_cnt + 1 where user_idx = ? AND talk_idx = ?"
+
+    msql.query(sql, param, (err, data) => {
+        if(err) {
+            console.log(err)
+        }else{
+            if(data==0){
+                msql.query(sql2, param, (err, data) => {
+                    if(err) {
+                        console.log(err)
+                    }else{
+                        msql.query(sql4, param, (err, data) => {
+                            if(err) {
+                                console.log(err)
+                            }else{
+                                console.log("처음 좋아요")
+                            }
+                        })
+                    }
+                })
+            }else{
+                msql.query(sql3, param, (err, data) => {
+                    if(err) {
+                        console.log(err)
+                    }else{
+                        msql.query(sql4, param, (err, data) => {
+                            if(err) {
+                                console.log(err)
+                            }else{
+                                console.log("이미 등록된사람 업데이트")
+                            }
+                        })
+                    }
+                })
             }
         }
     })

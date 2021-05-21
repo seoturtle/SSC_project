@@ -25,6 +25,23 @@ router.post('/', (req,res) => {
     })}
 })
 
+router.post('/userlist', (req, res) => {
+    const midx = req.body.midx;
+    const email = req.body.email;
+    const memail = req.body.memail;
+    const mname = req.body.mname;
+    console.log(email)
+    UserChat.find({midx: midx, name: new RegExp(email)}).exec(function(err, result) {
+        if(err){
+            console.log(err)
+        }else{
+            // console.log(result)
+            res.send({result: result})
+        }
+        res.end()
+    })
+})
+
 router.post('/add', (req, res) => {
     const oidx = req.body.oidx;
     const midx = req.body.midx;

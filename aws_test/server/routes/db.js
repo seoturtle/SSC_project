@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const db = mysql.createPool({
-    host : '3.34.137.243',
+    host : 'ec2-15-164-94-207.ap-northeast-2.compute.amazonaws.com',
     user : 'root',
     password : '1234',
     database : 'ssc'

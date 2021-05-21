@@ -48,7 +48,7 @@ function Register() {
       setEmailText("이메일 형식이 유효하지 않습니다.");
       setEmail("");
     } else {
-      fetch("http://3.34.137.243:3002/login/email", email_info)
+      fetch("http://localhost:3002/login/email", email_info)
       .then(res => res.json())
       .then(res => {
         if (res.result[0] == undefined) {
@@ -82,7 +82,7 @@ function Register() {
 
   //핸드폰번호 체크
     if (phone) {
-      fetch("http://3.34.137.243:3002/login/phone", {
+      fetch("http://localhost:3002/login/phone", {
         method: "POST",
         headers: {
           'Content-type' : 'application/json'
@@ -142,7 +142,7 @@ function Register() {
       phone &&
       pwd === repwd
     ) {
-      fetch("http://3.34.137.243:3002/login/user", signup_info)
+      fetch("http://localhost:3002/login/user", signup_info)
       .then(alert("가입이 완료되었습니다"))
       .then(history.push("/"));
     } else {
