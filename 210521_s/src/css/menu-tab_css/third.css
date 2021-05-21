@@ -1,0 +1,247 @@
+.third{
+    width: 100%;
+}
+.third .menu{
+    width: 100%;
+    height: 60px;
+    position: relative;
+    display: flex;
+    color: #989696;
+}
+
+.third .menu_tab{
+    color: #D50000;
+    top: 25%;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+.third .menu_tab::after{
+    content: "";
+    width: 75px;
+    height: 2px;
+    position: absolute;
+    left: 42.5%;
+    bottom: -15px;
+    background-color: #d50000;
+}
+.third .sto{
+    height: 48.5rem;
+}
+
+.third .story{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.third .story::-webkit-scrollbar {
+    display: none;
+}
+
+.third .story .story_tab_list{
+    padding : 1.6rem 1.6rem 1.2rem 1.3rem;
+    height: auto;
+    border-bottom: 4px solid #f1f0f0;
+    transition: height .3s ease-out;
+}
+
+.third .story .story_tab{
+    display: flex;
+    height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.third .story .story_write {
+    border-radius: 1.6rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    width: 18rem;
+    font-size: 0.8rem;
+    height: 2rem;
+    color: #676464;
+    background-color: white;
+    border: 1px solid #d50000;
+}
+
+.third .story .story_write:focus{
+    outline: none;
+}
+.third .story_btn{
+    width: 20px;
+    height: 20px;
+    background: url("../../img/send.png") no-repeat;
+    background-size: 20px;
+    position: absolute;
+    right: 6rem;
+    cursor: pointer;
+}
+
+.third .story .story_sub{
+    width: 3.6rem;
+    height: 50px;
+    text-align: center;
+    border: none;
+}
+
+.third .story .story_list {
+    font-size: 100%;
+    font: inherit;
+    text-decoration: none;
+}
+
+.third .story .story_list .story_list1 .story_list2{
+    padding: 20px;
+    width: 450px;
+    /* height: auto; */
+    border-bottom: 4px solid #f1f0f0;
+    
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_head{
+    height: 4rem;
+    margin-bottom: 1.6rem;
+    display: flex;
+    position: relative;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_head .story_email{
+    height: 2.2rem;
+    display: flex;
+    font-size: 1.5;
+    line-height: 2.2rem;
+    font-weight: 500;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_head .story_day{
+    height: 1.8rem;
+    line-height: 1.8rem;
+    font-size: 0.7rem;
+    color: #989696;
+    
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_head .story_del{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2rem;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    background-color: #989696;
+    color: white;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_head .story_del:hover{
+    background-color: #d50000;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_content{
+    line-height: 2.2rem;
+    font-size: 1.5rem;
+    white-space: normal;
+    word-break: break-all;
+    margin-bottom: 1.6rem;
+    font: inherit;
+    text-decoration: none;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_footer{
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #e8e6e6;
+    position: relative;
+    align-items: center;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_like{
+    outline: 0;
+    border: 0;
+    min-width: 2.4rem;
+    height: 2.4rem;
+    position: relative;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_like .spa_like{
+    width: 5rem;
+    height: 2.4rem;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_like .like_btn{
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(../../img/like.png) no-repeat;
+    background-size: 1.5rem;
+    text-align: center;
+}
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_like .like_btn_red{
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(../../img/like-red.png) no-repeat;
+    background-size: 1.5rem;
+    text-align: center;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_like .like_btn:hover{
+    background: url(../../img/like-red.png) no-repeat;
+    background-size: 1.5rem;
+}
+
+
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_like .like_text{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 3px 4px 0 4px;
+    color: #676464;
+}
+
+
+
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_hate{
+    min-width: 2.4rem;
+    height: 2.4rem;
+    position: relative;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_hate .spa_hate{
+    width: 5rem;
+    height: 100%;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_hate .spa_hate .hate_btn{
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(../../img/hate.png) no-repeat;
+    background-size: 1.5rem;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_hate .spa_hate .hate_btn:hover{
+    background: url(../../img/hate-red.png) no-repeat;
+    background-size: 1.5rem;
+}
+
+.third .story .story_list .story_list1 .story_list2 .story_footer .btn_hate .hate_text{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 3px 4px 0 4px;
+    color: #676464;
+}
