@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import queryString from 'query-string';
 // import { Link } from "react-router-dom";
 import Header from "../components/header.js";
@@ -6,6 +6,7 @@ import First from "../components/menu-tab/first.js";
 import Second from "../components/menu-tab/second.js";
 import Third from "../components/menu-tab/third.js";
 import Fourth from "../components/menu-tab/fourth.js";
+import { StockContext } from "../store/stock_Item";
 import '../css/stock_main.css';
 
 
@@ -13,11 +14,13 @@ import '../css/stock_main.css';
 function Stock_main({location}) {
   const [activeTab, SetActiveTab] = useState(0);
   const [color, setColor] = useState(0);
+  const { setStoreCode, setStoreName } = useContext(StockContext)
+  const { name, code } = queryString.parse(location.search);
 
-
-    useEffect(() =>{
-        
-    },[])
+  useEffect(() => {
+    setStoreCode(code);
+    setStoreName(name);
+  }, [])
 
   const clickHandler = (id) => {
     setColor(id);

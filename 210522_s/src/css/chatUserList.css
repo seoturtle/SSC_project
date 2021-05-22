@@ -6,7 +6,7 @@
 }
 
 #root .chatUserList {
-
+    
 }
 
 .chatUserList .header .header_chat{
@@ -72,9 +72,9 @@
 .chatUserList #search-container {
     display: flex;
     align-items: center;
-    grid-area: search-container;
     padding: 0 20px;
     border-radius: 10px 10px 0 0;
+    border: 1px solid #dae1e6;
     border-bottom: 1px solid white;
     z-index: 1;
     height: 75px;
@@ -82,7 +82,7 @@
 
 .chatUserList #search-container input {
     flex: 1 0 0;
-    color: white;
+    color: black;
     outline: none;
     font-weight: bold;
     border-radius: 2px;
@@ -90,18 +90,20 @@
     border: 0;
     padding-left: 48px;
     font-size: 15px;
-    background: url('../images/search/search.svg') no-repeat rgb(0, 0, 0);
+    background: url('../img/search-red.png') no-repeat rgb(255, 255, 255);
     background-size: 20px 20px;
     background-position: 15px center;
     width: 100%;
 }
 
 .chatUserList #search-container input::placeholder {
-    color: #ddd;
+    color:#353535;
     font-weight: bold;
 }
 
 .chatUserList #conversation-list {
+    height: 662px;
+    border: 1px solid #dae1e6;
     border-radius: 0 0 10px 10px;
     overflow-y: scroll;
 }
@@ -111,11 +113,12 @@
 }
 
 .chatUserList .conversation {
+    align-items: center;
+    display: flex;
+    height: 43px;
     font-size: 15px;
     border-bottom: 1px solid white;
     padding: 20px 20px 20px 15px;
-    vertical-align: 0;
-    line-height: 15px;
     text-decoration: none;
 }
 
@@ -160,7 +163,7 @@
 .chatUserList .userEmail {
     color: #989696;
     display: inline-block;
-    font-size: 10px;
+    font-size: 12px;
     padding-left: 10px;
     white-space: nowrap;
     overflow-x: hidden;

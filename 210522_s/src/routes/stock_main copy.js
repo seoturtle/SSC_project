@@ -7,13 +7,6 @@ import Third from "../components/menu-tab/third.js";
 import Fourth from "../components/menu-tab/fourth.js";
 import '../css/stock_main.css';
 
-const obj = {
-  0: <First />,
-  1: <Second />,
-  2: <Third />,
-  3: <Fourth />
-}
-
 function Stock_main() {
   let [activeTab, SetActiveTab] = useState(0);
   let [color, setColor] = useState(0);
@@ -50,7 +43,14 @@ function Stock_main() {
                 </button>
               </div>
               <div className="info_detail">
-                {obj[activeTab]}
+              {
+                {
+                  0 : <First />,
+                  1 : <Second />,
+                  2 : <Third />,
+                  3 : <Fourth />
+                }[activeTab]
+                }
               </div>
             </div>
           </div>

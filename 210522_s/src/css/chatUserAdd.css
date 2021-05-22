@@ -17,15 +17,26 @@
     width: 800px;
     display: flex;
     height: 50px; 
-    border: 1px solid #eee; 
     border-radius:10px; 
-    background-color: #eee; 
     align-items: center;
 }
+.chatUserAdd .user_search > input{
+    padding-left: 5px;
+    height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #989696;
+    outline: 0;
+}
 .chatUserAdd .list{
+    color: white;
     margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     width: 800px;
+    background-color: #d50000;
+    border-radius: 10px;
+    box-shadow: 0 13px 27px -5px rgb(50 50 93 / 25%), 0 8px 16px -8px rgb(0 0 0 / 30%), 0 -6px 16px -6px rgb(0 0 0 / 3%);
 }
 .chatUserAdd .list_name{
     display: flex;
@@ -49,13 +60,12 @@
     display: flex;
     margin: 0;
     line-height: 1;
-    font-size: 25px;
+    font-size: 20px;
     padding: 0;
-    border: 2px solid white;
-    margin-top: 5px;
+    margin-top: 20px;
     width: 800px;
-    /* background-color: #eee; */
     border-radius: 15px;
+    box-shadow: 0 13px 27px -5px rgb(50 50 93 / 25%), 0 8px 16px -8px rgb(0 0 0 / 30%), 0 -6px 16px -6px rgb(0 0 0 / 3%);
 
 }
 .chatUserAdd .content .search_result .chat-people-name{
@@ -79,14 +89,17 @@
     justify-content: center;
 }
 .chatUserAdd .content .search_result .chat-people-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 100px;
+    font-size: 15px;
+    color: white;
+    border-radius: 5px;
+    background-color: #d50000;
     cursor: pointer;
-    padding: 0;
-    display: block;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    background: url(../img/add.png) no-repeat;
-    background-size: 30px;
+    outline: 0;
     border: 0;
 }
 .chatUserAdd input::-webkit-search-cancel-button{

@@ -9,7 +9,7 @@ import Header from '../components/header.js'
 function ChatUserAdd() {
     
   const history = useHistory();
-  const [searchEmail, setSearchEmail] = useState([{idx: '', email: '', name: '', sex: ''}]);
+  const [searchEmail, setSearchEmail] = useState([{user_idx: '', email: '', name: '', sex: ''}]);
   const [cookie] = useCookies('["jwt"]');
   const [idx, setIdx] = useState("");
   const [otherName, setOtherName] = useState("");
@@ -59,7 +59,7 @@ function ChatUserAdd() {
   }, [otherName])
 
   const handleEmail = (e) => {
-    setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
+    setSearchEmail([{user_idx: '', email: '', name: '', sex: ''}]);
   }
 
   const handleClick = (e) => {
@@ -91,7 +91,7 @@ function ChatUserAdd() {
       .then(res=>res.json())
       .then(res=> {
         if(res.result==false){
-          setSearchEmail([{idx: '', email: '', name: '', sex: ''}]);
+          setSearchEmail([{user_idx: '', email: '', name: '', sex: ''}]);
         }else{
           setSearchEmail(res.result);
         }
@@ -105,24 +105,25 @@ function ChatUserAdd() {
         <h2 style={{width: "800px"}}>채팅 추가</h2>
         <div className="user_search">
           <div style={{width: "800px"}}></div>
-          <input type="search" onChange={handleChange} style={{height: "20px", width:"200px",marginRight: "30px"}}></input>
+          <input type="search" onChange={handleChange}></input>
         </div>
-        <div className="list">
-          <div className="list_name">
-            <div>이름</div>
+          <div className="list">
+            <div className="list_name">
+              <div>이름</div>
+            </div>
+            <div className="list_email">
+              <div>이메일</div>
+            </div>
+            <div style={{width:"200px"}}></div>
           </div>
-          <div className="list_email">
-            <div>이메일</div>
-          </div>
-          <div style={{width:"200px"}}></div>
-        </div>
-        {!searchEmail.map || searchEmail[0].idx=='' ? <div></div> : searchEmail.map(user => 
-          <div className="search_result" key={user.idx}>
-            {check.includes(user.idx) === true ? <li></li> : 
+        
+        {!searchEmail.map || searchEmail[0].user_idx=='' ? <div></div> : searchEmail.map(user => 
+          <div className="search_result" key={user.user_idx}>
+            {check.includes(user.user_idx) === true ? <li></li> : 
             <ol>
               <li className="chat-people-name"><div>{user.name}</div></li>
               <li className="chat-people-email"><div>{user.email}</div></li>
-              <li className="btnli"><button className="chat-people-btn" onClick={handleClick} name={user.idx}></button></li>
+              <li className="btnli"><button className="chat-people-btn" onClick={handleClick} name={user.user_idx}>Add Chat</button></li>
             </ol>
             }
           </div>

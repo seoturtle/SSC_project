@@ -1,61 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
+import '../css/test.css'
 
 function Test() {
-    const [cookie, setCookie, removeCookie] = useCookies('["jwt"]');
-    const [value, setValue] = useState("");
-    const [talkList, setTalkList] = useState([]);
+    const [cookie] = useCookies('["jwt"]');
+    const [boolean, setBoolean] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [text, setText] = useState("");
     const decode = jwtDecode(cookie.jwt);
 
     useEffect(() => {
-        setTimeout(() => {
-            fetch("http://localhost:3002/stock_back/talk_content", {
-                method: "POST",
-                body: JSON.stringify({
-                    
-                }),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                setTalkList(res.result);
-            })
-        }, 50);
-    }, [value==""])
-
-    const clickHandler = () => {
-        fetch("http://localhost:3002/stock_back/talk_submit", {
+        fetch("http://localhost:3002/stock_back/memo2", {
             method: "POST",
             body: JSON.stringify({
                 midx: decode.idx,
-                name: decode.name,
-                email: decode.email,
-                sex: decode.sex,
-                content: value
             }),
             headers: {
-                "Content-Type": "application/json"
+              "Content-Type": "application/json"
             }
         })
-        setValue("");
+        .then(res => res.json())
+        .then(res => {
+            setText(res.result[0].memo);
+            res.result[0].memo !="" ? setBoolean(true) : setBoolean(false)
+        })
+        
+        setTimeout(() => {
+            setLoading(true);
+        }, 50)
+    }, [])
+
+    const clickHandler = () => {
+        setBoolean(true);
+        fetch("http://localhost:3002/stock_back/memo", {
+        method: "POST",
+        body: JSON.stringify({
+            midx : decode.idx,
+            memo : text
+            }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+        })
+    }
+    const clickHandler2 = () => {
+        setBoolean(false);
     }
     return(
+        loading ?
         <div className='test'>
-            <input value={value} onChange={(e) => setValue(e.target.value)}></input>
-            <input onClick={clickHandler} type='submit'></input>
-            {talkList.map(list => 
-                <div key={list.id}>
-                    <div>{list.name}</div>
-                    <div>{list.email}</div>
-                    <div>{list.content}</div>
-                    <div>{new Date(list.date).toLocaleDateString('zh-Hans-CN')}</div>
-                    <div>{new Date(list.date).toLocaleTimeString('en-GB')}</div>
-                </div>
-                )}
+            <div>{
+                boolean === true ? <input value="수정" type="submit" onClick={clickHandler2} /> : <input value="등록" type="submit" onClick={clickHandler} />
+            }</div>
+            {
+                boolean === true ? <div>{text.split('\n').map((line, index) => { return (<div key={index}>{line}<br /></div>)})}</div> : <textarea value={text} type="text" onChange={(e) => setText(e.target.value)} style={{width:"400px", height:"400px", fontSize:"15px", resize:"none", overflow:"hidden"}} />
+            }
         </div>
+        : loading
     )
 }
 

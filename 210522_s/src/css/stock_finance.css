@@ -1,0 +1,71 @@
+.stock_finance .app-content{
+    padding: 1rem;
+}
+
+.stock_finance section.app-content{
+    height: 48.5rem;
+	display : block;
+	width : 100%;
+    box-sizing: border-box;
+
+}
+
+.stock_finance section.app-content > .financial-information{
+	height: 100%;
+	position : relative;
+	overflow-x : hidden;
+	overflow-y : auto;
+}
+
+.stock_finance .financial-information-header {
+	background-color : #fff;
+	display : flex;
+	-webkit-box-pack: justify;
+	justify-content : space-between;
+}
+
+.stock_finance .financial-information-section{
+	background-color : #fff;
+	display : block;
+}
+
+.stock_finance table{
+	width : 100%;
+	max-width : 100%;
+	border-collapse : collapse;
+	border-spacing : 0;
+}
+
+.stock_finance .name {
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction : normal;
+	flex-direction : column;
+}
+
+
+.stock_finance .name .contents:first-child, .value .contents:first-child{
+	background-color : #f1f0f0;
+	color : #676464;
+}
+
+.stock_finance .name .contents{
+	display: block;
+	border-bottom : none;
+	color: #676464;
+    height: 2rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #e8e6e6;
+}
+.stock_finance .name .contents:first-child {
+    height: 2rem;
+    background-color: #f1f0f0;
+}
+
+.stock_finance .value .contents{
+	display: block;
+	text-align: right;
+	height: 2rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #e8e6e6;
+}
