@@ -76,12 +76,9 @@ input::placeholder{
   left: 37.5%;
 }
 .header .search_box > .search_bar {
-  font-size: 15px;
   cursor: pointer;
-  color: #676464;;
-  text-align: center;
   width: 400px;
-  height: 40px;
+  height: 30px;
   line-height: 30px;
   position: absolute;
   outline: 0;
@@ -101,7 +98,8 @@ input::placeholder{
   background-size: 15px;
 }
 .header .search_bar > p{
-
+  color: #676464;
+  font-size: 15px;
 }
 .header .search_bar_active{
   width: 400px;
