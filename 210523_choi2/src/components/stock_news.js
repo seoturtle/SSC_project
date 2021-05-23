@@ -39,7 +39,7 @@ function Stock_news() {
                             {stock_news == 0 ? <div></div> : stock_news.items.map(news => (
                             <div key={news.title} className="main-contents">
                             <div className="market-issue-item">
-                                <h3 onClick={() => window.open(`${news.originallink}`, '_blank')} dangerouslySetInnerHTML={ {__html: news.title} } className="issue-title"></h3>
+                                <h3 onClick={() => window.open(`${news.link}`, '_blank')} dangerouslySetInnerHTML={ {__html: news.title} } className="issue-title"></h3>
                                 <div className="issue-bottom">
                                     <span className="source"></span>
                                     <span className="date">{ new Date(news.pubDate).toLocaleDateString() } { new Date(news.pubDate).toLocaleTimeString() }</span>

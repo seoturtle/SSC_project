@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { StockContext } from "../../store/stock_Item";
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
 import '../../css/menu-tab_css/third.css';
@@ -13,6 +14,7 @@ function Third() {
     const [likeTalkIdx, setLikeTalkIdx] = useState("");
     const [likeRedTalkIdx, setLikeRedTalkIdx] = useState("");
     const decode = jwtDecode(cookie.jwt);
+    const { storeCode, setStoreCode, storeName } = useContext(StockContext)
 
     useEffect(() => {
         if(value=="" || talkDelete == "") {
@@ -20,7 +22,8 @@ function Third() {
                 fetch("http://localhost:3002/stock_back/talk_content", {
                     method: "POST",
                     body: JSON.stringify({
-                        user_idx: decode.idx
+                        user_idx: decode.idx,
+                        code: storeCode
                     }),
                     headers: {
                         "Content-Type": "application/json"
@@ -57,7 +60,8 @@ function Third() {
                 name: decode.name,
                 email: decode.email,
                 sex: decode.sex,
-                content: value
+                content: value,
+                code: storeCode
             }),
             headers: {
                 "Content-Type": "application/json"

@@ -29,7 +29,7 @@ function Main() {
       <Header />
       <div id="container">
         <div className="korea_index">
-          <div className="img_kospi">{cookie.jwt ? userEmail : null}코스피</div>
+          <div className="img_kospi">코스피</div>
           <div className="img_kosdaq">코스닥</div>
         </div>
         <div className="main_four_index">

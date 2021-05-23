@@ -40,7 +40,6 @@ function Header() {
 			})
 			.then(res=>res.json())
             .then(res => {
-                console.log(res.result)
 				setSearchList(res.result);
             })
         }else{

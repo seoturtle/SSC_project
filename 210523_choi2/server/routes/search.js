@@ -3,7 +3,6 @@ const router = express.Router();
 const msql = require('./db');
 const cors = require('cors');
 const UserChat = require("../models/userChat");
-var cheerio = require('cheerio');
 
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
@@ -153,7 +152,7 @@ router.post('/check', (req, res) => {
 
 router.post('/header', (req, res) => {
     const value = req.body.value+'%';
-    const sql = "SELECT  stock_summary_name, lpad(stock_code,6,0) as stock_code , stock_class from stock where stock_summary_name like ?"
+    const sql = "SELECT  stock_summary_name, stock_code , stock_class from stock where stock_summary_name like ?"
 
     msql.query(sql, value, (err, data) => {
         if(err){
