@@ -10,8 +10,9 @@ router.use(cors());
 router.post('/talk_submit', (req,res) => {
     const idx = req.body.midx;
     const content = req.body.content;
-    const param = [idx, content]
-    const sql = "INSERT INTO `talk` (`user_idx`, `content`) VALUES (?, ?)"
+    const code = req.body.code;
+    const param = [idx, content, code]
+    const sql = "INSERT INTO `talk` (`user_idx`, `content`, `stock_code`) VALUES (?, ?, ?)"
     msql.query(sql, param, (err, data) => {
         if(err){
             console.log(err);
@@ -24,8 +25,11 @@ router.post('/talk_submit', (req,res) => {
 
 router.post('/talk_content', (req,res) => {
     const user_idx = req.body.user_idx;
-    const sql = "SELECT distinct talk.talk_idx, liked.user_idx, users.email, users.name, talk.content, talk.date, liked.like_check FROM users right join talk on users.user_idx = talk.user_idx left join liked ON talk.talk_idx = liked.talk_idx where liked.user_idx = ? or liked.user_idx is Null order by date desc"
-    msql.query(sql,user_idx, (err, data) => {
+    const code =req.body.code;
+    const param = [user_idx, code]
+    // const sql = "SELECT talk.talk_idx, users.email, users.name, talk.content, talk.date FROM users, talk right join talk on users.user_idx = talk.user_idx left join liked ON talk.talk_idx = liked.talk_idx where talk.stock_code = ? order by date desc"
+    const sql = "SELECT talk.talk_idx, users.email, users.name, talk.content, talk.date, users.user_idx FROM users, talk WHERE users.user_idx = talk.user_idx AND talk.stock_code = ?"
+    msql.query(sql,code, (err, data) => {
         if(err){
             console.log(err);
         }else{
@@ -50,12 +54,13 @@ router.post('/talk_delete', (req, res) => {
 router.post('/memo', (req,res) => {
     const midx = req.body.midx;
     const content = req.body.content;
-    const params = [content, midx]
+    const code = req.body.code;
+    const params = [content, midx, code]
 
-    const sql1 = "SELECT content FROM memo where user_idx = ?"
-    const sql2 = "INSERT INTO `memo` (`content`, `user_idx`) VALUES (?, ?)"
-    const sql3 = "UPDATE memo set content = ? where user_idx = ?"
-    msql.query(sql1, midx, (err, data) => {
+    const sql1 = "SELECT content FROM memo where user_idx = ? AND stock_code = ?"
+    const sql2 = "INSERT INTO `memo` (`content`, `user_idx`, `stock_code`) VALUES (?, ?, ?)"
+    const sql3 = "UPDATE memo set content = ? where user_idx = ? AND stock_code = ?"
+    msql.query(sql1, [midx, code], (err, data) => {
         if(err){
             console.log(err);
         }else{
@@ -83,8 +88,9 @@ router.post('/memo', (req,res) => {
 
 router.post('/memo2', (req,res) => {
     const midx = req.body.midx;
-    const sql = "SELECT content FROM memo where user_idx = ?"
-    msql.query(sql, midx, (err, data) => {
+    const code = req.body.code;
+    const sql = "SELECT content FROM memo where user_idx = ? AND stock_code = ?"
+    msql.query(sql, [midx, code], (err, data) => {
         if(err){
             console.log(err);
         }else{

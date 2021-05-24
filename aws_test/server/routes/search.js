@@ -150,4 +150,52 @@ router.post('/check', (req, res) => {
     })
 })
 
+router.post('/header', (req, res) => {
+    const value = req.body.value+'%';
+    const sql = "SELECT  stock_summary_name, stock_code , stock_class from stock where stock_summary_name like ?"
+
+    msql.query(sql, value, (err, data) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.send({result: data})
+        }
+    })
+})
+
+router.post('/news', (req, res) => {
+    var client_id = '8yuc9GggU3vmWkhIcKw_';
+    var client_secret = 'uLkf1qQKRb';
+    const code = req.body.code;
+    var api_url = 'https://openapi.naver.com/v1/search/news?query='+encodeURI(code)+'&start=1&display=100';
+    var request = require('request');
+    var options = {
+       url: api_url,
+       headers: {'X-Naver-Client-Id':client_id, 'X-Naver-Client-Secret': client_secret}
+    };
+    request.get(options, function (error, response, body) {
+
+        if(error) {
+            console.log(error)
+        }else{
+            let json = JSON.parse(body)
+            res.send({result: json})
+        }
+   });
+})
+
+router.post('/test', (req, res) => {
+    const name = req.body.name;
+    const sql = "SELECT * FROM users where name = ?"
+
+    msql.query(sql,name, (err, data) => {
+        if(err) {
+            console.log(err)
+        }else{
+            console.log(data)
+            res.send({data: false})
+        }
+    })
+})
+
 module.exports = router;

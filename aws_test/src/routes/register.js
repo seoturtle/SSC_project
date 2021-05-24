@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link,useHistory } from "react-router-dom";
 // import axios from 'axios';
@@ -33,25 +34,13 @@ function Register() {
       return regExp.test(str) ? true : false;
     };
 
-    const inputEmail = {
-      email: email
-    };
-    const email_info = {
-      method: "POST",
-      body: JSON.stringify(inputEmail),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-
     if (chkEmail(email) === false) {
       setEmailText("이메일 형식이 유효하지 않습니다.");
       setEmail("");
     } else {
-      fetch("http://localhost:3002/login/email", email_info)
-      .then(res => res.json())
+      axios.post("/login/email", {email: email})
       .then(res => {
-        if (res.result[0] == undefined) {
+        if (res.data.result[0] == undefined) {
           setEmailCheck(email);
           console.log(emailCheck);
         }else {
@@ -82,18 +71,9 @@ function Register() {
 
   //핸드폰번호 체크
     if (phone) {
-      fetch("http://localhost:3002/login/phone", {
-        method: "POST",
-        headers: {
-          'Content-type' : 'application/json'
-        },
-        body: JSON.stringify({
-          phone: phone
-        })
-      })
-      .then(res=>res.json())
+      axios.post("/login/phone", {phone: phone})
       .then(res=>{
-        if (res.data === true){
+        if (res.data.data === true){
           setPhoneText("")
         }else{
           setPhoneText("이미 존재하는 번호입니다");
@@ -113,24 +93,7 @@ function Register() {
 
   useEffect(() => {
     // 데이터 DB에 넣기
-
-  const signupInfo = {
-    email: email,
-    pwd: pwd,
-    name : name,
-    sex : sex,
-    phone : phone
-  }
-
-  const signup_info = {
-    method: "POST",
-    body: JSON.stringify(signupInfo),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
   setTimeout(() =>{
-    console.log(email, emailCheck, name, pwd, repwd, sex, phone);
     if (
       email &&
       emailCheck &&
@@ -142,7 +105,13 @@ function Register() {
       phone &&
       pwd === repwd
     ) {
-      fetch("http://localhost:3002/login/user", signup_info)
+      axios.post("/login/user", {
+        email: email,
+        pwd: pwd,
+        name : name,
+        sex : sex,
+        phone : phone
+      })
       .then(alert("가입이 완료되었습니다"))
       .then(history.push("/"));
     } else {

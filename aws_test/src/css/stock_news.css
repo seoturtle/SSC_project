@@ -19,3 +19,14 @@
     padding: 1rem;
     border-bottom: 1px solid #e8e6e6;
 }
+
+.stock_news .issue-title{
+    cursor: pointer;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 420px;
+    height: 30px;
+    white-space: nowrap;
+    
+}

@@ -1,5 +1,5 @@
 .stock_finance .app-content{
-    padding: 1rem;
+	padding: 0 1rem 1rem 1rem;
 }
 
 .stock_finance section.app-content{
@@ -7,7 +7,6 @@
 	display : block;
 	width : 100%;
     box-sizing: border-box;
-
 }
 
 .stock_finance section.app-content > .financial-information{
@@ -18,10 +17,10 @@
 }
 
 .stock_finance .financial-information-header {
-	background-color : #fff;
 	display : flex;
 	-webkit-box-pack: justify;
 	justify-content : space-between;
+	padding: 10px 0;
 }
 
 .stock_finance .financial-information-section{
@@ -74,4 +73,40 @@
 	height: 2rem;
     padding: 0.3rem 0;
     border-bottom: 1px solid #e8e6e6;
+}
+.stock_finance .years{
+	display: flex;
+	padding: 0.5rem 0;
+    background-color: rgb(241, 240, 240);
+	color: rgb(103, 100, 100);
+}
+.stock_finance .years > div {
+	display: flex;
+	justify-content: flex-end;
+	font-size: 14px;
+	width: 100%;
+	padding-right: 10px;
+}
+.stock_finance .finance-row{
+	display: flex;
+	padding: 0.5rem 0;
+	border-bottom: 1px solid #e8e6e6;
+}
+.stock_finance .finance-row:last-child{
+	border-bottom: 0;
+}
+.stock_finance .finance-row > div {
+	box-sizing: border-box;
+	width: 96px;
+}
+.stock_finance .name{
+	font-size: 12px;
+	color: rgb(103, 100, 100);
+}
+.stock_finance .value{
+	display: flex;
+	justify-content: flex-end;
+	font-size: 14px;
+	padding-right: 10px;
+	box-sizing: border-box;
 }

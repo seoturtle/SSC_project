@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import queryString from 'query-string';
+import { useHistory } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import Header from "../components/header.js";
 import First from "../components/menu-tab/first.js";
@@ -21,6 +22,10 @@ function Stock_main({location}) {
     setStoreCode(code);
     setStoreName(name);
   }, [])
+
+  useEffect(() => {
+    
+  }, [code, name])
 
   const clickHandler = (id) => {
     setColor(id);

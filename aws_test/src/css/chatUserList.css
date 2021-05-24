@@ -82,7 +82,7 @@
 
 .chatUserList #search-container input {
     flex: 1 0 0;
-    color: white;
+    color: black;
     outline: none;
     font-weight: bold;
     border-radius: 2px;
@@ -90,14 +90,14 @@
     border: 0;
     padding-left: 48px;
     font-size: 15px;
-    background: url('../images/search/search.svg') no-repeat rgb(0, 0, 0);
+    background: url('../img/search-red.png') no-repeat rgb(255, 255, 255);
     background-size: 20px 20px;
     background-position: 15px center;
     width: 100%;
 }
 
 .chatUserList #search-container input::placeholder {
-    color: #ddd;
+    color:#353535;
     font-weight: bold;
 }
 

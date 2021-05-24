@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { StockContext } from "../../store/stock_Item";
 import jwtDecode from 'jwt-decode';
 import {useCookies} from 'react-cookie';
 import '../../css/menu-tab_css/third.css';
@@ -13,6 +14,7 @@ function Third() {
     const [likeTalkIdx, setLikeTalkIdx] = useState("");
     const [likeRedTalkIdx, setLikeRedTalkIdx] = useState("");
     const decode = jwtDecode(cookie.jwt);
+    const { storeCode, setStoreCode, storeName } = useContext(StockContext)
 
     useEffect(() => {
         if(value=="" || talkDelete == "") {
@@ -20,7 +22,8 @@ function Third() {
                 fetch("http://localhost:3002/stock_back/talk_content", {
                     method: "POST",
                     body: JSON.stringify({
-                        user_idx: decode.idx
+                        user_idx: decode.idx,
+                        code: storeCode
                     }),
                     headers: {
                         "Content-Type": "application/json"
@@ -57,7 +60,8 @@ function Third() {
                 name: decode.name,
                 email: decode.email,
                 sex: decode.sex,
-                content: value
+                content: value,
+                code: storeCode
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -66,21 +70,21 @@ function Third() {
         setValue("");
     }
 
-    useEffect(() => {
-        if(likeTalkIdx != "") {
-            fetch("http://localhost:3002/stock_back/like", {
-            method: "POST",
-            body: JSON.stringify({
-                user_idx: decode.idx,
-                talk_idx: likeTalkIdx
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        }
-        setLikeTalkIdx("")
-    }, [likeTalkIdx])
+    // useEffect(() => {
+    //     if(likeTalkIdx != "") {
+    //         fetch("http://localhost:3002/stock_back/like", {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             user_idx: decode.idx,
+    //             talk_idx: likeTalkIdx
+    //         }),
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     })
+    //     }
+    //     setLikeTalkIdx("")
+    // }, [likeTalkIdx])
     
 
         return (
@@ -107,11 +111,11 @@ function Third() {
                                         <div className="story_email">{list.email}</div>
                                         <div className="story_day">{new Date(list.date).toLocaleDateString('zh-Hans-CN')} {new Date(list.date).toLocaleTimeString('en-GB')}</div>
                                     </div>
-                                    {/* {decode.idx == list.user_idx ? <div className="story_del" onClick={(e) => setTalkDelete(list.talk_idx)}>삭제</div> : <div></div>} */}
+                                    {decode.idx == list.user_idx ? <div className="story_del" onClick={(e) => setTalkDelete(list.talk_idx)}>삭제</div> : <div></div>}
                                 </div>
                                 <div className="story_content">{list.content}</div>
                                 <div className="story_footer">
-                                    <button className="btn_like">
+                                    {/* <button className="btn_like">
                                         <span className="spa_like">
                                             {list.like_check == null || list.like_check == 0 ? <span className="like_btn" onClick={(e) => setLikeTalkIdx(list.talk_idx)} ></span> :<span className="like_btn_red" ></span>}
                                             <span className="like_text">{like}</span>
@@ -122,7 +126,7 @@ function Third() {
                                             <span className="hate_btn"></span>
                                             <span className="hate_text">232</span>
                                         </span>
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                             )}
