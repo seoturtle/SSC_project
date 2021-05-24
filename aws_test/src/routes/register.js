@@ -121,7 +121,7 @@ function Register() {
         setRegText("입력값을 확인해주세요");
     }
   }, 50)
-  }, [emailCheck])
+  }, [emailCheck, phoneCheck])
 
   return (
     <div className="register">
