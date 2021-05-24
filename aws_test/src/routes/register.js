@@ -20,6 +20,7 @@ function Register() {
   const [pwdText, setPwdText] = useState("");
   const [phoneText, setPhoneText] = useState("");
   const [nameText, setNameText] = useState("");
+  const [phoneCheck, setPhoneCheck] = useState("");
   const [regText, setRegText] = useState("");
 
   // handler
@@ -40,7 +41,7 @@ function Register() {
     } else {
       axios.post("/login/email", {email: email})
       .then(res => {
-        if (res.data.result[0] == undefined) {
+        if (res.data.result == undefined) {
           setEmailCheck(email);
           console.log(emailCheck);
         }else {
@@ -74,7 +75,7 @@ function Register() {
       axios.post("/login/phone", {phone: phone})
       .then(res=>{
         if (res.data.data === true){
-          setPhoneText("")
+          setPhoneCheck(phone);
         }else{
           setPhoneText("이미 존재하는 번호입니다");
         }
@@ -103,6 +104,8 @@ function Register() {
       repwd &&
       sex &&
       phone &&
+      phoneCheck &&
+      phone === phoneCheck &&
       pwd === repwd
     ) {
       axios.post("/login/user", {

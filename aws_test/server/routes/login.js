@@ -18,7 +18,7 @@ router.post('/email', (req, res) => {
     if(err){
       console.log(err);
     }else if(data[0]==undefined) {
-      res.send({result:data});
+      res.send({result:undefined});
       console.log(data[0]);
     }else{
       res.send({result:false});
