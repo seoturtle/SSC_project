@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+.main * {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.main{
+    height: 100%;
+}
+.main #container { 
+    margin: 0 100px;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 70px;
+    padding-top: 120px;
+    display: flex;
+    min-width: 1080px;
+}
+.main .korea_index .img_kospi{
+    float:left; 
+    box-sizing: border-box; 
+    height: 350px; 
+    width: 520px; 
+    border: 1px solid #d50000;
+}
+.main .korea_index .img_kosdaq{
+    float:left; 
+    box-sizing: border-box;
+    height: 350px; 
+    width: 520px; 
+    border: 1px solid #d50000; 
+    margin-left: 40px;
+}
+.main .main_four_index{  
+    clear: both; 
+    padding-top: 50px;
+}
+.main .main_four_index .img_four_index{
+    box-sizing: border-box; 
+    height: 350px; 
+    width: 1080px; 
+    border: 1px solid #d50000;
+}
+.main .main_invest{
+    clear: both; 
+    padding-top: 50px;
+}
+.main .main_invest .img_invest{
+    box-sizing: border-box;
+    height: 350px; 
+    width: 1080px; 
+    border: 1px solid #d50000;
+}
