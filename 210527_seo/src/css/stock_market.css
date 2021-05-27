@@ -1,0 +1,68 @@
+.First_first{
+    width: 100%;
+}
+.First_first .market-summary{
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 25px;
+}
+.First_first .index-snapshot{
+    padding: 25px 0;
+}
+.First_first .market-header{
+    width: 100%;
+    padding-bottom: 1px;
+    display: block;
+}
+
+.First_first .market-header .title{
+    line-height: 20px;
+    font-size: 25px;
+    font-weight: 500;;
+}
+
+
+.First_first .content-wrap{
+    margin-top: 25px;
+    display: flex;
+}
+
+.First_first .kospi{
+    width: 300px;
+    margin-right: 15px;
+}
+
+.First_first .content-wrap .price-info{
+    width: 100%;
+    display: flex;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+
+.First_first .content-wrap .price-info .index-name{
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 15px;
+}
+.First_first .content-wrap .current-price{
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.First_first .content .kospi-chart{
+    height: 200px;
+    width: 270px;
+    border: 1px solid black;
+}
+
+.First_first .content .kosdaq-chart{
+    height: 200px;
+    width: 270px;
+    border: 1px solid black;
+}
+
+.First_first .main-new .market-header .title{
+    padding-top: 45px;
+}
