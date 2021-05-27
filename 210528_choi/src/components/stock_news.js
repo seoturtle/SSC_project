@@ -16,10 +16,6 @@ function Stock_news() {
     const elements = document.getElementsByClassName("issue-wrap");
 
     useEffect(() => {
-        fetchMoreListItems();
-    },[])
-
-    const fetchMoreListItems = () => {
         fetch("http://localhost:3002/search/news", {
 			method: "POST",
 			body: JSON.stringify({
@@ -31,32 +27,9 @@ function Stock_news() {
 			})
 			.then(res=>res.json())
             .then(res => {
-				const result = res.result.items.slice(preItems, items);
-                setStock_news([...stock_news, ...result])
-            })
-        window.addEventListener("scroll", infiniteScroll);
-    };
-
-    const infiniteScroll = () => {
-        let scrollHeight = Math.max(elements[0].scrollHeight, document.body.scrollHeight);
-        let scrollTop = Math.max(elements[0].scrollTop, document.body.scrollTop);
-        let clientHeight = elements[0].clientHeight;
-
-    if (scrollTop + clientHeight >= scrollHeight) {
-      setPreItems(items);
-      setItems(items + 10);
-      };
-    }
-
-    useEffect(() => {
-        fetchMoreListItems();
-    }, [items])
-
-    // useEffect(() => {
-    //     console.log(elements[0].scrollHeight);
-    //     console.log(elements[0].scrollTop);
-    //     console.log(elements[0].clientHeight);
-    // }, [elements[0].clientHeight])
+                setStock_news(res.result.items)
+        })
+    },[])
 
     return(
             <div className="stock_news">
