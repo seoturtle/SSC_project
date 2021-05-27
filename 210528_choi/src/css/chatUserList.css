@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+.chatUserList * {
+    margin: 0;
+    padding: 0;
+}
+
+#root .chatUserList {
+    
+}
+
+.chatUserList .header .header_chat{
+    background : url('../img/chat-red.png');
+}
+
+.chatUserList body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatUserList #chat-container {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    min-width: 800px;
+    max-width: 1000px;
+    flex: 1 0 0;
+    background: #FFF;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.chatUserList #chat-background{
+    margin: 0;
+    padding: 0;
+    padding-top: 120px;
+    height: 100%;
+    background: white;
+    margin: 0 100px;
+}
+
+.chatUserList #new-message-container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    right: 30px;
+    bottom: 30px;
+}
+
+.chatUserList #new-message-container button {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    color: #D50000;
+    text-decoration: none;
+    font-size: 3.6rem;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+}
+
+.chatUserList #search-container,
+.chatUserList #conversation-list {
+    background: #eee;
+}
+
+.chatUserList #search-container {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #dae1e6;
+    border-bottom: 1px solid white;
+    z-index: 1;
+    height: 75px;
+}
+
+.chatUserList #search-container input {
+    flex: 1 0 0;
+    color: black;
+    outline: none;
+    font-weight: bold;
+    border-radius: 2px;
+    height: 30px;
+    border: 0;
+    padding-left: 48px;
+    font-size: 15px;
+    background: url('../img/search-red.png') no-repeat rgb(255, 255, 255);
+    background-size: 20px 20px;
+    background-position: 15px center;
+    width: 100%;
+}
+
+.chatUserList #search-container input::placeholder {
+    color:#353535;
+    font-weight: bold;
+}
+
+.chatUserList #conversation-list {
+    height: 662px;
+    border: 1px solid #dae1e6;
+    border-radius: 0 0 10px 10px;
+    overflow-y: scroll;
+}
+.chatUserList #conversation-list a {
+    text-decoration: none;
+    color: black;
+}
+
+.chatUserList .conversation {
+    align-items: center;
+    display: flex;
+    height: 43px;
+    font-size: 15px;
+    border-bottom: 1px solid white;
+    padding: 20px 20px 20px 15px;
+    text-decoration: none;
+}
+
+.chatUserList .conversation.active,
+.chatUserList .conversation:hover {
+    background: #d50000;
+	color : white;
+}
+
+.chatUserList .conversation:hover {
+    cursor: pointer;
+}
+
+.chatUserList .conversation > .chat-img-man {
+    float: left;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background: url(../images/profiles/man.png) no-repeat;
+    background-size: 50px;
+    background-color: white;
+
+}
+.chatUserList .conversation > .chat-img-woman {
+    float: left;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background: url(../images/profiles/woman.png) no-repeat;
+    background-size: 50px;
+    background-color: white;
+
+}
+.chatUserList .userName {
+    display: inline-block;
+    font-weight: bold;
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+.chatUserList .userEmail {
+    color: #989696;
+    display: inline-block;
+    font-size: 12px;
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+.chatUserList .userText {
+    margin-top: 10px;
+    display: block;
+    padding-left: 10px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatUserList .created-date {
+    font-size: 10px;
+}
+
+.chatUserList .conversation-message {
+    grid-column: span 2;
+    padding-left: 5px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+.chatUserList footer{
+    height: 150px;
+}
+
+.chatUserList ::-webkit-scrollbar {
+    display: none;
+}

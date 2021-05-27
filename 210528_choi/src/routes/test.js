@@ -11,44 +11,15 @@ function Stock_news() {
     const [stock_news, setStock_news] = useState([]);
     const [index, setIndex] = useState(30);
     const [isFetching, setIsFetching] = useState(false);
+    const [preItems, setPreItems] = useState(0);
+    const [items, SetItems] = useState(20);
+
 
     useEffect(() => {
-        if (!isFetching) return;
-        fetchMoreListItems();
-    }, [isFetching]);
+        fetchData();
+    }, [])
 
-    const handleScroll = () => {
-        if (
-        window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight
-        )
-        return;
-        setIsFetching(true);
-    };
-
-    const fetchMoreListItems = () => {
-        setTimeout(() => {
-            fetch("http://localhost:3002/search/news", {
-			method: "POST",
-			body: JSON.stringify({
-				code: storeCode
-			}),
-			headers: {
-				"Content-Type": "application/json"
-			}
-			})
-			.then(res=>res.json())
-            .then(res => {
-				setStock_news(res.result.items.slice(0, index));
-                console.log(res.result.items)
-                setIndex(index+10)
-                setIsFetching(false)
-            })
-        setIsFetching(false);
-        }, 2000);
-    };
-
-    useEffect(() => {
+    const fetchData = () => {
         fetch("http://localhost:3002/search/news", {
 			method: "POST",
 			body: JSON.stringify({
@@ -60,12 +31,16 @@ function Stock_news() {
 			})
 			.then(res=>res.json())
             .then(res => {
-				setStock_news(res.result.items.slice(0,20));
+                setStock_news(stock_news.concat(res.result.items.slice(preItems, preItems + items)))
             })
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [])
+            setPreItems(preItems + items);
+    }
 
+    
+
+    useEffect(() => {
+        // console.log(stock_news)
+    }, [stock_news])
     return(
             <div className="stock_news">
                 <section className="app-content">
@@ -74,6 +49,11 @@ function Stock_news() {
                             <h3 className="stockissue-title">{storeName}</h3>
                         </section>
                         <section className="issue-wrap">
+                            <InfiniteScroll
+                            dataLength={stock_news.length}
+                            next={fetchData}
+                            hasMore={true}
+                            >
                             {stock_news == 0 ? <div></div> : stock_news.map((news, index) => (
                                 <div key={index} className="main-contents">
                                 <div className="market-issue-item">
@@ -85,7 +65,7 @@ function Stock_news() {
                                 </div>
                             </div>
                                     ))}
-                            {isFetching && "loading"}
+                            </InfiniteScroll>
                         </section>
                     </div>
                 </section>
