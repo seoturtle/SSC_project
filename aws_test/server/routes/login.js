@@ -89,7 +89,6 @@ router.post('/user', (req,res) => {
     const pwd = req.body.pwd;
     const name = req.body.name;
     const sex = req.body.sex;
-    const phone = req.body.phone;
     //salt는 생성하는 해시값 이외에 추가적인 암호화 값
       const salt = buf.toString('base64');
       console.log('salt :: ', salt);
@@ -97,8 +96,8 @@ router.post('/user', (req,res) => {
       crypto.pbkdf2(pwd, salt, 1203947, 64, 'sha512', (err, key) => {
           console.log('password :: ', key.toString('base64')); // 'dWhPkH6c4X1Y71A/DrAHhML3DyKQdEkUOIaSmYCI7xZkD5bLZhPF0dOSs2YZA/Y4B8XNfWd3DHIqR5234RtHzw=='
           // 쿼리 작성하여 전달
-          const sql = "INSERT INTO `users` (`email`, `pwd`, `salt`, `name`, `sex`, `phone`) VALUES (?, ?, ?, ?, ?, ?)"
-          const param = [email, key.toString('base64'), salt, name, sex, phone]
+          const sql = "INSERT INTO `users` (`email`, `pwd`, `salt`, `name`, `sex`) VALUES (?, ?, ?, ?, ?)"
+          const param = [email, key.toString('base64'), salt, name, sex]
           db.query(sql, param, (err, data) => {
               if(!err) {
                   res.send(data)

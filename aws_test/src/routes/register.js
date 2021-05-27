@@ -39,7 +39,7 @@ function Register() {
       setEmailText("이메일 형식이 유효하지 않습니다.");
       setEmail("");
     } else {
-      axios.post("/login/email", {email: email})
+      axios.post("http://15.164.94.207:3002/login/email", {email: email})
       .then(res => {
         if (res.data.result == undefined) {
           setEmailCheck(email);
@@ -72,7 +72,7 @@ function Register() {
 
   //핸드폰번호 체크
     if (phone) {
-      axios.post("/login/phone", {phone: phone})
+      axios.post("http://15.164.94.207:3002/login/phone", {phone: phone})
       .then(res=>{
         if (res.data.data === true){
           setPhoneCheck(phone);
@@ -103,12 +103,9 @@ function Register() {
       pwd &&
       repwd &&
       sex &&
-      phone &&
-      phoneCheck &&
-      phone === phoneCheck &&
       pwd === repwd
     ) {
-      axios.post("/login/user", {
+      axios.post("http://15.164.94.207:3002/login/user", {
         email: email,
         pwd: pwd,
         name : name,
