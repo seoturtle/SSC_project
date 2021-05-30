@@ -1,76 +1,139 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { StockContext } from "../store/stock_Item";
-import { Link } from "react-router-dom";
-import jwtDecode from 'jwt-decode';
-import {useCookies} from 'react-cookie';
-import '../css/stock_news.css'
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React, { useState, useEffect } from "react";
+import { render } from "react-dom";
+import HighStock from "highcharts/highstock";
+import HighchartsReact from "highcharts-react-official";
+import $ from 'jquery';
+window.$ = $;
 
-function Stock_news() {
-    const { storeCode, setStoreCode, storeName } = useContext(StockContext)
-    const [stock_news, setStock_news] = useState([]);
-    const [index, setIndex] = useState(30);
-    const [isFetching, setIsFetching] = useState(false);
-    const [preItems, setPreItems] = useState(0);
-    const [items, SetItems] = useState(20);
+let mockOptions = {
+    rangeSelector: {
+        buttons: [
+            {type: 'hour',count: 1,text: '1h'}, 
+            {type: 'day',count: 1,text: '1d'}, 
+            {type: 'all',count: 1,text: 'All'}
+        ],
+        selected: 2,
+        inputEnabled: true
+    },
 
+  title: {
+    text: "AAPL Historical"
+  },
 
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    const fetchData = () => {
-        fetch("http://localhost:3002/search/news", {
-			method: "POST",
-			body: JSON.stringify({
-				code: storeCode
-			}),
-			headers: {
-				"Content-Type": "application/json"
-			}
-			})
-			.then(res=>res.json())
-            .then(res => {
-                setStock_news(stock_news.concat(res.result.items.slice(preItems, preItems + items)))
-            })
-            setPreItems(preItems + items);
+  yAxis: [
+    {
+      labels: {
+        align: "right",
+        x: -3
+      },
+      title: {
+        text: "OHLC"
+      },
+      height: "60%",
+      lineWidth: 2,
+      resize: {
+        enabled: true
+      }
+    },
+    {
+      labels: {
+        align: "right",
+        x: -3
+      },
+      title: {
+        text: "Volume"
+      },
+      top: "65%",
+      height: "35%",
+      offset: 0,
+      lineWidth: 2
     }
+  ],
 
-    
+  tooltip: {
+    split: true
+  },
+  plotOptions: {
+    candlestick: {
+        downColor: 'blue',
+        upColor: 'red'
+    }
+    },
+  series: [
+    {
+      type: "candlestick",
+      data: (function () {
+        var chartdata = [];
+        $.getJSON('https://poloniex.com/public?command=returnChartData&currencyPair=BTC_ETH&start=1455699200&end=1460000000&period=14400', function (data) {
+            $.each(data, function(i, item){
+                console.log(item)
+                chartdata.push([item.date*1000, item.open, item.high, item.low, item.close]);
+            });
+        })
+        return chartdata;
+      })()
+    },
+    {
+      type: "column",
+      data: (function () {
+        var columndata = [];
+        $.getJSON('https://poloniex.com/public?command=returnChartData&currencyPair=BTC_ETH&start=1455699200&end=1460000000&period=14400', function (data) {
+            $.each(data, function(i, item){
+                columndata.push([item.date*1000, item.volume]);
+            });
+        })
+        return columndata;
+      })(),
+      yAxis: 1
+    }
+  ]
+};
 
-    useEffect(() => {
-        // console.log(stock_news)
-    }, [stock_news])
-    return(
-            <div className="stock_news">
-                <section className="app-content">
-                    <div className="stock-issue">
-                        <section className="head stock">
-                            <h3 className="stockissue-title">{storeName}</h3>
-                        </section>
-                        <section className="issue-wrap">
-                            <InfiniteScroll
-                            dataLength={stock_news.length}
-                            next={fetchData}
-                            hasMore={true}
-                            >
-                            {stock_news == 0 ? <div></div> : stock_news.map((news, index) => (
-                                <div key={index} className="main-contents">
-                                <div className="market-issue-item">
-                                    <h3 onClick={() => window.open(`${news.link}`, '_blank')} dangerouslySetInnerHTML={ {__html: news.title} } className="issue-title"></h3>
-                                    <div className="issue-bottom">
-                                        <span className="source"></span>
-                                        <span className="date">{ new Date(news.pubDate).toLocaleDateString() } { new Date(news.pubDate).toLocaleTimeString() }</span>
-                                    </div>
-                                </div>
-                            </div>
-                                    ))}
-                            </InfiniteScroll>
-                        </section>
-                    </div>
-                </section>
-            </div>
-        );  
+// const transformChartData = (options, array) => {
+//   const dataLength = array.length;
+
+//   for (var i = 0; i < dataLength; i += 1) {
+//     options.series[0].data.push([
+//       array[i][0], // the date
+//       array[i][1], // open
+//       array[i][2], // high
+//       array[i][3], // low
+//       array[i][4] // close
+//     ]);
+
+//     options.series[1].data.push([
+//       array[i][0], // the date
+//       array[i][5] // the volume
+//     ]);
+//   }
+//   return options;
+// };
+
+function Test() {
+  // const [data, setData] = useState({ options: {} });
+  // const [isLoading, setIsLoading] = useState(false);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setIsLoading(true);
+  //     const fetchedData = mockData; // simulate xhr request
+  //     const newOptions = transformChartData(mockOptions, fetchedData);
+  //     setData({ options: newOptions });
+  //     setIsLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
+
+  return (
+    <div className="App">
+      {
+        <HighchartsReact
+          highcharts={HighStock}
+          constructorType={"stockChart"}
+          options={mockOptions}
+        />
+      }
+    </div>
+  );
 }
 
-export default Stock_news;
+export default Test;
