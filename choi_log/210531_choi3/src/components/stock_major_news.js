@@ -29,7 +29,7 @@ function Stock_major_news() {
                                 <p className="current-price">3,168.43</p>
                             </div>
                             <div className="content">
-                                <div className="kospi-chart"></div>
+                                <div className="kospi-chart"><img src={'https://ssl.pstatic.net/imgfinance/chart/mobile/day/KOSPI_search.png'} /></div>
                             </div>
                         </div>
                         <div className="kosdaq">
@@ -38,7 +38,7 @@ function Stock_major_news() {
                                 <p className="current-price">966.06</p>
                             </div>
                             <div className="content">
-                                <div className="kosdaq-chart"></div>
+                                <div className="kosdaq-chart"><img src={'https://ssl.pstatic.net/imgfinance/chart/mobile/day/KOSDAQ_search.png'} /></div>
                             </div>
                         </div>
                     </div>

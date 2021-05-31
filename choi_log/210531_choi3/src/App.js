@@ -7,7 +7,6 @@ import stock_main from "./routes/stock_main"
 import chatUserList from "./routes/chatUserList"
 import chatRoom from "./routes/chatRoom"
 import chatUserAdd from "./routes/chatUserAdd"
-import test from "./routes/test"
 import StockStore from './store/stock_Item';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
         <Route path="/chatUserList" component={chatUserList} />
         <Route path="/chatRoom" component={chatRoom} />
         <Route path="/chatUserAdd" component={chatUserAdd} />
-        <Route path="/test" component={test} />
       </HashRouter>
       </StockStore>
     );
