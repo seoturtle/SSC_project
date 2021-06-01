@@ -34,8 +34,8 @@ function Stock_main({location}) {
      },
     rangeSelector: {
         buttons: [
-            {type: 'hour',count: 1,text: '1h'}, 
-            {type: 'day',count: 1,text: '1d'}, 
+            {type: 'week',count: 1,text: '1w'}, 
+            {type: 'month',count: 1,text: '1m'}, 
             {type: 'all',count: 1,text: 'All'}
         ],
         selected: 2,
@@ -89,7 +89,11 @@ function Stock_main({location}) {
             const itemsDate = items[0].slice(0,4) + '.' + items[0].slice(4, 6) + '.' + items[0].slice(6,8);
             const items2 = item._attributes.data.split('|').map(Number)
             const date = new Date(itemsDate).getTime()
-            chartdata.push([date, items2[1], items2[2], items2[3], items2[4]]);
+            if (items2[1] == 0){
+              chartdata.push([date, items2[4], items2[4], items2[4], items2[4]]);
+            }else{
+              chartdata.push([date, items2[1], items2[2], items2[3], items2[4]]);
+            }
           });
         })
         return chartdata;
