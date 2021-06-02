@@ -22,13 +22,13 @@ function Stock_major_news() {
         axios.post('http://localhost:3002/stock_back/kospi')
         .then(res => {
             const items = res.data._attributes.data.split('|')
-            const itemsKospi = items[4].slice(0,1) + ',' + items[4].slice(1, 4) + '.' + items[4].slice(4,6);
+            const itemsKospi = items[4].slice(0, -2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '.' + items[4].slice(-2)
             setKospi(itemsKospi)
         })
         axios.post('http://localhost:3002/stock_back/kosdaq')
         .then(res => {
             const items = res.data._attributes.data.split('|')
-            const itemsKosdaq = items[4].slice(0,3) + '.' + items[4].slice(-2);
+            const itemsKosdaq = items[4].slice(0, -2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '.' + items[4].slice(-2)
             setKosdaq(itemsKosdaq)
         })
     }, [])
