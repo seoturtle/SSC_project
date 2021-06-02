@@ -35,7 +35,7 @@ function Fourth() {
                         관심목록
                     </li>
                 </ol>
-                <div class="fourth_content">
+                <div className="fourth_content">
                     {favList != 0 && favList.map((list, index) => (
                         <div key={index} className="fourth_wrap">
                             <div className="fourth_name">{list.stock_summary_name}</div>
