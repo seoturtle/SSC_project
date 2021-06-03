@@ -1,0 +1,75 @@
+.fourth{
+    width: 100%;
+}
+.fourth .menu{
+    width: 100%;
+    height: 60px;
+    position: relative;
+    display: flex;
+    color: #989696;
+}
+
+.fourth .menu_tab{
+    color: #D50000;
+    top: 25%;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+
+}
+.fourth .menu_tab::after{
+    content: "";
+    width: 75px;
+    height: 2px;
+    position: absolute;
+    left: 44%;
+    bottom: -15px;
+    background-color: #d50000;
+}
+
+.fourth .fourth_wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid #e8e6e6;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.fourth .fourth_wrap:hover{
+    background-color: #e8e6e6;
+}
+.fourth .list{
+    width: 17rem;
+    display: flex;
+    align-items: center;
+}
+
+.fourth .fourth_name{
+    font-size: 20px;
+    font-weight: 500;
+    flex: auto;
+    color: black;
+}
+
+.fourth .fourth_code{
+    font-size: 14px;
+    flex: auto;
+    color: #989696;
+}
+.fourth .fourth_class{
+    font-size: 14px;
+    flex: auto;
+    color: #989696;
+}
+.fourth .angelright{
+    background: url('../../img/angelright.png') no-repeat;
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+}

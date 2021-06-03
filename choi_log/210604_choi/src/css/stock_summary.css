@@ -1,0 +1,76 @@
+.stock_summary{
+    height: 48.5rem;
+    box-sizing: border-box;
+    padding: 1.5rem !important;
+}
+
+.stock_summary .summary_title{
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e6e6;
+}
+.stock_summary .summary_title .title_div {
+    display: flex;
+    width: 10rem;
+}
+.stock_summary .summary_title .title_div > div{
+    flex: auto;
+    color: #989696;
+}
+.stock_summary .summary_main{
+    height: 13rem;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e8e6e6;
+}
+.stock_summary .summary_main > div{
+    flex: 1 1 40%;
+    padding: 1rem 0;
+}
+.stock_summary .main_name{
+    color: #989696;
+}
+
+.stock_summary .summary_bot{
+    padding: 1rem 0;
+}
+.stock_summary .summary_bot_head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.stock_summary .summary_bot_head > div > button{
+    padding: 0 .5rem;
+    background-color: white;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    color: #989696;
+}
+.stock_summary .summary_bot .head_content{
+    color: #989696;
+    font-size: 12px;
+    padding-right: 20px;
+}
+.stock_summary .summary_bot .black{
+    color: black;
+}
+.stock_summary .bot_sales {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+.stock_summary .bot_div{
+    padding: 0 2rem;
+}
+.stock_summary .bot_div > div {
+    padding: 1rem 0;
+}
+.stock_summary .bot_div {
+    border-right: 1px solid #e8e6e6;
+}
+.stock_summary .bot_div:last-child {
+    border-right: 0;
+}
