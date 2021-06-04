@@ -1,0 +1,45 @@
+.kospi .day{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/day/KOSPI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kospi .month{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/area/month3/KOSPI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kospi .year{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/area/year/KOSPI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kospi .days{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/candle/day/KOSPI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kospi .weeks{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/candle/week/KOSPI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kospi .months{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/candle/month/KOSPI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+
+.kospi button{
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 25%;
+    padding: 0 0 50px 17px;
+    font-size: 17px;
+
+}
+
+.kospi .black{
+    color: #d50000;
+}
