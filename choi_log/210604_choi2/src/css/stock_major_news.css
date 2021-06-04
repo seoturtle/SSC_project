@@ -1,0 +1,92 @@
+.stock_major_news{
+    height: 48.5rem;
+}
+.stock_major_news .market-summary{
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.stock_major_news .index-snapshot{
+    padding: 25px 0;
+}
+.stock_major_news .market-header{
+    width: 100%;
+    padding-bottom: 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.stock_major_news .market-header .title{
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 25px;
+}
+.stock_major_news .market-header .date{
+    padding-right: 20px;
+    color: #989696;
+    font-size: 12px;
+}
+
+
+.stock_major_news .content-wrap{
+    margin-top: 25px;
+    display: flex;
+}
+
+.stock_major_news .kospi{
+    width: 300px;
+    margin-right: 15px;
+}
+
+.stock_major_news .content-wrap .price-info{
+    width: 100%;
+    display: flex;
+    padding-bottom: 10px;
+    line-height: 20px;
+    padding: 0 25px;
+}
+
+.stock_major_news .content-wrap .price-info .index-name{
+    font-size: 15px;
+    margin-right: 15px;
+}
+.stock_major_news .content-wrap .current-price{
+    font-size: 15px;
+}
+
+.stock_major_news .content .kospi-chart{
+    height: 200px;
+    width: 270px;
+}
+
+.stock_major_news .content .kosdaq-chart{
+    height: 200px;
+    width: 270px;
+}
+.stock_major_news .main-new{
+    padding: 0 25px;
+}
+.stock_major_news .main-new .market-header2 .title{
+    padding-top: 45px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stock_major_news .market_news_wrap{
+    padding: 1rem;
+    border-bottom: 1px solid #e8e6e6;
+}
+
+.stock_major_news .issue-title{
+    cursor: pointer;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 500px;
+    height: 30px;
+    white-space: nowrap;
+}
