@@ -1,0 +1,61 @@
+.main * {
+    margin: 0;
+    padding: 0;
+}
+.main{
+    height: 100%;
+}
+.main #container { 
+    margin: 0 50px;
+    padding-bottom: 70px;
+    padding-top: 100px;
+    display: flex;
+    min-width: 1080px;
+}
+.main .main_left{
+    align-items: flex-end;
+    flex-direction: column;
+    display: flex;
+    flex: 1.5;
+}
+.main .korea_index{
+    width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.main .korea_index .img_kospi{
+    float:left; 
+    box-sizing: border-box; 
+    height: 300px; 
+    width: 300px; 
+    flex: 1 1 40%;
+}
+.main .korea_index .img_kosdaq{
+    float:left; 
+    box-sizing: border-box;
+    height: 300px; 
+    width: 300px; 
+    flex: 1 1 40%;
+}
+.main .main_four_index{  
+    clear: both; 
+}
+.main .main_four_index .img_four_index{
+    box-sizing: border-box; 
+    height: 300px; 
+    width: 700px; 
+}
+
+.main #container p{
+    padding-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.main .main_column{
+    flex: 1 1 0%;
+    border: 1px solid black;
+    overflow: hidden;
+    margin: 0 8.5rem;
+    min-width: 450px;
+}
