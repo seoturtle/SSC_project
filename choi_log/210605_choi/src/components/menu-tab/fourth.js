@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { StockContext } from "../../store/stock_Item";

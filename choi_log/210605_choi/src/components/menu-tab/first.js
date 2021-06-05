@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState, useContext } from 'react';
 import { StockContext } from "../../store/stock_Item";
 import queryString from 'query-string';

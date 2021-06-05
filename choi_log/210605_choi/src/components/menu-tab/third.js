@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useContext } from 'react';
 import { StockContext } from "../../store/stock_Item";
 import jwtDecode from 'jwt-decode';

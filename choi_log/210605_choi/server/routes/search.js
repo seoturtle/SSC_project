@@ -138,7 +138,7 @@ router.post('/count', (req, res) => {
 router.post('/delete', (req, res) => {
     const midx = req.body.midx;
     const oidx = req.body.oidx;
-    UserChat.remove({midx: midx, oidx: oidx}, function(err, result) {
+    UserChat.deleteOne({midx: midx, oidx: oidx}, function(err, result) {
     });
     res.end();
 })
