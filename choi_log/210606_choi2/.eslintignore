@@ -1,0 +1,3 @@
+src/components/*.js
+src/components/menu-tab/*.js
+src/routes/*.js

@@ -1,0 +1,31 @@
+.stock_news {
+    box-sizing: border-box;
+}
+
+.stock_news .stockissue-title{
+    padding: 1.2rem;
+    border-bottom: 1px solid #e8e6e6;
+}
+
+.stock_news .issue-wrap{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    height: 44.4rem;
+    overflow-y: scroll;
+}
+
+.stock_news .market-issue-item{
+    padding: 1rem;
+    border-bottom: 1px solid #e8e6e6;
+}
+
+.stock_news .issue-title{
+    cursor: pointer;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 500px;
+    height: 30px;
+    white-space: nowrap;
+}

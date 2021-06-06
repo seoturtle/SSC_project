@@ -1,0 +1,45 @@
+.kosdaq .day{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/day/KOSDAQ_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kosdaq .month{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/area/month3/KOSDAQ_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kosdaq .year{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/area/year/KOSDAQ_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kosdaq .days{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/candle/day/KOSDAQ_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kosdaq .weeks{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/candle/week/KOSDAQ_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.kosdaq .months{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/candle/month/KOSDAQ_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+
+.kosdaq button{
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 25%;
+    padding: 0 0 50px 17px;
+    font-size: 17px;
+    outline: 0;
+}
+
+.kosdaq .black{
+    color: #d50000;
+}
