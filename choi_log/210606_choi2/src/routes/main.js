@@ -19,6 +19,13 @@ import PDF6 from "../pdf/5_2.pdf"
 import PDF7 from "../pdf/5_3.pdf"
 import PDF8 from "../pdf/5_4.pdf"
 import PDF9 from "../pdf/6_1.pdf"
+import PDF10 from "../pdf/3_1.pdf"
+import PDF11 from "../pdf/3_2.pdf"
+import PDF12 from "../pdf/3_3.pdf"
+import PDF13 from "../pdf/3_4.pdf"
+import PDF14 from "../pdf/3_5.pdf"
+
+
 
 function Main() {
 
@@ -68,7 +75,7 @@ function Main() {
             </div>
           </div>
           <div className="main_right">
-            <div className="column_header">Stock Column</div>
+            <div className="column_header">Weekly Column</div>
               <div className="column_list">
                 <div className="column">
                   <div className="list">
@@ -136,6 +143,36 @@ function Main() {
                 <div className="column">
                   <div className="list">
                     <a href={PDF9} target='_black'><div className="column_name">OECD 21년 한국 경제 성장률 3.8% 전망</div></a>
+                  </div>
+                  <div className="angelright"></div>
+                </div>
+                <div className="column">
+                  <div className="list">
+                    <a href={PDF10} target='_black'><div className="column_name">금주 산업 분석 : 운수업</div></a>
+                  </div>
+                  <div className="angelright"></div>
+                </div>
+                <div className="column">
+                  <div className="list">
+                    <a href={PDF11} target='_black'><div className="column_name">삼성 (이건희 회장) 상속세 납부 결정</div></a>
+                  </div>
+                  <div className="angelright"></div>
+                </div>
+                <div className="column">
+                  <div className="list">
+                    <a href={PDF12} target='_black'><div className="column_name">금주 산업 분석 : 숙박업</div></a>
+                  </div>
+                  <div className="angelright"></div>
+                </div>
+                <div className="column">
+                  <div className="list">
+                    <a href={PDF13} target='_black'><div className="column_name">암호 화폐 다시 급 상승</div></a>
+                  </div>
+                  <div className="angelright"></div>
+                </div>
+                <div className="column">
+                  <div className="list">
+                    <a href={PDF14} target='_black'><div className="column_name">금주 산업 분석 : 증권업</div></a>
                   </div>
                   <div className="angelright"></div>
                 </div>     

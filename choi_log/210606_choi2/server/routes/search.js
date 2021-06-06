@@ -227,8 +227,10 @@ router.post('/filecheck', (req, res) => {
     fs.readFile('../src/prediction/'+code+'.png', (err, data) => {
     if (err) {
         res.send(false)
+        console.log(err)
     }else{
         res.send(true)
+        console.log(data)
     }
     
 });
