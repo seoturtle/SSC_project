@@ -1,0 +1,221 @@
+.four_indicator .day{
+    display: flex;
+    flex-wrap: wrap;
+}
+.four_indicator .day > div{
+    flex: 1 1 40%;
+    text-align: center;
+    font-size: 15px;
+}
+.four_indicator .month > div{
+    flex: 1 1 40%;
+    text-align: center;
+    font-size: 15px;
+}
+.four_indicator .year > div{
+    flex: 1 1 40%;
+    text-align: center;
+    font-size: 15px;
+}
+.four_indicator .days > div{
+    flex: 1 1 40%;
+    text-align: center;
+    font-size: 15px;
+}
+.four_indicator .weeks > div{
+    flex: 1 1 40%;
+    text-align: center;
+    font-size: 15px;
+}
+.four_indicator .months > div{
+    flex: 1 1 40%;
+    text-align: center;
+    font-size: 15px;
+}
+.four_indicator .nasdaq_day{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/day/NAS@IXIC_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .dau_day{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/day/DJI@DJI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .sp_day{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/day/SPI@SPX_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+.four_indicator .nikkei_day{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/day/NII@NI225_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+
+.four_indicator .month{
+    display: flex;
+    flex-wrap: wrap;
+}
+.four_indicator .nasdaq_month{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/month3/NAS@IXIC_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .dau_month{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/month3/DJI@DJI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .sp_month{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/month3/SPI@SPX_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+.four_indicator .nikkei_month{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/month3/NII@NI225_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+
+.four_indicator .year{
+    display: flex;
+    flex-wrap: wrap;
+}
+.four_indicator .nasdaq_year{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/year/NAS@IXIC_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .dau_year{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/year/DJI@DJI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .sp_year{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/year/SPI@SPX_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+.four_indicator .nikkei_year{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/area/year/NII@NI225_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+
+.four_indicator .days{
+    display: flex;
+    flex-wrap: wrap;
+}
+.four_indicator .nasdaq_days{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/day/NAS@IXIC_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .dau_days{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/day/DJI@DJI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .sp_days{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/day/SPI@SPX_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+.four_indicator .nikkei_days{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/day/NII@NI225_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+
+.four_indicator .weeks{
+    display: flex;
+    flex-wrap: wrap;
+}
+.four_indicator .nasdaq_weeks{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/week/NAS@IXIC_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .dau_weeks{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/week/DJI@DJI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .sp_weeks{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/week/SPI@SPX_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+.four_indicator .nikkei_weeks{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/week/NII@NI225_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+
+.four_indicator .months{
+    display: flex;
+    flex-wrap: wrap;
+}
+.four_indicator .nasdaq_months{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/month/NAS@IXIC_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .dau_months{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/month/DJI@DJI_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+}
+.four_indicator .sp_months{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/month/SPI@SPX_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+.four_indicator .nikkei_months{
+    background: url('https://ssl.pstatic.net/imgfinance/chart/mobile/world/candle/month/NII@NI225_search.png') no-repeat;
+    width: 300px;
+    height: 186px;
+    margin-top: 20px;
+}
+
+.four_indicator .four_name{
+    display: flex;
+    
+}
+
+.four_indicator .four_name > div{
+    width:300px;
+    margin-left: 30px;
+    text-align: center;
+}
+
+.four_indicator .four_name > div:first-child{
+    margin-left: 0;
+}
+
+.four_indicator button{
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 25%;
+    padding: 0 0 50px 17px;
+    font-size: 17px;
+    outline: 0;
+}
+
+.four_indicator .black{
+    color: #d50000;
+}

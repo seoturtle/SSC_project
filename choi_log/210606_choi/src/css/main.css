@@ -1,0 +1,128 @@
+.main * {
+    margin: 0;
+    padding: 0;
+}
+.main{
+    height: 100%;
+}
+.main #container { 
+    margin: 0 50px;
+    padding-bottom: 70px;
+    padding-top: 100px;
+    display: flex;
+    min-width: 1190px;
+}
+.main .main_left{
+    align-items: flex-end;
+    flex-direction: column;
+    display: flex;
+    width: 50%;
+    min-width: 700px;
+}
+.main .korea_index{
+    width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.main .korea_index .img_kospi{
+    float:left; 
+    box-sizing: border-box; 
+    height: 300px; 
+    width: 300px; 
+    flex: 1 1 40%;
+}
+.main .korea_index > div > p > span {
+    padding-left: 15px;
+    font-size: 14px;
+    font-weight: 100;
+}
+.main .korea_index .img_kosdaq{
+    float:left; 
+    box-sizing: border-box;
+    height: 300px; 
+    width: 300px; 
+    flex: 1 1 40%;
+}
+.main .main_four_index{  
+    clear: both; 
+}
+.main .main_four_index .img_four_index{
+    box-sizing: border-box; 
+    height: 300px; 
+    width: 700px; 
+}
+
+.main #container p{
+    padding-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.main .main_right{
+    min-width: 450px;
+    width: 670px;
+    height: 762px;
+    margin-right: 50px;
+    
+}
+.main .column_header{
+    height: 50px;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.main .column_list{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    border: 1px solid #e8e6e6;
+}
+.main .column{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid #e8e6e6;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.main .column:last-child{
+    border-bottom: 0;
+}
+.main .column:hover{
+    background-color: #e8e6e6;
+}
+.main .list{
+    min-width: 15rem;
+    width: 30rem;
+    display: flex;
+    align-items: center;
+}
+
+.main .list a{
+    text-decoration: none;
+    min-width: 350px;
+    width: 550px;
+}
+
+.main .column_name{
+    font-size: 20px;
+    font-weight: 500;
+    
+    flex: auto;
+    color: black;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.main .angelright{
+    background: url('../img/angelright.png') no-repeat;
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+.main ::-webkit-scrollbar{
+    display: none;
+}
+
